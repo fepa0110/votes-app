@@ -9,4 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="crear_sala_nombre_text">Nombre sala</string>
+    <string name="button_crear_sala_crear_">Crear</string>
+    <string name="button_cancelar">Cancelar</string>
 </resources>
