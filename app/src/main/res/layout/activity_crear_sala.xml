@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.crear_sala.CrearSala">
 
-    <com.google.android.material.bottomappbar.BottomAppBar
+    <!--<com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="409dp"
@@ -14,37 +14,57 @@
         android:layout_gravity="bottom"
         tools:ignore="BottomAppBar,MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="4dp" />
+        tools:layout_editor_absoluteY="4dp" />-->
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/crear_sala_nombre_text"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="289dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/crear_sala_button_aceptar"
-        android:layout_width="131dp"
-        android:layout_height="47dp"
-        android:text="@string/button_crear_sala_crear_"
-        android:background="#0604AA"
-        android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="238dp"
-        tools:layout_editor_absoluteY="465dp" />
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/crear_sala_nombre_text"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="289dp" />
 
-    <Button
-        android:id="@+id/crear_sala_button_cancelar"
-        android:layout_width="131dp"
-        android:layout_height="47dp"
-        android:text="@string/button_cancelar"
-        android:background="#FFFFFF"
-        android:textColor="#000000"
-        android:shadowColor="#AAAAAA"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="465dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="80dp">
+
+
+            <Button
+                android:id="@+id/crear_sala_button_cancelar"
+                android:layout_width="131dp"
+                android:layout_height="47dp"
+                android:background="#FFFFFF"
+                android:shadowColor="#AAAAAA"
+                android:text="@string/button_cancelar"
+                android:textColor="#000000"
+                android:layout_margin="10dp"
+                tools:layout_editor_absoluteX="38dp"
+                tools:layout_editor_absoluteY="465dp" />
+
+            <Button
+                android:id="@+id/crear_sala_button_aceptar"
+                android:layout_width="131dp"
+                android:layout_height="47dp"
+                android:background="#0604AA"
+                android:text="@string/button_crear_sala_crear_"
+                android:textColor="#FFFFFF"
+                android:layout_margin="10dp"
+                tools:layout_editor_absoluteX="238dp"
+                tools:layout_editor_absoluteY="465dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
