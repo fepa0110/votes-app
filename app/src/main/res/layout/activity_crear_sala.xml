@@ -14,12 +14,12 @@
         tools:ignore="MissingConstraints">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/crear_sala_editText_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/crear_sala_nombre_text"
+            android:hint="@string/crear_sala_nombre_text"
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="289dp" />
 
@@ -50,6 +50,7 @@
                 android:text="@string/button_crear_sala_crear_"
                 android:textColor="#FFFFFF"
                 android:layout_margin="10dp"
+                android:onClick="createSala"
                 tools:layout_editor_absoluteX="238dp"
                 tools:layout_editor_absoluteY="465dp" />
         </LinearLayout>
