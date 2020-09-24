@@ -43,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Metodo para ir a la actividad de crear sala
+     */
     fun openCrearSala(view: View){
         //Crear vinculo entre esta actividad y CrearSala
         val intent = Intent(this, CrearSala::class.java);

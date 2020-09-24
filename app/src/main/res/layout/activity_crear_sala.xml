@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.crear_sala.CrearSala">
 
-    <!--<com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        tools:ignore="BottomAppBar,MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="4dp" />-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +29,6 @@
             android:gravity="center"
             android:layout_marginTop="80dp">
 
-
             <Button
                 android:id="@+id/crear_sala_button_cancelar"
                 android:layout_width="131dp"
@@ -50,7 +39,8 @@
                 android:textColor="#000000"
                 android:layout_margin="10dp"
                 tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="465dp" />
+                tools:layout_editor_absoluteY="465dp"
+                android:onClick="backToMain"/>
 
             <Button
                 android:id="@+id/crear_sala_button_aceptar"
