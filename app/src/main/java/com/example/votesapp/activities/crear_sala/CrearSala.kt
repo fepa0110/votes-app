@@ -18,9 +18,11 @@ import com.example.votesapp.R
 import com.example.votesapp.activities.mainActivity.MainActivity
 import org.json.JSONObject
 
+import com.example.votesapp.services.SalaService
 
 class CrearSala : AppCompatActivity() {
     val url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas";
+    val salaService = SalaService();
 
     //Etiqueta de log
     companion object {
@@ -36,7 +38,7 @@ class CrearSala : AppCompatActivity() {
 
         //Agregar acción de clickeo
         botonAceptar.setOnClickListener(View.OnClickListener {
-            createSala(editTextNombreSala.text)
+            this.createSala(editTextNombreSala.text)
         })
 
         //Agregar acción de clickeo
@@ -45,26 +47,11 @@ class CrearSala : AppCompatActivity() {
             startActivity(intent);
         })
     }
-    
+
     private fun createSala(nombre: Any){
-        val queue = Volley.newRequestQueue(this)
-
-        val jsonSala = JSONObject()
-        jsonSala.put("nombre",nombre)
-
-        val jsonRequest = JsonObjectRequest(url, jsonSala,
-            Response.Listener { response ->
-                Log.i(LOG_TAG, "Response is: $response")
-                Toast.makeText(this, "Sala creada correctamente", Toast.LENGTH_SHORT).show()
-            },
-            Response.ErrorListener { error ->
-                error.printStackTrace()
-                Log.e(LOG_TAG, "No se pudo crear la sala")
-                Toast.makeText(this, "No se pudo crear la sala", Toast.LENGTH_SHORT).show()
-            }
-        )
-
-        queue.add(jsonRequest)
+        if(nombre.toString().isNotEmpty() and nombre.toString().isNotBlank()){
+            salaService.create(this,nombre)
+        }
+        else Toast.makeText(this, "Por favor escriba un nombre sala", Toast.LENGTH_SHORT).show()
     }
-
 }
