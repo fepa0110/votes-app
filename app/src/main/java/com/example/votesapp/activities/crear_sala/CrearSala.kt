@@ -36,7 +36,6 @@ class CrearSala : AppCompatActivity() {
 
         //Agregar acción de clickeo
         botonAceptar.setOnClickListener(View.OnClickListener {
-            //Llamar metodo aca
             createSala(editTextNombreSala.text)
         })
 
@@ -46,13 +45,6 @@ class CrearSala : AppCompatActivity() {
             startActivity(intent);
         })
     }
-
-    //Volver a main
-    fun backToMain(){
-        val intent = Intent(this, MainActivity::class.java);
-        startActivity(intent);
-    }
-
     
     private fun createSala(nombre: Any){
         val queue = Volley.newRequestQueue(this)
