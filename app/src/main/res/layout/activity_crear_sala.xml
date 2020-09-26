@@ -40,7 +40,7 @@
                 android:layout_margin="10dp"
                 tools:layout_editor_absoluteX="38dp"
                 tools:layout_editor_absoluteY="465dp"
-                android:onClick="backToMain"/>
+                />
 
             <Button
                 android:id="@+id/crear_sala_button_aceptar"
@@ -50,7 +50,6 @@
                 android:text="@string/button_crear_sala_crear_"
                 android:textColor="#FFFFFF"
                 android:layout_margin="10dp"
-                android:onClick="createSala"
                 tools:layout_editor_absoluteX="238dp"
                 tools:layout_editor_absoluteY="465dp" />
         </LinearLayout>

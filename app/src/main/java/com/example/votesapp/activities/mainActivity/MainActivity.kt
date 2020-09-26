@@ -19,11 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        //Boton de crear sala
-        /*this.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Crear sala", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }*/
+
 
     }
 
