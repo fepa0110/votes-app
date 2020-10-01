@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.pruebaDeListView.PruebaDeListView"></activity>
-        <activity android:name=".activities.Lista_salas.lista_Salas" />
-        <activity android:name=".activities.Lista_salas.Lista_Salas" />
+        <activity android:name=".activities.registro_usuario.Registro_usuario"></activity>
+        <activity android:name=".activities.pruebaDeListView.PruebaDeListView" />
+        <activity android:name=".activities.lista_salas.Lista_Salas" />
+        <activity android:name=".activities.lista_salas.Lista_Salas" />
         <activity
             android:name=".activities.crear_sala.CrearSala"
             android:label="Crear sala de votación"

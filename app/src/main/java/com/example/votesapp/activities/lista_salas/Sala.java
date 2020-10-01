@@ -1,4 +1,4 @@
-package com.example.votesapp.activities.Lista_salas;
+package com.example.votesapp.activities.lista_salas;
 
 public class Sala {
     //Atributos

@@ -6,10 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.example.votesapp.R
-import com.example.votesapp.activities.Lista_salas.lista_Salas
+import com.example.votesapp.activities.lista_salas.Lista_Salas
 
 import com.example.votesapp.activities.crear_sala.CrearSala
-import com.example.votesapp.activities.pruebaDeListView.PruebaDeListView
+
 import android.content.Intent as Intent
 
 class MainActivity : AppCompatActivity() {
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun openVerSalas(view: View){
-        val intert2 = Intent(this, lista_Salas::class.java);
+        val intert2 = Intent(this, Lista_Salas::class.java);
         startActivity(intert2);
     }
 }

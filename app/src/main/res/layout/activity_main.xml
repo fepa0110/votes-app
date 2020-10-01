@@ -64,6 +64,7 @@
                          android:onClick="openVerSalas"
                          android:padding="10sp"
 
+
                          android:text="@string/bn_ver_salas"
 
                          android:textSize="24sp"

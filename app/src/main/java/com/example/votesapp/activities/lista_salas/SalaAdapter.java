@@ -1,4 +1,4 @@
-package com.example.votesapp.activities.Lista_salas;
+package com.example.votesapp.activities.lista_salas;
 
 import android.content.Context;
 import android.util.Log;

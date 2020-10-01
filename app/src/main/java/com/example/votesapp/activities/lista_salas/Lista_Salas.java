@@ -1,4 +1,4 @@
-package com.example.votesapp.activities.Lista_salas;
+package com.example.votesapp.activities.lista_salas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import com.example.votesapp.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class lista_Salas extends AppCompatActivity {
+public class Lista_Salas extends AppCompatActivity {
 
     //Atributos
     private ListView slistView;

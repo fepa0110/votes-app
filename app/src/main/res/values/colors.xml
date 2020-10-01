@@ -3,4 +3,9 @@
     <color name="colorPrimary">#1486A9</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <!--Defino los colores para el degradado -->
+    <color name="azul_oscuro">#3023AE</color>
+    <color name="purpura">#c86dd7</color>
+    
 </resources>
