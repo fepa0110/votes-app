@@ -1,23 +1,26 @@
 package com.example.votesapp.activities.mainActivity
 
 import android.os.Bundle
-import android.view.Display
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.example.votesapp.R
+import com.example.votesapp.activities.Lista_salas.lista_Salas
+
 import com.example.votesapp.activities.crear_sala.CrearSala
+import com.example.votesapp.activities.pruebaDeListView.PruebaDeListView
 import android.content.Intent as Intent
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -43,5 +46,12 @@ class MainActivity : AppCompatActivity() {
         //Crear vinculo entre esta actividad y CrearSala
         val intent = Intent(this, CrearSala::class.java);
         startActivity(intent);  //Ejecutar salto a la actividad
+    }
+
+
+
+    fun openVerSalas(view: View){
+        val intert2 = Intent(this, lista_Salas::class.java);
+        startActivity(intert2);
     }
 }
