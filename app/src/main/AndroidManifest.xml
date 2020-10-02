@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+
+        <activity android:name=".activities.lista_salas.Lista_Salas" />
         <activity android:name=".activities.mis_salas.MisSalas"></activity>
         <activity
             android:name=".activities.mis_salas.MisSalasMalo"
