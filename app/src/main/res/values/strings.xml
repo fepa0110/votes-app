@@ -14,5 +14,5 @@
     <string name="button_cancelar">Cancelar</string>
     <string name="bn_ver_salas">Ver Salas</string>
 
-
+    <string name="title_activity_mis_salas">Mis Salas</string>
 </resources>
