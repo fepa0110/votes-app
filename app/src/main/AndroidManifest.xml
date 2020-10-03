@@ -12,19 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".activities.lista_salas.Lista_Salas" />
-        <activity android:name=".activities.mis_salas.MisSalas"></activity>
         <activity
-            android:name=".activities.mis_salas.MisSalasMalo"
-            android:label="@string/title_activity_mis_salas"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar">
+            android:name=".MenuApp"
+            android:label="@string/title_activity_menu_app"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+        <activity
+            android:name=".activities.mis_salas.ListadoMisSalas"
+            android:label="@string/title_activity_listado_mis_salas"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".activities.mis_salas.MisSalas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.lista_salas.Lista_Salas" />
         <activity
             android:name=".activities.crear_sala.CrearSala"
             android:label="Crear sala de votación"

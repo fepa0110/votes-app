@@ -1,61 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.mis_salas.MisSalasMalo"
-    android:orientation="vertical">
-    <!--
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.mis_salas.MisSalas">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:titleTextColor="#FFFFFF"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-    -->
-
-    <!--<include layout="@layout/content_mis_salas" />-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@+id/mis_salas_list_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-
-    <!--
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_button_crear_sala"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:onClick="openCrearSala"
-        app:backgroundTint="#FBFBFB"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/plus" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_button_get_mis_salas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
-        android:onClick="openCrearSala"
-        app:backgroundTint="#FBFBFB"
-        app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_search_category_default" />
-        -->
 
 </LinearLayout>

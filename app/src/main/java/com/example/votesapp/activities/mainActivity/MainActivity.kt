@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -47,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, CrearSala::class.java);
         startActivity(intent);  //Ejecutar salto a la actividad
     }
-
-
 
     fun openVerSalas(view: View){
         val intert2 = Intent(this, Lista_Salas::class.java);

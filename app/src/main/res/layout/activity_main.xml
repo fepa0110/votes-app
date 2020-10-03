@@ -22,53 +22,36 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="openCrearSala"
-        app:backgroundTint="#FBFBFB"
+        app:backgroundTint="?attr/colorPrimary"
         app:fabSize="normal"
         app:srcCompat="@drawable/plus" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_anchor="@+id/toolbar"
+        app:layout_anchorGravity="bottom|center"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="#FFFFFF" />
 
-
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_anchor="@+id/toolbar"
-            app:layout_anchorGravity="bottom|center"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:titleTextColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/appTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textSize="30sp"/>
+        android:layout_marginTop="150dp"
+        android:gravity="center">
 
-
-
-
-                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="150dp">
-
-
-                     <Button
-                         android:id="@+id/bn_ver_salas"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:onClick="openVerSalas"
-                         android:padding="10sp"
-
-
-                         android:text="@string/bn_ver_salas"
-
-                         android:textSize="24sp"
-                         />
-                 </LinearLayout>
+        <Button
+            android:id="@+id/bn_ver_salas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openVerSalas"
+            android:padding="10sp"
+            android:background="?attr/colorPrimary"
+            android:text="@string/bn_ver_salas"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

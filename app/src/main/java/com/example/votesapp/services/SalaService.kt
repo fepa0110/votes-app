@@ -58,7 +58,7 @@ class SalaService {
         queue.add(jsonArrayRequest)
     }*/
 
-    public fun findByUser(context: Context, username: String){
+   /* public fun findByUser(context: Context, username: String){
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
@@ -82,5 +82,5 @@ class SalaService {
                     .show()
             }
         })
-    }
+    }*/
 }
