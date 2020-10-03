@@ -13,7 +13,15 @@
     <string name="button_crear_sala_crear_">Crear</string>
     <string name="button_cancelar">Cancelar</string>
     <string name="bn_ver_salas">Ver Salas</string>
+
+    <!--Registro de Usuario -->
     <string name="tituloRegistroUsuario">Registro de Usuario</string>
+    <string name="nombreUsuario">Nombre</string>
+    <string name="apellidoUsuario">Apellido</string>
+    <string name="dniUsuario">Dni</string>
+    <string name="fechaNacimientoUsuario">Fecha de nacimiento</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="botonSiguiente">Siguiente</string>
 
 
 </resources>
