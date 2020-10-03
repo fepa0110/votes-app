@@ -15,33 +15,56 @@
 
     <!-- <include layout="@layout/content_main" /> -->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:onClick="openCrearSala"
-        app:backgroundTint="#FBFBFB"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/plus" />
-
-    <TextView
-        android:id="@+id/appTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:layout_anchor="@+id/appTitle"
-        app:titleTextColor="#FFFFFF"
-        app:layout_anchorGravity="center"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:layout_anchor="@+id/toolbar"
+        app:layout_anchorGravity="bottom|center"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bn_ver_salas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openVerSalas"
+            android:padding="10sp"
+            android:background="?attr/colorPrimary"
+            android:text="@string/bn_ver_salas"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:layout_marginVertical="10dp"/>
+
+        <Button
+            android:id="@+id/btn_mis_salas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openMisSalas"
+            android:padding="10sp"
+            android:background="?attr/colorPrimary"
+            android:text="@string/mis_salas"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:layout_marginVertical="10dp"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:onClick="openCrearSala"
+        app:backgroundTint="?attr/colorPrimary"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/plus"
+        android:layout_margin="15dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
