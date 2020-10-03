@@ -25,7 +25,7 @@ public class Lista_Salas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista__salas);
+        setContentView(R.layout.activity_lista_salas);
 
         //Obtener instancia de la lista
         slistView = findViewById(R.id.listView);
