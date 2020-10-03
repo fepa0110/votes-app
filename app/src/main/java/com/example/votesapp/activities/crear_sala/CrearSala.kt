@@ -21,13 +21,7 @@ import org.json.JSONObject
 import com.example.votesapp.services.SalaService
 
 class CrearSala : AppCompatActivity() {
-    val url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas";
-    val salaService = SalaService();
-
-    //Etiqueta de log
-    companion object {
-        val LOG_TAG = "votes"
-    }
+    private val salaService = SalaService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +37,7 @@ class CrearSala : AppCompatActivity() {
 
         //Agregar acción de clickeo
         botonCancelar.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, MainActivity::class.java);
-            startActivity(intent);
+            finishActivity()
         })
     }
 

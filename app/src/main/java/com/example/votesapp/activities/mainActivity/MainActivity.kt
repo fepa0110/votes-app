@@ -9,6 +9,7 @@ import com.example.votesapp.R
 import com.example.votesapp.activities.lista_salas.Lista_Salas
 
 import com.example.votesapp.activities.crear_sala.CrearSala
+import com.example.votesapp.activities.mis_salas.MisSalas
 
 import android.content.Intent as Intent
 
@@ -47,7 +48,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openVerSalas(view: View){
-        val intert2 = Intent(this, Lista_Salas::class.java);
-        startActivity(intert2);
+        val intentListaSalas = Intent(this, Lista_Salas::class.java)
+        startActivity(intentListaSalas)
+    }
+
+    fun openMisSalas(view: View){
+        val intentMisSalas = Intent(this, MisSalas::class.java);
+        startActivity(intentMisSalas);
     }
 }
