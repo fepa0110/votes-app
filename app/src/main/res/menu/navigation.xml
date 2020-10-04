@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_mis_salas"
+        android:icon="@drawable/form"
+        android:title="@string/mis_salas" />
+
+    <item
+        android:id="@+id/navigation_salas"
+        android:icon="@drawable/globe"
+        android:title="@string/salas_title" />
+
+    <item
+        android:id="@+id/navigation_usuario"
+        android:icon="@drawable/user"
+        android:title="Usuario" />
+
+</menu>
