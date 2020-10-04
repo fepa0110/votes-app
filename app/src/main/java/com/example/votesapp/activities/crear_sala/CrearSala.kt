@@ -37,7 +37,8 @@ class CrearSala : AppCompatActivity() {
 
         //Agregar acción de clickeo
         botonCancelar.setOnClickListener(View.OnClickListener {
-            finishActivity()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         })
     }
 
