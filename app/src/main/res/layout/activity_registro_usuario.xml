@@ -76,13 +76,13 @@
         app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
 
     <EditText
-        android:id="@+id/dniUsuario"
+        android:id="@+id/correoUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_editar_texto"
-        android:hint="@string/dniUsuario"
-        android:inputType="number"
+        android:hint="@string/correoUsuario"
+        android:inputType="textEmailAddress"
         android:padding="14dp"
         android:textColorHint="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
@@ -91,34 +91,34 @@
         app:layout_constraintTop_toBottomOf="@+id/apellidoUsuario" />
 
     <EditText
-        android:id="@+id/fechaNacimientoUsuario"
+        android:id="@+id/contraseñaUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_editar_texto"
-        android:hint="@string/fechaNacimientoUsuario"
-        android:inputType="date"
+        android:hint="@string/contraseñaUsuario"
+        android:inputType="textPassword"
         android:padding="14dp"
         android:textColorHint="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@+id/dniUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/correoUsuario" />
 
     <EditText
-        android:id="@+id/ubicación"
+        android:id="@+id/confirmarContraseñaUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_editar_texto"
-        android:hint="@string/ubicacion"
-        android:inputType="text"
+        android:hint="@string/confirmarContraseñaUsuario"
+        android:inputType="textPassword"
         android:padding="14dp"
         android:textColorHint="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@+id/fechaNacimientoUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/contraseñaUsuario" />
 
     <Button
         android:id="@+id/botonSiguiente"
@@ -131,7 +131,7 @@
         android:textColor="@color/login_form_details_medium"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
         app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@id/ubicación" />
+        app:layout_constraintTop_toBottomOf="@id/confirmarContraseñaUsuario" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

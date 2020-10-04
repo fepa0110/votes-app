@@ -22,13 +22,13 @@
         app:layout_constraintGuide_end="24dp" />
 
     <EditText
-        android:id="@+id/emailUsuario"
+        android:id="@+id/dniUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:background="@drawable/bg_editar_texto"
-        android:hint="Correo electrónico"
-        android:inputType="textEmailAddress"
+        android:hint="@string/dniUsuario"
+        android:inputType="number"
         android:padding="14dp"
         android:textColorHint="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
@@ -36,47 +36,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/contraseñaUsuario"
+        android:id="@+id/fechaNacimientoUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/bg_editar_texto"
-        android:hint="Contraseña"
-        android:textColorHint="@color/login_form_details"
-        android:inputType="textPassword"
+        android:hint="@string/fechaNacimientoUsuario"
+        android:inputType="date"
         android:padding="14dp"
+        android:textColorHint="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@+id/emailUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/dniUsuario" />
 
-    <EditText
-        android:id="@+id/confirmarContraseñaUsuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bg_editar_texto"
-        android:hint="Confirmar contraseña"
-        android:textColorHint="@color/login_form_details"
-        android:inputType="textPassword"
-        android:padding="14dp"
-        app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@+id/contraseñaUsuario" />
 
     <Button
         android:id="@+id/bontonRegistrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Registrar"
+        android:background="@drawable/btn_background"
+        android:text="@string/botonResgistrar"
         android:textAllCaps="false"
         android:textColor="@color/login_form_details_medium"
-        android:background="@drawable/btn_background"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
         app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@id/confirmarContraseñaUsuario" />
+        app:layout_constraintTop_toBottomOf="@id/fechaNacimientoUsuario" />
 
 
 

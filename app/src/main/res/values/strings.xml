@@ -18,10 +18,16 @@
     <string name="tituloRegistroUsuario">Registro de Usuario</string>
     <string name="nombreUsuario">Nombre</string>
     <string name="apellidoUsuario">Apellido</string>
+    <string name="correoUsuario">Correo electronico</string>
+    <string name="contraseñaUsuario">Contraseña</string>
+    <string name="confirmarContraseñaUsuario">Confirmar contraseña</string>
+    <string name="botonSiguiente">Siguiente</string>
+
+    <!-- Registro de Usuario segunda pantalla-->
     <string name="dniUsuario">Dni</string>
     <string name="fechaNacimientoUsuario">Fecha de nacimiento</string>
     <string name="ubicacion">Ubicación</string>
-    <string name="botonSiguiente">Siguiente</string>
+    <string name="botonResgistrar">Registrar</string>
 
 
 </resources>
