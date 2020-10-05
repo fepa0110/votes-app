@@ -2,7 +2,6 @@ package com.example.votesapp.activities.mainActivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.votesapp.R
 import com.example.votesapp.activities.lista_salas.Lista_Salas
@@ -27,12 +26,14 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_mis_salas -> {
                     this.title = "Mis salas"
-                    val misSalasFragment = MisSalas.newInstance()
-                    openFragment(misSalasFragment)
+                    val salasFragment = MisSalas.newInstance()
+                    openFragment(salasFragment)
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_salas -> {
-
+                    this.title = "Salas"
+                    val salasFragment = Lista_Salas.newInstance()
+                    openFragment(salasFragment)
                     return@OnNavigationItemSelectedListener true
                 }
                 /* R.id.navigation_artists -> {

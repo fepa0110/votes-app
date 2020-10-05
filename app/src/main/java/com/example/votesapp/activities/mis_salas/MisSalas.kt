@@ -24,10 +24,10 @@ class MisSalas : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewFragment = inflater.inflate(R.layout.activity_listado_mis_salas, container, false)
-        slistView = viewFragment.findViewById(R.id.listView)
+        slistView = viewFragment.findViewById(R.id.listView_mis_salas)
 
         //!USUARIO HARDCODEADO
-        val username = "Hardcodeado"
+        val username = "Tester"
 
         //inicializamos el adaptador que va a poner la lista de sala
         sAdapter = SalaAdapter(activity,"user/$username/")
@@ -38,25 +38,8 @@ class MisSalas : Fragment() {
         return viewFragment
     }
 
-
     companion object {
         fun newInstance(): MisSalas = MisSalas()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_listado_mis_salas)
-        //setSupportActionBar(findViewById(R.id.toolbar))
-        slistView = view?.findViewById(R.id.listView)
-
-        //!USUARIO HARDCODEADO
-        val username = "Hardcodeado"
-
-        //inicializamos el adaptador que va a poner la lista de sala
-        sAdapter = SalaAdapter(activity,"user/$username/")
-
-        //Crear adaptador y setear
-        slistView?.adapter = sAdapter
     }
 
     fun openCrearSala(view: View){
