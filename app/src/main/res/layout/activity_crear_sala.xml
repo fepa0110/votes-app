@@ -14,7 +14,7 @@
         tools:ignore="MissingConstraints">
 
         <EditText
-            android:id="@+id/crear_sala_editText_nombre"
+            android:id="@+id/op_vt_editText_titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"

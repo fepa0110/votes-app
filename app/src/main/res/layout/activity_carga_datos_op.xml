@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.opciones_votacion.CargaDatosOP">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="159dp"
+        android:layout_height="151dp"
+        app:srcCompat="@drawable/ic_menu_gallery"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="83dp" />
+
+    <EditText
+        android:id="@+id/op_vt_editText_titulo"
+        android:layout_width="307dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="@string/crear_sala_nombre_text"
+        android:inputType="textLongMessage"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+
+    <EditText
+        android:layout_width="307dp"
+        android:layout_height="155dp"
+        android:gravity="start"
+        android:textColor="@color/negro"
+        android:background="@color/blanco"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="390dp" >
+        <requestFocus/>
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="396dp"
+        android:layout_height="187dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="589dp">
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="131dp"
+            android:layout_height="47dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/round"
+            android:text="@string/button_cancelar"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="131dp"
+            android:layout_height="47dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/round"
+            android:text="@string/button_guardar"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

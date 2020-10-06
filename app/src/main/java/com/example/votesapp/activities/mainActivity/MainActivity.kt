@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import com.example.votesapp.R
 import com.example.votesapp.activities.crear_sala.CrearSala
+import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
 import android.content.Intent as Intent
 
 class MainActivity : AppCompatActivity() {
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun openCrearSala(view: View){
         //Crear vinculo entre esta actividad y CrearSala
-        val intent = Intent(this, CrearSala::class.java);
+        val intent = Intent(this, OpcionesVotacion::class.java);
         startActivity(intent);  //Ejecutar salto a la actividad
     }
 }
