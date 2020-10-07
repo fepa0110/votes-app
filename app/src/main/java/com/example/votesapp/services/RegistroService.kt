@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.JsonObject
 import org.json.JSONObject
 
 class RegistroService {
@@ -14,7 +15,7 @@ class RegistroService {
         const val LOG_TAG = "registro"
     }
 
-    public fun create(context: Context, nombre: Any, apellido: Any,correo: Any,contrasenia:Any,dni:Any){
+    public fun create(context: Context, nombre: Any, apellido: Any,correo: Any,contrasenia:Any,dni:Any,fechaNacimiento:Any){
         val queue = Volley.newRequestQueue(context)
 
         val jsonUsuario = JSONObject()
@@ -23,6 +24,7 @@ class RegistroService {
         jsonUsuario.put("correoElectronico",correo)
         jsonUsuario.put("contrasenia",contrasenia)
         jsonUsuario.put("dni",dni)
+        jsonUsuario.put("fechaNacimiento",fechaNacimiento)
 
 
         val jsonRequest = JsonObjectRequest(url, jsonUsuario,
