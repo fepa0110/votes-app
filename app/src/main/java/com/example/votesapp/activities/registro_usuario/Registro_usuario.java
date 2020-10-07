@@ -67,9 +67,8 @@ public class Registro_usuario extends AppCompatActivity {
                         Intent siguiente = new Intent(Registro_usuario.this,Registro_usuario2.class);
                         siguiente.putExtra("nombre",nombreUsuario.getText().toString());
                         siguiente.putExtra("apellido",apellidoUsuario.getText().toString());
-                        siguiente.putExtra("correoElectronico",correoUsuario.getText().toString());
+                        siguiente.putExtra("correo",correoUsuario.getText().toString());
                         siguiente.putExtra("contrasenia",contraUsuario.getText().toString());
-                        siguiente.putExtra("confirmarContra",confirmarContraUsuario.getText().toString());
                         startActivity(siguiente);
                 }
             }
