@@ -21,6 +21,7 @@
     <string name="correoUsuario">Correo electronico</string>
     <string name="contraseñaUsuario">Contraseña</string>
     <string name="confirmarContraseñaUsuario">Confirmar contraseña</string>
+    <string name="botonVolver">Volver</string>
     <string name="botonSiguiente">Siguiente</string>
 
     <!-- Registro de Usuario segunda pantalla-->
