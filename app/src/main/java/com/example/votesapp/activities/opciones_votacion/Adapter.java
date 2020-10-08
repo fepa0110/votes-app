@@ -6,6 +6,7 @@ import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ public class Adapter extends PagerAdapter {
     private List<Modelo_OpVt> models;
     private LayoutInflater layoutInflater;
     private Context context;
+    private TextView title, desc;
+    private Button btnCancelar;
 
     public Adapter(List<Modelo_OpVt> models, Context context) {
         this.models = models;
@@ -44,8 +47,6 @@ public class Adapter extends PagerAdapter {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item, container, false);
 
-//        ImageView imageView;
-        TextView title, desc;
 
   //      imageView = view.findViewById(R.id.image);
         title = view.findViewById(R.id.title);
@@ -58,8 +59,10 @@ public class Adapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("param", models.get(position).getTitle());
+                Intent intent = new Intent(context, CargaDatosOP.class);
+                intent.putExtra("param_titulo", models.get(position).getTitle());
+                intent.putExtra("param_descripcion", models.get(position).getDesc());
+                intent.putExtra("param_editable", false);
                 context.startActivity(intent);
                 // finish();
             }

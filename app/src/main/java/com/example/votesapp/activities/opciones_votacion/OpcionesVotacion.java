@@ -50,7 +50,7 @@ public class OpcionesVotacion extends AppCompatActivity {
         adapter = new Adapter(items,this);
 
         viewPager.setAdapter(adapter);
-
+*/
         viewPager.setPadding(130, 0, 130, 0);
 
         Integer[] colors_temp = {
@@ -66,7 +66,7 @@ public class OpcionesVotacion extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (position < (adapter.getCount() -1) && position < (colors.length - 1)) {
+                if (position < (viewPager.getAdapter().getCount() -1) && position < (colors.length - 1)) {
                     viewPager.setBackgroundColor(
 
                             (Integer) argbEvaluator.evaluate(
@@ -92,7 +92,7 @@ public class OpcionesVotacion extends AppCompatActivity {
 
             }
         });
-    */
+
     }
 
 

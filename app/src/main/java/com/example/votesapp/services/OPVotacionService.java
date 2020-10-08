@@ -30,7 +30,7 @@ import java.util.List;
 
 public class OPVotacionService extends ArrayAdapter {
 
-    private String url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/4";
+    private String url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/1";
     private RequestQueue requestQueue;
     JsonObjectRequest jsArrayRequest;
     List<Modelo_OpVt> items;
