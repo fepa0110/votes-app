@@ -3,6 +3,7 @@ package com.example.votesapp.activities.opciones_votacion;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.ColorSpace;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,18 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.votesapp.R;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Adapter extends PagerAdapter {
 
@@ -24,7 +34,8 @@ public class Adapter extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private Context context;
     private TextView title, desc;
-    private Button btnCancelar;
+    private Button btnAñadir;
+
 
     public Adapter(List<Modelo_OpVt> models, Context context) {
         this.models = models;
@@ -56,13 +67,26 @@ public class Adapter extends PagerAdapter {
         title.setText(models.get(position).getTitle());
         desc.setText(models.get(position).getDesc());
 
+        //Boton btnAñadir
+        btnAñadir = (Button) view.findViewById(R.id.btnCancelar);
+        btnAñadir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CargaDatosOP.class);
+                intent.putExtra("param_titulo", "");
+                intent.putExtra("param_descripcion", "");
+                intent.putExtra("param_editable", false);
+                context.startActivity(intent);
+            }
+        });
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CargaDatosOP.class);
                 intent.putExtra("param_titulo", models.get(position).getTitle());
                 intent.putExtra("param_descripcion", models.get(position).getDesc());
-                intent.putExtra("param_editable", false);
+                intent.putExtra("param_editable", true);
                 context.startActivity(intent);
                 // finish();
             }
