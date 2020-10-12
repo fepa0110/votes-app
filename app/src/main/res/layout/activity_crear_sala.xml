@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                 android:background="#FFFFFF"
                 android:shadowColor="#AAAAAA"
                 android:text="@string/button_cancelar"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:layout_margin="10dp"
                 tools:layout_editor_absoluteX="38dp"
                 tools:layout_editor_absoluteY="465dp"
@@ -46,7 +46,7 @@
                 android:id="@+id/crear_sala_button_aceptar"
                 android:layout_width="131dp"
                 android:layout_height="47dp"
-                android:background="#0604AA"
+                android:background="?attr/colorPrimary"
                 android:text="@string/button_crear_sala_crear_"
                 android:textColor="#FFFFFF"
                 android:layout_margin="10dp"
@@ -57,4 +57,4 @@
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

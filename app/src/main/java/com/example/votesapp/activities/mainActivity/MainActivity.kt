@@ -2,57 +2,67 @@ package com.example.votesapp.activities.mainActivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import androidx.fragment.app.Fragment
 import com.example.votesapp.R
 import com.example.votesapp.activities.lista_salas.Lista_Salas
 
+<<<<<<< HEAD
 import com.example.votesapp.activities.crear_sala.CrearSala
 import com.example.votesapp.activities.registro_usuario.Registro_usuario
 
 import android.content.Intent as Intent
+=======
+import com.example.votesapp.activities.mis_salas.MisSalas
+import com.google.android.material.bottomnavigation.BottomNavigationView
+>>>>>>> master
 
 class MainActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+        this.title = "Aplicacion de votaciones"
 
-
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
+        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
+    //Escuchador de clicks de los botones del menu inferior
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
+        item ->
+            when (item.itemId) {
+                R.id.navigation_mis_salas -> {
+                    this.title = "Mis salas"
+                    val salasFragment = MisSalas.newInstance()
+                    openFragment(salasFragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_salas -> {
+                    this.title = "Salas"
+                    val salasFragment = Lista_Salas.newInstance()
+                    openFragment(salasFragment)
+                    return@OnNavigationItemSelectedListener true
+                }
+                /* R.id.navigation_artists -> {
+
+                    return@OnNavigationItemSelectedListener true
+                }*/
+            }
+        false
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    /**
-     * Metodo para ir a la actividad de crear sala
-     */
-    fun openCrearSala(view: View){
-        //Crear vinculo entre esta actividad y CrearSala
-        val intent = Intent(this, CrearSala::class.java);
-        startActivity(intent);  //Ejecutar salto a la actividad
-    }
-
+<<<<<<< HEAD
 
 
     fun openVerSalas(view: View){
         val intert2 = Intent(this,Registro_usuario::class.java);
         startActivity(intert2);
+=======
+    private fun openFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+>>>>>>> master
     }
 }

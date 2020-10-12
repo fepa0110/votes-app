@@ -14,6 +14,7 @@
     <string name="button_cancelar">Cancelar</string>
     <string name="bn_ver_salas">Ver Salas</string>
 
+<<<<<<< HEAD
     <!--Registro de Usuario -->
     <string name="tituloRegistroUsuario">Registro de Usuario</string>
     <string name="nombreUsuario">Nombre</string>
@@ -31,4 +32,33 @@
     <string name="botonResgistrar">Registrar</string>
 
 
+=======
+    <string name="title_activity_mis_salas">Mis Salas</string>
+    <string name="title_activity_listado_mis_salas">ListadoMisSalas</string>
+    <string name="mis_salas">Mis salas</string>
+    <string name="title_activity_menu_app">MenuApp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="salas_title">Salas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_user">Usuario</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="welcome">"Bienvenido !"</string>
+    <string name="invalid_username">Usuario no valido</string>
+    <string name="invalid_password">La contraseña debe tener mas de 5 caracteres</string>
+    <string name="login_failed">"Ingreso fallido"</string>
+    <string name="title_activity_para_borrar">ParaBorrar</string>
+    <string name="login_title">Ingreso de usuario</string>
+>>>>>>> master
 </resources>
