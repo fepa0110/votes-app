@@ -14,6 +14,25 @@
     <string name="button_cancelar">Cancelar</string>
     <string name="bn_ver_salas">Ver Salas</string>
 
+<<<<<<< HEAD
+    <!--Registro de Usuario -->
+    <string name="tituloRegistroUsuario">Registro de Usuario</string>
+    <string name="nombreUsuario">Nombre</string>
+    <string name="apellidoUsuario">Apellido</string>
+    <string name="correoUsuario">Correo electronico</string>
+    <string name="contraseñaUsuario">Contraseña</string>
+    <string name="confirmarContraseñaUsuario">Confirmar contraseña</string>
+    <string name="botonVolver">Volver</string>
+    <string name="botonSiguiente">Siguiente</string>
+
+    <!-- Registro de Usuario segunda pantalla-->
+    <string name="dniUsuario">Dni</string>
+    <string name="fechaNacimientoUsuario">Fecha de nacimiento</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="botonResgistrar">Registrar</string>
+
+
+=======
     <string name="title_activity_mis_salas">Mis Salas</string>
     <string name="title_activity_listado_mis_salas">ListadoMisSalas</string>
     <string name="mis_salas">Mis salas</string>
@@ -41,4 +60,5 @@
     <string name="login_failed">"Ingreso fallido"</string>
     <string name="title_activity_para_borrar">ParaBorrar</string>
     <string name="login_title">Ingreso de usuario</string>
+>>>>>>> master
 </resources>

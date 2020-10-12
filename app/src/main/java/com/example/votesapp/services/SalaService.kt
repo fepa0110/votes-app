@@ -3,27 +3,24 @@ package com.example.votesapp.services
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class SalaService {
-    private val url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/";
+    private val url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas";
 
     companion object {
         const val LOG_TAG = "votes"
     }
 
-    public fun create(context: Context, nombre: Any){
+    public fun create(context: Context,nombre: Any){
         val queue = Volley.newRequestQueue(context)
 
         val jsonSala = JSONObject()
-        jsonSala.put("nombre", nombre)
+        jsonSala.put("nombre",nombre)
 
         val jsonRequest = JsonObjectRequest(url, jsonSala,
             { response ->
