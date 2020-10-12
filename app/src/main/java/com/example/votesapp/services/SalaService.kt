@@ -39,48 +39,4 @@ class SalaService {
 
         queue.add(jsonRequest)
     }
-
-    /*public fun findByUser(context: Context, username: Any){
-        val urlByUser = "$url/user/$username"
-        val queue = Volley.newRequestQueue(context)
-
-        val jsonArrayRequest = JsonArrayRequest(urlByUser,
-            {response ->
-                Log.i(LOG_TAG, "Response is: $response")
-                Toast.makeText(context, "Salas recuperadas con exito.", Toast.LENGTH_SHORT).show()
-            },
-            { error ->
-                error.printStackTrace()
-                Toast.makeText(context, "Hubo un error al recuperar las salas.", Toast.LENGTH_SHORT).show()
-            }
-        )
-
-        queue.add(jsonArrayRequest)
-    }*/
-
-   /* public fun findByUser(context: Context, username: String){
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service = retrofit.create<SalaApiService>(SalaApiService::class.java)
-
-        service.getSalasByUser(username).enqueue(object : Callback<List<Sala>> {
-            override fun onResponse(
-                call: Call<List<Sala>>,
-                response: retrofit2.Response<List<Sala>>
-            ) {
-                val salas = response?.body()
-                Log.i(LOG_TAG, Gson().toJson(salas))
-                Toast.makeText(context, "Salas recuperadas con exito.", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onFailure(call: Call<List<Sala>>, t: Throwable) {
-                t?.printStackTrace()
-                Toast.makeText(context, "Hubo un error al recuperar las salas.", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
-    }*/
 }

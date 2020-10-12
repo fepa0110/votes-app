@@ -1,0 +1,6 @@
+#!/bin/bash
+git add .
+echo "Add OK"
+git commit -m "$1"
+echo "commit OK"
+git push origin "$2"
