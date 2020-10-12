@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentActivity
 import com.example.votesapp.R
 import com.example.votesapp.activities.crear_sala.CrearSala
 import com.example.votesapp.activities.lista_salas.Sala
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
 class MisSalas : Fragment() {
@@ -25,6 +26,12 @@ class MisSalas : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewFragment = inflater.inflate(R.layout.activity_listado_mis_salas, container, false)
         slistView = viewFragment.findViewById(R.id.listView_mis_salas)
+
+        val buttonCrearSala = viewFragment.findViewById<FloatingActionButton>(R.id.button_crear_sala)
+        buttonCrearSala.setOnClickListener {
+            val intent = Intent(activity, CrearSala::class.java);
+            startActivity(intent)  //Ejecutar salto a la actividad
+        }
 
         //!USUARIO HARDCODEADO
         val username = "Tester"

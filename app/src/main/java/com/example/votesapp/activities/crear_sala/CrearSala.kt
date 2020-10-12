@@ -1,22 +1,13 @@
 package com.example.votesapp.activities.crear_sala
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.AuthFailureError
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.*
 import com.example.votesapp.R
 import com.example.votesapp.activities.mainActivity.MainActivity
-import org.json.JSONObject
 
 import com.example.votesapp.services.SalaService
 
@@ -26,20 +17,22 @@ class CrearSala : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_sala)
-        val botonAceptar = findViewById<Button>(R.id.crear_sala_button_aceptar);
-        val botonCancelar = findViewById<Button>(R.id.crear_sala_button_cancelar);
-        val editTextNombreSala = findViewById<EditText>(R.id.crear_sala_editText_nombre);
+        val botonAceptar = findViewById<Button>(R.id.crear_sala_button_aceptar)
+        val botonCancelar = findViewById<Button>(R.id.crear_sala_button_cancelar)
+        val editTextNombreSala = findViewById<EditText>(R.id.crear_sala_editText_nombre)
 
         //Agregar acción de clickeo
-        botonAceptar.setOnClickListener(View.OnClickListener {
+        botonAceptar.setOnClickListener {
             this.createSala(editTextNombreSala.text)
-        })
+            finish()
+        }
 
         //Agregar acción de clickeo
-        botonCancelar.setOnClickListener(View.OnClickListener {
+        botonCancelar.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+            finish()
+        }
     }
 
     private fun createSala(nombre: Any){
