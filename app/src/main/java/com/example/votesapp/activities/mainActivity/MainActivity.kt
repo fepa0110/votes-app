@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Metodo para ir a la actividad de crear sala
      */
-    fun openCrearSala(view: View){
+    fun openCrearSala(view: View) {
         //Crear vinculo entre esta actividad y CrearSala
         val intent = Intent(this, OpcionesVotacion::class.java);
         startActivity(intent);  //Ejecutar salto a la actividad

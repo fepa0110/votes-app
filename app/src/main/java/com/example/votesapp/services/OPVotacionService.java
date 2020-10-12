@@ -93,6 +93,7 @@ public class OPVotacionService extends ArrayAdapter {
                     JSONObject objeto= jsonArray.getJSONObject(i);
 
                     Modelo_OpVt post = new Modelo_OpVt(
+                            objeto.getInt("id"),
                             objeto.getString("titulo"),
                             objeto.getString("descripcion"));
 

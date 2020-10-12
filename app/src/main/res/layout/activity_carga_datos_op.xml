@@ -17,6 +17,7 @@
         android:layout_width="159dp"
         android:layout_height="151dp"
         android:layout_marginBottom="40dp"
+        android:layout_marginTop="70dp"
         app:srcCompat="@drawable/ic_menu_gallery"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="126dp"
@@ -81,45 +82,62 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="367dp"
-            android:layout_height="187dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="7dp"
-            tools:layout_editor_absoluteY="589dp">
-
-            <Button
-                android:id="@+id/btnCancelar"
-                android:layout_width="131dp"
-                android:layout_height="47dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginBottom="60dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/round"
-                android:text="@string/button_cancelar"
-                android:textColor="#fff" />
 
 
-            <Button
-                android:id="@+id/btnGuardar"
-                android:layout_width="131dp"
-                android:layout_height="47dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginBottom="60dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/round"
-                android:text="@string/button_guardar"
-                android:textColor="#fff" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="102dp"
+                    android:gravity="center"
+                    android:layout_marginTop="-100dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnCancelar"
+                        android:layout_width="131dp"
+                        android:layout_height="47dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="60dp"
+                        android:background="@drawable/round"
+                        android:text="@string/button_cancelar"
+                        android:textColor="#fff" />
+
+                    <Button
+                        android:id="@+id/btnGuardar"
+                        android:layout_width="131dp"
+                        android:layout_height="47dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="60dp"
+                        android:background="@drawable/round"
+                        android:text="@string/button_guardar"
+                        android:textColor="#fff" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnEleminar"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/roundred"
+                    android:text="@string/button_eliminar"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
-    </LinearLayout>
 
 
 

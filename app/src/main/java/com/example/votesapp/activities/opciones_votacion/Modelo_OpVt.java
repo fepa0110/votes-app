@@ -3,11 +3,13 @@ package com.example.votesapp.activities.opciones_votacion;
 public class Modelo_OpVt {
 
     //private int image;
+    private int id;
     private String title;
     private String desc;
 
-    public Modelo_OpVt(String title, String desc) {
+    public Modelo_OpVt(int id, String title, String desc) {
         //this.image = image;
+        this.id = id;
         this.title = title;
         this.desc = desc;
     }
@@ -20,6 +22,15 @@ public class Modelo_OpVt {
         this.image = image;
     }
     */
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }

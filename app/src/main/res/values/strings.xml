@@ -28,4 +28,5 @@
     <string name="button_guardar">Guardar</string>
     <string name="hint_titulo_OpVotacion">Titulo</string>
     <string name="hint_descripcion_OpVotacion">Descripcion</string>
+    <string name="button_eliminar">Eliminar</string>
 </resources>

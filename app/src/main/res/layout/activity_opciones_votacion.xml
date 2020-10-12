@@ -17,7 +17,7 @@
     </androidx.viewpager.widget.ViewPager>
 
     <Button
-        android:id="@+id/btnGuardar"
+        android:id="@+id/btnAñadir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

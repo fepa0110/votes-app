@@ -1,11 +1,14 @@
 package com.example.votesapp.activities.opciones_votacion;
 
 import android.animation.ArgbEvaluator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.votesapp.R;
 import com.example.votesapp.services.SalaService;
@@ -35,12 +38,15 @@ public class OpcionesVotacion extends AppCompatActivity {
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
     List<Modelo_OpVt> items;
     OPVotacionService service;
+    private Button btnAñadir;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opciones_votacion);
+        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
         //Obtener instancia de la actividad
         viewPager = findViewById(R.id.viewPager);
@@ -93,7 +99,29 @@ public class OpcionesVotacion extends AppCompatActivity {
             }
         });
 
+        //Boton btnAñadir
+        btnAñadir = (Button) findViewById(R.id.btnAñadir);
+        btnAñadir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(viewPager.getContext(), CargaDatosOP.class);
+                intent.putExtra("param_titulo", "");
+                intent.putExtra("param_descripcion", "");
+                intent.putExtra("param_editable", false);
+                startActivity(intent);
+            }
+        });
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+        viewPager.setAdapter(null);
+        service = new OPVotacionService(this,viewPager);
+    }
+
 
 
 

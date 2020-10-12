@@ -34,8 +34,6 @@ public class Adapter extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private Context context;
     private TextView title, desc;
-    private Button btnAñadir;
-
 
     public Adapter(List<Modelo_OpVt> models, Context context) {
         this.models = models;
@@ -58,7 +56,6 @@ public class Adapter extends PagerAdapter {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item, container, false);
 
-
   //      imageView = view.findViewById(R.id.image);
         title = view.findViewById(R.id.title);
         desc = view.findViewById(R.id.desc);
@@ -67,23 +64,13 @@ public class Adapter extends PagerAdapter {
         title.setText(models.get(position).getTitle());
         desc.setText(models.get(position).getDesc());
 
-        //Boton btnAñadir
-        btnAñadir = (Button) view.findViewById(R.id.btnCancelar);
-        btnAñadir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, CargaDatosOP.class);
-                intent.putExtra("param_titulo", "");
-                intent.putExtra("param_descripcion", "");
-                intent.putExtra("param_editable", false);
-                context.startActivity(intent);
-            }
-        });
+
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CargaDatosOP.class);
+                intent.putExtra("param_id", models.get(position).getId());
                 intent.putExtra("param_titulo", models.get(position).getTitle());
                 intent.putExtra("param_descripcion", models.get(position).getDesc());
                 intent.putExtra("param_editable", true);
