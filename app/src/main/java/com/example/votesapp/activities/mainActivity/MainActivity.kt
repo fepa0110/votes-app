@@ -6,15 +6,8 @@ import androidx.fragment.app.Fragment
 import com.example.votesapp.R
 import com.example.votesapp.activities.lista_salas.Lista_Salas
 
-<<<<<<< HEAD
-import com.example.votesapp.activities.crear_sala.CrearSala
-import com.example.votesapp.activities.registro_usuario.Registro_usuario
-
-import android.content.Intent as Intent
-=======
 import com.example.votesapp.activities.mis_salas.MisSalas
 import com.google.android.material.bottomnavigation.BottomNavigationView
->>>>>>> master
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,18 +44,10 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
-<<<<<<< HEAD
-
-
-    fun openVerSalas(view: View){
-        val intert2 = Intent(this,Registro_usuario::class.java);
-        startActivity(intert2);
-=======
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
->>>>>>> master
     }
 }
