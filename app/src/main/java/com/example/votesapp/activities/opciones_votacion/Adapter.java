@@ -41,7 +41,6 @@ public class Adapter extends PagerAdapter {
         this.models = models;
         this.context = context;
         this.salaId = salaId;
-        Toast.makeText(context, "OpAdapter: id -> "+salaId, Toast.LENGTH_SHORT).show();
     }
 
     @Override

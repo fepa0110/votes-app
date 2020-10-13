@@ -44,20 +44,13 @@ public class OpcionesVotacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opciones_votacion);
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
         this.salaId = getIntent().getIntExtra("param_id",0);
-
-        Toast.makeText(this, "OpcionesVotacion: id -> "+salaId, Toast.LENGTH_SHORT).show();
 
         //Obtener instancia de la actividad
         viewPager = findViewById(R.id.viewPager);
         service = new OPVotacionService(this,viewPager, this.salaId);
-/*
-        adapter = new Adapter(items,this);
 
-        viewPager.setAdapter(adapter);
-*/
         viewPager.setPadding(130, 0, 130, 0);
 
         Integer[] colors_temp = {
@@ -83,7 +76,6 @@ public class OpcionesVotacion extends AppCompatActivity {
                             )
                     );
                 }
-
                 else {
                     viewPager.setBackgroundColor(colors[colors.length - 1]);
                 }
@@ -110,7 +102,6 @@ public class OpcionesVotacion extends AppCompatActivity {
                 intent.putExtra("param_descripcion", "");
                 intent.putExtra("param_editable", false);
                 intent.putExtra("param_sala_id", salaId);
-                Toast.makeText(OpcionesVotacion.this, "OpcionesVotacion: id -> "+salaId, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -120,7 +111,6 @@ public class OpcionesVotacion extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
         viewPager.setAdapter(null);
         service = new OPVotacionService(this,viewPager,this.salaId);
     }

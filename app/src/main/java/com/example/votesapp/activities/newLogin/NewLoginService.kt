@@ -38,4 +38,17 @@ class NewLoginService {
         return usuario
     }
 
+    fun parseStatus(jsonObject: JSONObject): String? {
+        //Variables Locales
+        var status : String? = ""
+
+        try {
+            status = jsonObject.getString("StatusCode")
+
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        return status
+    }
+
 }

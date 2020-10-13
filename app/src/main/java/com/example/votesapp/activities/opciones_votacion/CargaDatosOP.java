@@ -2,6 +2,7 @@ package com.example.votesapp.activities.opciones_votacion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,21 +39,25 @@ public class CargaDatosOP extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carga_datos_op);
 
-        int salaIdPrueba = getIntent().getIntExtra("param_sala_id",0);
-        Toast.makeText(CargaDatosOP.this, "Carga datos: id -> "+salaIdPrueba, Toast.LENGTH_SHORT).show();
-
-        //Toast.makeText(this, ""+getIntent().getBooleanExtra("param_editable", false), Toast.LENGTH_SHORT).show();
-
         requestQueue= Volley.newRequestQueue(this);
 
+        //Recibo los componentes de la actividad
         titulo = findViewById(R.id.Text_Titulo_opVotacion);
-        titulo.setText(getIntent().getStringExtra("param_titulo"));
-
         descripcion = findViewById(R.id.Text_Descripcion_opVotacion);
+        btnCancelar = (Button) findViewById(R.id.btnCancelar);
+        btnEliminar = (Button) findViewById(R.id.btnEleminar);
+
+        titulo.setText(getIntent().getStringExtra("param_titulo"));
         descripcion.setText(getIntent().getStringExtra("param_descripcion"));
 
+        titulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                titulo.setError(null);
+            }
+        });
+
         //Boton Cancelar
-        btnCancelar = (Button) findViewById(R.id.btnCancelar);
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,74 +70,71 @@ public class CargaDatosOP extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Boton", "Entro al boton de guardar");
 
-                if (getIntent().getBooleanExtra("param_editable", false) == true) {
-                    JSONObject params = new JSONObject();
-                    try {
-                        params.put("id", getIntent().getIntExtra("param_id",0));
-                        params.put("titulo", titulo.getText().toString());
-                        params.put("descripcion", descripcion.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    jsonObjReq = new JsonObjectRequest(Request.Method.PUT, url, params,
-                            new Response.Listener<JSONObject>() {
-
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Toast.makeText(CargaDatosOP.this, "Opcion Modificada Correctamente", Toast.LENGTH_SHORT).show();
-                                }
-                            }, new Response.ErrorListener() {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            VolleyLog.d(TAG, "Error: " + error.getMessage());
-                            Log.i(TAG, error.getMessage());
-                        }
-                    });
-                    requestQueue.add(jsonObjReq);
-
+                if (titulo.getText().toString().isEmpty()) {
+                    titulo.setError("El campo no puede estar vacio");
                 } else {
-
-                    String auxUrl = url;
-                    int salaIdInt = getIntent().getIntExtra("param_sala_id",0);
-                    auxUrl += String.valueOf(salaIdInt);
-
-                    JSONObject params = new JSONObject();
-                    try {
-                        params.put("titulo", titulo.getText().toString());
-                        params.put("descripcion", descripcion.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    jsonObjReq = new JsonObjectRequest(Request.Method.POST, auxUrl, params,
-                            new Response.Listener<JSONObject>() {
-
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Toast.makeText(CargaDatosOP.this, "Opcion Agregada Correctamente", Toast.LENGTH_SHORT).show();
-                                }
-                            }, new Response.ErrorListener() {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            VolleyLog.d(TAG, "Error: " + error.getMessage());
-                            Log.i(TAG, error.getMessage());
+                    if (getIntent().getBooleanExtra("param_editable", false) == true) {
+                        JSONObject params = new JSONObject();
+                        try {
+                            params.put("id", getIntent().getIntExtra("param_id", 0));
+                            params.put("titulo", titulo.getText().toString());
+                            params.put("descripcion", descripcion.getText().toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
-                    requestQueue.add(jsonObjReq);
-                    descripcion.setText("");
-                    titulo.setText("");
+                        jsonObjReq = new JsonObjectRequest(Request.Method.PUT, url, params,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        Toast.makeText(CargaDatosOP.this, "Opcion Modificada Correctamente", Toast.LENGTH_SHORT).show();
+                                    }
+                                }, new Response.ErrorListener() {
 
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                Log.i(TAG, error.getMessage());
+                            }
+                        });
+                        requestQueue.add(jsonObjReq);
+
+                    } else {
+
+                        String auxUrl = url;
+                        int salaIdInt = getIntent().getIntExtra("param_sala_id", 0);
+                        auxUrl += String.valueOf(salaIdInt);
+
+                        JSONObject params = new JSONObject();
+                        try {
+                            params.put("titulo", titulo.getText().toString());
+                            params.put("descripcion", descripcion.getText().toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        jsonObjReq = new JsonObjectRequest(Request.Method.POST, auxUrl, params,
+                                new Response.Listener<JSONObject>() {
+
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        Toast.makeText(CargaDatosOP.this, "Opcion Agregada Correctamente", Toast.LENGTH_SHORT).show();
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                Log.i(TAG, error.getMessage());
+                            }
+                        });
+                        requestQueue.add(jsonObjReq);
+                        descripcion.setText("");
+                        titulo.setText("");
+                    }
                 }
             }
         });
 
-
-        btnEliminar = (Button) findViewById(R.id.btnEleminar);
+        //Boton eliminar
         if (getIntent().getBooleanExtra("param_editable", false) != true){
             btnEliminar.setVisibility(View.INVISIBLE);
         }
@@ -147,7 +149,6 @@ public class CargaDatosOP extends AppCompatActivity {
                 Log.i("Boton", "URL:" + url);
                 jsonObjReq = new JsonObjectRequest(Request.Method.DELETE, auxUrl, null,
                         new Response.Listener<JSONObject>() {
-
                             @Override
                             public void onResponse(JSONObject response) {
                                 Toast.makeText(CargaDatosOP.this, "Opcion Eliminada Correctamente", Toast.LENGTH_SHORT).show();
@@ -161,8 +162,11 @@ public class CargaDatosOP extends AppCompatActivity {
                     }
                 });
                 requestQueue.add(jsonObjReq);
+                btnEliminar.setEnabled(false);
+                btnGuardar.setEnabled(false);
             }
         });
 
     }
+
 }

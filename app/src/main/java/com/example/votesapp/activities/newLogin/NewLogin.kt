@@ -44,7 +44,15 @@ class NewLogin : AppCompatActivity() {
             val usuario = Usuario()
             usuario.username = userNameEditText.text.toString()
             usuario.contrasenia = passwordEditText.text.toString()
-            this.sendResponse(queue, usuario, view)
+            if (usuario.username!!.isEmpty()){
+                userNameEditText.setError("El campo no puede estar vacio");
+            }
+            if (usuario.contrasenia!!.isEmpty()){
+                passwordEditText.setError("El campo no puede estar vacio");
+            }
+            if (!usuario.username!!.isEmpty() && !usuario.contrasenia!!.isEmpty()) {
+                this.sendResponse(queue, usuario, view)
+            }
         })
 
         registerButton.setOnClickListener { view ->
@@ -64,8 +72,15 @@ class NewLogin : AppCompatActivity() {
         val jsonRequest = JsonObjectRequest("$url/login/", jsonUsuarioLogin,
             { response ->
                 Log.i(LOG_TAG, "Response is: $response")
-                val userLogin = usuarioService.parseUsuarioJson(response)
-                loginSuccessfull(userLogin, view)
+
+                if (usuarioService.parseStatus(response) == "200"){
+                    val userLogin = usuarioService.parseUsuarioJson(response)
+                    loginSuccessfull(userLogin, view)
+                } else{
+
+                    Toast.makeText(this, "Usuario o contraseña no validos", Toast.LENGTH_SHORT).show()
+                }
+
             },
             { error ->
                 error.printStackTrace()
