@@ -1,17 +1,22 @@
 package com.example.votesapp.activities.lista_salas
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+//import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
+import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
+import com.example.votesapp.activities.registro_usuario.Registro_usuario
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -55,6 +60,12 @@ class SalaAdapter(context: Context?) : ArrayAdapter<Sala?>(
         idSala.text = sala!!.id
         val nombreSala = view.findViewById<TextView>(R.id.nombreSala)
         nombreSala.text = sala.nombreSala
+
+        view.setOnClickListener{
+            val intent = Intent(view.context, OpcionesVotacion::class.java)
+            intent.putExtra("param_id",sala.id?.toInt())
+            view.context.applicationContext.startActivity(intent)
+        }
         return view
     }
 

@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.registro_usuario.Registro_usuario2"/>
+        <activity android:name=".activities.registro_usuario.Registro_usuario" />
         <activity android:name=".activities.newLogin.NewLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +31,11 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".activities.opciones_votacion.CargaDatosOP"/>
+        <activity
+            android:name=".activities.opciones_votacion.OpcionesVotacion"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"/>
     </application>
 
 </manifest>

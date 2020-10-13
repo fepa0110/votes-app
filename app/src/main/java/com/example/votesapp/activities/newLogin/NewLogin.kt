@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
 import com.example.votesapp.activities.mainActivity.MainActivity
+import com.example.votesapp.activities.registro_usuario.Registro_usuario
 import com.example.votesapp.model.Usuario
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
@@ -37,7 +38,7 @@ class NewLogin : AppCompatActivity() {
         val userNameEditText = findViewById<EditText>(R.id.newLogin_username)
         val passwordEditText = findViewById<EditText>(R.id.newLogin_password)
         val loginButton = findViewById<Button>(R.id.btn_login)
-        val progressBar = findViewById<ProgressBar>(R.id.newLogin_loading)
+        val registerButton = findViewById<Button>(R.id.btn_registrarse)
 
         loginButton.setOnClickListener(View.OnClickListener {view ->
             val usuario = Usuario()
@@ -45,6 +46,12 @@ class NewLogin : AppCompatActivity() {
             usuario.contrasenia = passwordEditText.text.toString()
             this.sendResponse(queue, usuario, view)
         })
+
+        registerButton.setOnClickListener { view ->
+            val intent = Intent(this, Registro_usuario::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun sendResponse(queue: RequestQueue, usuario: Usuario, view: View) {

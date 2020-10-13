@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Definimos el primer color y el segundo color para el degrades -->
+    <gradient
+        android:startColor="@color/azul_oscuro"
+        android:endColor="@color/purpura"
+        android:angle="-135"/>
+    
+</shape>

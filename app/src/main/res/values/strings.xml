@@ -14,15 +14,35 @@
     <string name="button_cancelar">Cancelar</string>
     <string name="bn_ver_salas">Ver Salas</string>
 
-    <string name="title_activity_mis_salas">Mis Salas</string>
-    <string name="title_activity_listado_mis_salas">ListadoMisSalas</string>
-    <string name="mis_salas">Mis salas</string>
     <string name="title_activity_menu_app">MenuApp</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
+    <!-- Karen -->
+    <!--Registro de Usuario -->
+    <string name="tituloRegistroUsuario">Registro de Usuario</string>
+    <string name="nombreUsuario">Nombre</string>
+    <string name="apellidoUsuario">Apellido</string>
+    <string name="correoUsuario">Correo electronico</string>
+    <string name="contraseñaUsuario">Contraseña</string>
+    <string name="confirmarContraseñaUsuario">Confirmar contraseña</string>
+    <string name="botonVolver">Volver</string>
+    <string name="botonSiguiente">Siguiente</string>
+
+    <!-- Registro de Usuario segunda pantalla-->
+    <string name="dniUsuario">Dni</string>
+    <string name="fechaNacimientoUsuario">Fecha de nacimiento</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="botonResgistrar">Registrar</string>
+
+    <!-- Fabricio -->
+
+    <string name="title_activity_mis_salas">Mis Salas</string>
+    <string name="title_activity_listado_mis_salas">ListadoMisSalas</string>
+    <string name="mis_salas">Mis salas</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -41,4 +61,13 @@
     <string name="login_failed">"Ingreso fallido"</string>
     <string name="title_activity_para_borrar">ParaBorrar</string>
     <string name="login_title">Ingreso de usuario</string>
+    <string name="btn_text_registrarse">Registrarse</string>
+
+    <!-- Nico -->
+    <string name="votar">Añadir</string>
+    <string name="button_guardar">Guardar</string>
+    <string name="hint_titulo_OpVotacion">Titulo</string>
+    <string name="hint_descripcion_OpVotacion">Descripcion</string>
+    <string name="button_eliminar">Eliminar</string>
+
 </resources>
