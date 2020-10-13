@@ -24,6 +24,7 @@
     <!-- Karen -->
     <!--Registro de Usuario -->
     <string name="tituloRegistroUsuario">Registro de Usuario</string>
+    <string name="userNameUsuario">Nombre de usuario</string>
     <string name="nombreUsuario">Nombre</string>
     <string name="apellidoUsuario">Apellido</string>
     <string name="correoUsuario">Correo electronico</string>

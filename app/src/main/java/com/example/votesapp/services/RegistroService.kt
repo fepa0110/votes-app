@@ -14,10 +14,11 @@ class RegistroService {
         const val LOG_TAG = "registro"
     }
 
-    public fun create(context: Context, nombre: Any, apellido: Any,correo: Any,contrasenia:Any,dni:Any,fechaNacimiento:Any){
+    public fun create(context: Context, userName: Any,nombre: Any, apellido: Any,correo: Any,contrasenia:Any,dni:Any,fechaNacimiento:Any){
         val queue = Volley.newRequestQueue(context)
 
         val jsonUsuario = JSONObject()
+        jsonUsuario.put("username",userName)
         jsonUsuario.put("nombre",nombre)
         jsonUsuario.put("apellido",apellido)
         jsonUsuario.put("correoElectronico",correo)

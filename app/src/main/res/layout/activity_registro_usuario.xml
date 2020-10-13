@@ -46,10 +46,26 @@
         app:layout_constraintTop_toBottomOf="@+id/tituloRegistroUsuario" />
 
     <EditText
+        android:id="@+id/userNameUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/bg_editar_texto"
+        android:hint="@string/userNameUsuario"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName"
+        android:padding="14dp"
+        android:textColorHint="@color/login_form_details"
+        app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/tituloRegistroUsuario" />
+
+    <EditText
         android:id="@+id/nombreUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_editar_texto"
         android:hint="@string/nombreUsuario"
         android:imeOptions="actionDone"
@@ -59,7 +75,7 @@
         app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@+id/tituloRegistroUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/userNameUsuario" />
 
     <EditText
         android:id="@+id/apellidoUsuario"
@@ -128,7 +144,7 @@
         android:id="@+id/botonVolver"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/btn_background"
         android:text="@string/botonVolver"
         android:textAllCaps="false"
@@ -142,13 +158,14 @@
         android:id="@+id/botonSiguiente"
         android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/btn_background"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
 
+        android:background="@drawable/btn_background"
         android:text="@string/botonSiguiente"
         android:textAllCaps="false"
-        android:textColor="@color/login_form_details_medium"
 
+        android:textColor="@color/login_form_details_medium"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
         app:layout_constraintTop_toBottomOf="@id/confirmarContraseñaUsuario" />
 

@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 public class Registro_usuario extends AppCompatActivity {
     Button siguiente,volver;
 
-    EditText nombreUsuario,apellidoUsuario,correoUsuario,contraUsuario,confirmarContraUsuario;
+    EditText userNameUsuario,nombreUsuario,apellidoUsuario,correoUsuario,contraUsuario,confirmarContraUsuario;
 
     public final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
@@ -43,6 +43,7 @@ public class Registro_usuario extends AppCompatActivity {
 
 
        //traigo los componentes de la pantalla
+        userNameUsuario = (EditText) findViewById(R.id.userNameUsuario);
         nombreUsuario = (EditText)findViewById(R.id.nombreUsuario);
         apellidoUsuario = (EditText)findViewById(R.id.apellidoUsuario);
         correoUsuario = (EditText)findViewById(R.id.correoUsuario);
@@ -96,7 +97,12 @@ public class Registro_usuario extends AppCompatActivity {
         confirmarContraUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confirmarContraUsuario.setError(null);
+                if(confirmarContraUsuario.getText() != contraUsuario.getText()){
+                    confirmarContraUsuario.setError("Las contraseñas no son iguales");
+                }else{
+                    Toast.makeText(getApplicationContext(),"correcto",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -114,6 +120,9 @@ public class Registro_usuario extends AppCompatActivity {
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (userNameUsuario.getText().toString().isEmpty()){
+                    userNameUsuario.setError("Este campo no puede estar vacio");
+                }
                 if(nombreUsuario.getText().toString().isEmpty()){
                     nombreUsuario.setError("Este campo no puede estar vacio");
                 }else {
@@ -130,6 +139,7 @@ public class Registro_usuario extends AppCompatActivity {
                                     confirmarContraUsuario.setError("Este campo no puede estar vacio");
                                 }else {
                                     Intent siguiente = new Intent(Registro_usuario.this,Registro_usuario2.class);
+                                    siguiente.putExtra("userName",userNameUsuario.getText().toString());
                                     siguiente.putExtra("nombre",nombreUsuario.getText().toString());
                                     siguiente.putExtra("apellido",apellidoUsuario.getText().toString());
                                     siguiente.putExtra("correo",correoUsuario.getText().toString());

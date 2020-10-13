@@ -38,11 +38,12 @@ class Registro_usuario2 : AppCompatActivity() {
             //Trae los datos de la primera pantalla
             val intent = intent
             val bundle = intent.extras
+            val userName = bundle!!["userName"] as String?
             val nombre = bundle!!["nombre"] as String?
             val apellido = bundle["apellido"] as String?
             val correo = bundle["correo"] as String?
             val contrasenia = bundle["contrasenia"] as String?
-            this.createRegistro(nombre.toString(),apellido.toString(),correo.toString(),contrasenia.toString(),
+            this.createRegistro(userName.toString(),nombre.toString(),apellido.toString(),correo.toString(),contrasenia.toString(),
                 dni.text,fechaNacimiento.text)
             val intent2 = Intent(this, MainActivity::class.java);
             startActivity(intent2);
@@ -50,8 +51,8 @@ class Registro_usuario2 : AppCompatActivity() {
         })
     }
 
-    private fun createRegistro(nombre:Any,apellido:Any,correo:Any,contrasenia:Any,dni:Any,fechaNacimiento:Any){
-        registroService.create(this,nombre,apellido,correo,contrasenia,dni,fechaNacimiento)
+    private fun createRegistro(userName: Any,nombre:Any,apellido:Any,correo:Any,contrasenia:Any,dni:Any,fechaNacimiento:Any){
+        registroService.create(this,userName,nombre,apellido,correo,contrasenia,dni,fechaNacimiento)
     }
 
     //Para la fecha de Nacimiento
