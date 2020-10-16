@@ -1,6 +1,7 @@
 package com.example.votesapp.activities.mis_salas
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
+import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
 //import com.example.votesapp.activities.lista_salas.Sala
 import org.json.JSONArray
 import org.json.JSONException
@@ -88,6 +90,12 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
 
         val nombreSala = view.findViewById<TextView>(R.id.item_nombre_mis_salas)
         nombreSala.text = sala.nombreSala
+
+        view.setOnClickListener{
+            val intent = Intent(view.context, OpcionesVotacion::class.java)
+            intent.putExtra("param_id",sala.id?.toInt())
+            view.context.applicationContext.startActivity(intent)
+        }
 
         return view
     }

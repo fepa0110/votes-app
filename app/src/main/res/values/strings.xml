@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Aplicacion de Votaciones</string>
+    <string name="app_name">Aplicación de Votaciones</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -70,5 +70,6 @@
     <string name="hint_titulo_OpVotacion">Titulo</string>
     <string name="hint_descripcion_OpVotacion">Descripcion</string>
     <string name="button_eliminar">Eliminar</string>
+    <string name="bienvenido">Bienvenido/a</string>
 
 </resources>

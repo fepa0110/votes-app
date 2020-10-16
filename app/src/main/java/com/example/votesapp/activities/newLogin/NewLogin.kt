@@ -95,10 +95,12 @@ class NewLogin : AppCompatActivity() {
     }
 
     fun loginSuccessfull(user: Usuario, view: View){
-        Toast.makeText(this, "Bienvenido/a ${user.nombre}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Bienvenido/a ${user.nombre}", Toast.LENGTH_SHORT).show()
         //Snackbar.make(view, "Bienvenido/a ${user.nombre}", Snackbar.LENGTH_LONG)
         //    .setAction("Action", null).show()
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("param_username",user.username)
+        intent.putExtra("param_usuario_nombre",user.nombre)
         startActivity(intent)
         finish()
     }

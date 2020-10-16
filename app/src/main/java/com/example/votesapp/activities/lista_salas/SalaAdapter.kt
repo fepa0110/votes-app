@@ -61,11 +61,11 @@ class SalaAdapter(context: Context?) : ArrayAdapter<Sala?>(
         val nombreSala = view.findViewById<TextView>(R.id.nombreSala)
         nombreSala.text = sala.nombreSala
 
-        view.setOnClickListener{
+        /*view.setOnClickListener{
             val intent = Intent(view.context, OpcionesVotacion::class.java)
             intent.putExtra("param_id",sala.id?.toInt())
             view.context.applicationContext.startActivity(intent)
-        }
+        }*/
         return view
     }
 

@@ -14,12 +14,16 @@ import com.example.votesapp.services.SalaService
 class CrearSala : AppCompatActivity() {
     private val salaService = SalaService()
 
+    private var username : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_sala)
         val botonAceptar = findViewById<Button>(R.id.crear_sala_button_aceptar)
         val botonCancelar = findViewById<Button>(R.id.crear_sala_button_cancelar)
         val editTextNombreSala = findViewById<EditText>(R.id.crear_sala_editText_nombre)
+
+        username = intent.getStringExtra("param_username")
 
         //Agregar acción de clickeo
         botonAceptar.setOnClickListener {
@@ -37,7 +41,7 @@ class CrearSala : AppCompatActivity() {
 
     private fun createSala(nombre: Any){
         if(nombre.toString().isNotEmpty() and nombre.toString().isNotBlank()){
-            salaService.create(this,nombre)
+            salaService.create(this,nombre,username.toString())
         }
         else Toast.makeText(this, "Por favor escriba un nombre sala", Toast.LENGTH_SHORT).show()
     }
