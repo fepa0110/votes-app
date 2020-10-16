@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         //Welcome Fragment
         val welcomeFragment = WelcomeFragment.newInstance()
         welcomeFragment.activity?.intent?.putExtra("param_usuario_nombre",userNombre)
-        openFragment(welcomeFragment)
+        openFragmentNoBackStack(welcomeFragment)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
@@ -63,6 +63,13 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun openFragmentNoBackStack(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        //transaction.addToBackStack(null)
         transaction.commit()
     }
 }
