@@ -37,6 +37,6 @@
         android:visibility="visible"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="normal"
-        app:srcCompat="@drawable/plus" />
+        app:srcCompat="@drawable/ic_add" />
 
 </FrameLayout>

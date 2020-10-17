@@ -71,5 +71,13 @@
     <string name="hint_descripcion_OpVotacion">Descripcion</string>
     <string name="button_eliminar">Eliminar</string>
     <string name="bienvenido">Bienvenido/a</string>
+    <string name="usuario">Usuario</string>
+    <string name="usuario_text_view_userActivity">Usuario:</string>
+    <string name="foto_de_perfil">Foto de perfil</string>
+    <string name="nombre_text_view_userActivity">Nombre:</string>
+    <string name="apellido_text_view_userActivity">Apellido:</string>
+    <string name="dni_text_view_userActivity">DNI:</string>
+    <string name="email_text_view_userActivity">Email:</string>
+    <string name="logout_text_userActivity">Cerrar sesion</string>
 
 </resources>

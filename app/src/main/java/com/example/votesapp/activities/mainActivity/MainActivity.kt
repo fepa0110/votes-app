@@ -7,6 +7,7 @@ import com.example.votesapp.R
 import com.example.votesapp.activities.lista_salas.Lista_Salas
 
 import com.example.votesapp.activities.mis_salas.MisSalas
+import com.example.votesapp.activities.user_activity.UserActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -51,10 +52,15 @@ class MainActivity : AppCompatActivity() {
                     openFragment(salasFragment)
                     return@OnNavigationItemSelectedListener true
                 }
-                /* R.id.navigation_artists -> {
+                R.id.navigation_usuario -> {
+                    this.title = "Perfil de usuario"
+                    val userFragment = UserActivity.newInstance()
 
+                    userFragment.activity?.intent?.putExtra("param_username",username)
+
+                    openFragment(userFragment)
                     return@OnNavigationItemSelectedListener true
-                }*/
+                }
             }
         false
     }

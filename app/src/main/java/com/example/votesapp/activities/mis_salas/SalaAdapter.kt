@@ -86,14 +86,14 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
         //Definir lo que acabamos de crear en el item_sala para q la encuentre el listView y
         //los pueble con los datos
         val idSala = view!!.findViewById<TextView>(R.id.item_id_mis_salas)
-        idSala.text = sala!!.id
+        //idSala.text = sala!!.id
 
         val nombreSala = view.findViewById<TextView>(R.id.item_nombre_mis_salas)
-        nombreSala.text = sala.nombreSala
+        nombreSala.text = sala?.nombreSala
 
         view.setOnClickListener{
             val intent = Intent(view.context, OpcionesVotacion::class.java)
-            intent.putExtra("param_id",sala.id?.toInt())
+            intent.putExtra("param_id",sala?.id?.toInt())
             view.context.applicationContext.startActivity(intent)
         }
 

@@ -3,6 +3,9 @@ package com.example.votesapp.model
 class Usuario {
     var username : String? = null
     var nombre : String? = null
+    var apellido : String? = null
+    var correoElectronico : String? = null
+    var dni : String? = null
     var contrasenia : String? = null
 
     constructor() {}
@@ -12,12 +15,8 @@ class Usuario {
         this.nombre = nombre
     }
 
-    @JvmName("nombre")
-    fun getNombre(): String {
-        return this.nombre.toString()
+    override fun toString(): String {
+        return "Usuario(username=$username, nombre=$nombre, apellido=$apellido, correoElectronico=$correoElectronico, dni=$dni)"
     }
 
-    override fun toString(): String {
-        return "Usuario(username=$username, nombre=$nombre)"
-    }
 }
