@@ -23,18 +23,20 @@ class MisSalas : Fragment() {
     //Llamamos el adapter
     private var sAdapter: ListAdapter? = null
 
+    private var username : String? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewFragment = inflater.inflate(R.layout.activity_listado_mis_salas, container, false)
         slistView = viewFragment.findViewById(R.id.listView_mis_salas)
 
         val buttonCrearSala = viewFragment.findViewById<FloatingActionButton>(R.id.button_crear_sala)
         buttonCrearSala.setOnClickListener {
-            val intent = Intent(activity, CrearSala::class.java);
+            val intent = Intent(activity, CrearSala::class.java)
+            intent.putExtra("param_username",username)
             startActivity(intent)  //Ejecutar salto a la actividad
         }
 
-        //!USUARIO HARDCODEADO
-        val username = "Tester"
+        username = this.activity?.intent?.getStringExtra("param_username")
 
         //inicializamos el adaptador que va a poner la lista de sala
         sAdapter = SalaAdapter(activity,"user/$username/")
@@ -47,11 +49,5 @@ class MisSalas : Fragment() {
 
     companion object {
         fun newInstance(): MisSalas = MisSalas()
-    }
-
-    fun openCrearSala(view: View){
-        //Crear vinculo entre esta actividad y CrearSala
-        val intent = Intent(activity, CrearSala::class.java);
-        startActivity(intent)  //Ejecutar salto a la actividad
     }
 }

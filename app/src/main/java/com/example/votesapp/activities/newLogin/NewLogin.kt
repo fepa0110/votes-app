@@ -63,8 +63,6 @@ class NewLogin : AppCompatActivity() {
     }
 
     private fun sendResponse(queue: RequestQueue, usuario: Usuario, view: View) {
-        Log.i(LOG_TAG, "INICIO Metodo login")
-
         val jsonUsuarioLogin = JSONObject()
         jsonUsuarioLogin.put("username", usuario.username)
         jsonUsuarioLogin.put("contrasenia", usuario.contrasenia)
@@ -75,10 +73,9 @@ class NewLogin : AppCompatActivity() {
 
                 if (usuarioService.parseStatus(response) == "200"){
                     val userLogin = usuarioService.parseUsuarioJson(response)
-                    loginSuccessfull(userLogin, view)
+                    loginSuccessfull(userLogin)
                 } else{
-
-                    Toast.makeText(this, "Usuario o contraseña no validos", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(view, "Usuario o contraseña no validos", Snackbar.LENGTH_LONG).show()
                 }
 
             },
@@ -86,19 +83,16 @@ class NewLogin : AppCompatActivity() {
                 error.printStackTrace()
                 Log.e(LOG_TAG, "Respuesta servidor: $error.networkResponse")
                 Log.e(LOG_TAG, "No se pudo loguear correctamente")
-                //Toast.makeText(context, "No se pudo crear la sala", Toast.LENGTH_SHORT).show()
+                Snackbar.make(view, "No se pudo loguear correctamente", Snackbar.LENGTH_LONG).show()
             }
         )
-
-        Log.i(LOG_TAG, "FIN Metodo login")
         queue.add(jsonRequest)
     }
 
-    fun loginSuccessfull(user: Usuario, view: View){
-        Toast.makeText(this, "Bienvenido/a ${user.nombre}", Toast.LENGTH_SHORT).show()
-        //Snackbar.make(view, "Bienvenido/a ${user.nombre}", Snackbar.LENGTH_LONG)
-        //    .setAction("Action", null).show()
+    private fun loginSuccessfull(user: Usuario){
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("param_username",user.username)
+        intent.putExtra("param_usuario_nombre",user.nombre)
         startActivity(intent)
         finish()
     }
