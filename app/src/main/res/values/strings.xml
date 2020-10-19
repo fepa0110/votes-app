@@ -79,5 +79,10 @@
     <string name="dni_text_view_userActivity">DNI:</string>
     <string name="email_text_view_userActivity">Email:</string>
     <string name="logout_text_userActivity">Cerrar sesion</string>
+    <string name="crear_sala_floating_button_description">Crear una sala</string>
+    <string name="guardar_text_editar_perfil">Guardar</string>
+    <string name="email_usuario">Email</string>
+    <string name="editar_perfil_text_userActivity">Editar perfil</string>
+    <string name="cancelar_text_editar_perfil">Cancelar</string>
 
 </resources>

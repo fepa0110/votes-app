@@ -17,6 +17,7 @@ import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
 import com.example.votesapp.activities.newLogin.NewLogin
 import com.example.votesapp.activities.newLogin.NewLoginService
+import com.example.votesapp.activities.update_user.UpdateUser
 import com.example.votesapp.model.Usuario
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONException
@@ -30,6 +31,13 @@ class UserActivity : Fragment() {
         val viewFragment = inflater.inflate(R.layout.user_activity, container, false)
 
         username = this.activity?.intent?.getStringExtra("param_username")
+
+        val editarPerfilButton = viewFragment.findViewById<Button>(R.id.editar_perfil_button_userActivity)
+        editarPerfilButton.setOnClickListener{
+            val intent = Intent(this.context, UpdateUser::class.java)
+            intent.putExtra("param_username",username)
+            startActivity(intent)
+        }
 
         val logoutButton = viewFragment.findViewById<Button>(R.id.logout_button_userActivity)
         logoutButton.setOnClickListener{
