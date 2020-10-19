@@ -45,12 +45,12 @@ class NewLogin : AppCompatActivity() {
             usuario.username = userNameEditText.text.toString()
             usuario.contrasenia = passwordEditText.text.toString()
             if (usuario.username!!.isEmpty()){
-                userNameEditText.setError("El campo no puede estar vacio");
+                userNameEditText.error = "El campo no puede estar vacio";
             }
             if (usuario.contrasenia!!.isEmpty()){
-                passwordEditText.setError("El campo no puede estar vacio");
+                passwordEditText.error = "El campo no puede estar vacio";
             }
-            if (!usuario.username!!.isEmpty() && !usuario.contrasenia!!.isEmpty()) {
+            if (usuario.username!!.isNotEmpty() && usuario.contrasenia!!.isNotEmpty()) {
                 this.sendResponse(queue, usuario, view)
             }
         })

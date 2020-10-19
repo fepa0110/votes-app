@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_bg"
+    tools:context=".activities.update_user.UpdateUser">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_user"
+            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
+            app:title="Editar perfil"
+            app:titleTextColor="#FFFFFF"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="680dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_layout">
+
+        <!-- nombre -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nombre_layout_editarPerfil"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textColorHint="@color/blanco"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterTextColor="@color/blanco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombre_editText_editar_perfil"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_user"
+                android:hint="@string/nombreUsuario"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:shadowColor="#AAAAAA"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/blanco"
+                android:textColorHint="@color/blanco"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- apellido -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/apellido_layout_editarPerfil"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/blanco"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterTextColor="@color/blanco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_layout_editarPerfil">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/apellido_editText_editar_perfil"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_user"
+                android:hint="@string/apellidoUsuario"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:shadowColor="#AAAAAA"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/blanco"
+                android:textColorHint="@color/blanco"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- email -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_layout_editarPerfil"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/blanco"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            app:counterTextColor="@color/blanco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/apellido_layout_editarPerfil">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_editText_editar_perfil"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_user"
+                android:hint="@string/email_usuario"
+                android:inputType="textEmailAddress"
+                android:selectAllOnFocus="true"
+                android:shadowColor="#AAAAAA"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/blanco"
+                android:textColorHint="@color/blanco"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- contraseña -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/contraseña_layout_editarPerfil"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/blanco"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/blanco"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterTextColor="@color/blanco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_layout_editarPerfil">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/contraseña_editText_editar_perfil"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_user"
+                android:hint="@string/contraseñaUsuario"
+                android:inputType="textPassword"
+                android:selectAllOnFocus="true"
+                android:shadowColor="#AAAAAA"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/blanco"
+                android:textColorHint="@color/blanco"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Boton guardar -->
+        <Button
+            android:id="@+id/button_guardar_editar_perfil"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/contraseña_layout_editarPerfil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="?attr/colorPrimary"
+            android:layout_marginTop="32dp"
+            android:text="@string/guardar_text_editar_perfil"
+            android:textColor="@color/blanco" />
+
+        <Button
+            android:id="@+id/button_cancelar_editar_perfil"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/button_guardar_editar_perfil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="?attr/colorPrimary"
+            android:layout_marginTop="32dp"
+            android:text="@string/cancelar_text_editar_perfil"
+            android:textColor="@color/blanco" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
