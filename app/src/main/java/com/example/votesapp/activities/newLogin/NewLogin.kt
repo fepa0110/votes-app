@@ -6,8 +6,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -18,7 +16,6 @@ import com.example.votesapp.activities.registro_usuario.Registro_usuario
 import com.example.votesapp.model.Usuario
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
-import java.lang.Thread.sleep
 
 class NewLogin : AppCompatActivity() {
     private val url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/usuarios"

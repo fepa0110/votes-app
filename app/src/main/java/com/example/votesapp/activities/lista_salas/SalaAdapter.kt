@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 //import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -16,7 +15,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
-import com.example.votesapp.activities.registro_usuario.Registro_usuario
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -63,7 +61,7 @@ class SalaAdapter(context: Context?) : ArrayAdapter<Sala?>(
 
         /*view.setOnClickListener{
             val intent = Intent(view.context, OpcionesVotacion::class.java)
-            intent.putExtra("param_id",sala.id?.toInt())
+            intent.putExtra("param_id",sala!!.id?.toInt())
             view.context.applicationContext.startActivity(intent)
         }*/
         return view

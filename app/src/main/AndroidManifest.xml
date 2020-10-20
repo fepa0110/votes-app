@@ -13,8 +13,8 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".activities.update_user.UpdateUser"></activity>
-        <activity android:name=".activities.registro_usuario.Registro_usuario2" />
         <activity android:name=".activities.registro_usuario.Registro_usuario" />
+        <activity android:name=".activities.registro_usuario.Registro_usuario2" />
         <activity android:name=".activities.newLogin.NewLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

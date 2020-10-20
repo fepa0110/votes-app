@@ -21,52 +21,174 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp" />
 
-    <EditText
+    <TextView
+        android:id="@+id/tituloRegistroUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/login_form_details_medium"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+
+        android:text="Datos Personales"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <View
+        android:id="@+id/lineaDebajoTitulo"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#fff"
+        app:layout_constraintEnd_toEndOf="@id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/tituloRegistroUsuario" />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="111dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_usuario3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@id/tituloRegistroUsuario" />
+
+    <!--EditText para nombre -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nombreUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/nombreUsuario"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:counterTextColor="@color/blanco"
+        android:textColorHint="@color/login_form_details"
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_registroNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blanco"
+            android:maxLength="30"
+            android:inputType="textCapSentences" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--EditText para Apellido -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/apellidoUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/apellidoUsuario"
+        android:textColorHint="@color/login_form_details"
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/nombreUsuario"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_registroApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blanco"
+            android:inputType="textCapSentences" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--EditText para Dni -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dniUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/bg_editar_texto"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/dniUsuario"
-        android:inputType="number"
-        android:padding="14dp"
         android:textColorHint="@color/login_form_details"
-        app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/apellidoUsuario"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_registrodni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blanco"
+            android:maxLength="8"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <!--EditText para fecha Nacimiento -->
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fechaNacimientoUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bg_editar_texto"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/fechaNacimientoUsuario"
-        android:inputType="date"
-        android:focusable="false"
-        android:clickable="true"
-        android:maxLines="1"
-        android:padding="14dp"
         android:textColorHint="@color/login_form_details"
-        app:layout_constraintEnd_toStartOf="@id/guideline_derecha"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@+id/dniUsuario" />
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/dniUsuario"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_registroFechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
+            android:inputType="date" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/bontonRegistrar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:id="@+id/botonVolver2"
+        android:layout_width="150dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/btn_background"
-        android:text="@string/botonResgistrar"
+        android:text="@string/botonVolver2"
         android:textAllCaps="false"
-        android:textColor="@color/login_form_details_medium"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        android:textColor="@color/login_form_details"
+        app:layout_constraintEnd_toStartOf="@+id/bontonRegistrar"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
         app:layout_constraintTop_toBottomOf="@id/fechaNacimientoUsuario" />
 
-
-
+    <Button
+        android:id="@+id/bontonRegistrar"
+        android:layout_width="150dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_background"
+        android:text="@string/botonResgistrar"
+        android:textAllCaps="false"
+        android:textColor="@color/login_form_details"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintTop_toBottomOf="@id/fechaNacimientoUsuario" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

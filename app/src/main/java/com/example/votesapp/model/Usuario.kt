@@ -1,5 +1,7 @@
 package com.example.votesapp.model
 
+import java.util.*
+
 class Usuario {
     var username : String? = null
     var nombre : String? = null
@@ -7,6 +9,7 @@ class Usuario {
     var correoElectronico : String? = null
     var dni : String? = null
     var contrasenia : String? = null
+    var fechaNacimiento : String? = null
 
     constructor() {}
 
