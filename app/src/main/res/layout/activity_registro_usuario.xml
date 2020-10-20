@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_fondo_pantalla"
+    android:background="@drawable/new_bg"
     tools:context=".activities.registro_usuario.Registro_usuario">
 
     <androidx.constraintlayout.widget.Guideline
@@ -26,7 +26,7 @@
         android:id="@+id/tituloRegistroUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/login_form_details_medium"
+        android:textColor="@color/negro"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="0dp"
         android:text="@string/tituloRegistroUsuario"
@@ -46,26 +46,28 @@
         app:layout_constraintTop_toBottomOf="@+id/tituloRegistroUsuario" />
 
     <!--EditText para nombre -->
+
+    <!--EditText para correo Electronico -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/registro_userName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="16dp"
         android:hint="Nombre de usuario"
+        android:textColorHint="@color/login_form_details"
+        app:boxStrokeWidth="0dp"
         app:counterEnabled="true"
         app:counterMaxLength="10"
         app:counterTextColor="@color/blanco"
+        app:endIconMode="clear_text"
         app:errorTextAppearance="@style/Error"
         app:hintTextAppearance="@style/Hint"
-        android:textColorHint="@color/login_form_details"
-        app:boxStrokeWidth="0dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/tituloRegistroUsuario"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@id/tituloRegistroUsuario">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_registro_userName"
@@ -77,7 +79,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--EditText para correo Electronico -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/registro_correoElectronico"
         android:layout_width="0dp"
@@ -116,6 +117,8 @@
         android:hint="@string/registro_contraseñaUsuario"
         app:boxStrokeWidth="0dp"
         app:endIconMode="password_toggle"
+        app:passwordToggleEnabled="true"
+        app:errorTextAppearance="@style/Error"
         app:layout_constraintTop_toBottomOf="@id/registro_correoElectronico"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
         app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
@@ -125,8 +128,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/blanco"
+            android:textColorHint="@color/blanco"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Confirmar la contraseña -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirmarRegistroContra"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/login_form_details"
+        android:hint="@string/confirmarRegistroContra"
+        app:passwordToggleEnabled="true"
+        app:errorTextAppearance="@style/Error"
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@id/registro_contraseñaUsuario"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_confirmarRegistroContra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:textColor="@color/blanco" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
     <Button
         android:id="@+id/botonVolver"
@@ -141,7 +174,7 @@
         app:layout_constraintEnd_toStartOf="@+id/botonSiguiente"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
-        app:layout_constraintTop_toBottomOf="@+id/registro_contraseñaUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmarRegistroContra" />
 
     <Button
         android:id="@+id/botonSiguiente"
@@ -154,7 +187,7 @@
         android:textAllCaps="false"
         android:textColor="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
-        app:layout_constraintTop_toBottomOf="@id/registro_contraseñaUsuario" />
+        app:layout_constraintTop_toBottomOf="@id/confirmarRegistroContra" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
