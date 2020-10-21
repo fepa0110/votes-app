@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -23,23 +24,28 @@ class MisSalas : Fragment() {
     //Llamamos el adapter
     private var sAdapter: ListAdapter? = null
 
-    private var username : String? = null
+    private var username: String? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val viewFragment = inflater.inflate(R.layout.activity_listado_mis_salas, container, false)
         slistView = viewFragment.findViewById(R.id.listView_mis_salas)
 
-        val buttonCrearSala = viewFragment.findViewById<FloatingActionButton>(R.id.button_crear_sala)
+        val buttonCrearSala =
+            viewFragment.findViewById<FloatingActionButton>(R.id.button_crear_sala)
         buttonCrearSala.setOnClickListener {
             val intent = Intent(activity, CrearSala::class.java)
-            intent.putExtra("param_username",username)
+            intent.putExtra("param_username", username)
             startActivity(intent)  //Ejecutar salto a la actividad
         }
 
         username = this.activity?.intent?.getStringExtra("param_username")
 
         //inicializamos el adaptador que va a poner la lista de sala
-        sAdapter = SalaAdapter(activity,"user/$username/")
+        sAdapter = SalaAdapter(activity, "user/$username/")
 
         //Crear adaptador y setear
         slistView?.adapter = sAdapter
@@ -50,4 +56,17 @@ class MisSalas : Fragment() {
     companion object {
         fun newInstance(): MisSalas = MisSalas()
     }
+
+    override fun onResume() {
+        super.onResume()
+        username = this.activity?.intent?.getStringExtra("param_username")
+        //setear
+        slistView?.adapter = null
+        sAdapter = null
+        //inicializamos el adaptador que va a poner la lista de sala
+        sAdapter = SalaAdapter(activity, "user/$username/")
+        //Crear adaptador y setear
+        slistView?.adapter = sAdapter
+    }
+
 }

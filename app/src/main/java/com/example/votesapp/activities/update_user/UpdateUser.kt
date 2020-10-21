@@ -35,12 +35,20 @@ class UpdateUser : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
 
         username = intent.getStringExtra("param_username")
-        this.getUsernameData(queue)
+        //this.getUsernameData(queue)
 
         val nombreEditText = findViewById<EditText>(R.id.nombre_editText_editar_perfil)
         val apellidoEditText = findViewById<EditText>(R.id.apellido_editText_editar_perfil)
         val emailEditText = findViewById<EditText>(R.id.email_editText_editar_perfil)
         val passwordEditText = findViewById<EditText>(R.id.contraseña_editText_editar_perfil)
+
+
+        nombreEditText.setText(intent.getStringExtra("param_nombre"))
+        apellidoEditText.setText(intent.getStringExtra("param_apellido"))
+        emailEditText.setText(intent.getStringExtra("param_correo"))
+        passwordEditText.setText(intent.getStringExtra("param_contrasenia"))
+        Log.i("Contraseña: ",intent.getStringExtra("param_contrasenia"))
+
 
         val guardarButton = findViewById<Button>(R.id.button_guardar_editar_perfil)
         guardarButton.setOnClickListener {view ->

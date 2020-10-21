@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lista_mis_salas_frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
+    android:layout_toStartOf="@+id/navigationView"
     tools:context=".activities.mis_salas.MisSalas">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,28 +19,25 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:accessibilityPaneTitle="@string/mis_salas"
             app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
-            app:titleTextColor="#FFFFFF"/>
+            app:title="@string/mis_salas"
+            app:titleTextColor="#FFFFFF" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/misSalasTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mis_salas"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+    <include layout="@layout/activity_mis_salas" />
 
-    <include layout="@layout/activity_lista__salas" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/button_crear_sala"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="75dp"
+        android:tint="#FFFFFF"
+        android:visibility="visible"
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_add"
-        android:contentDescription="@string/crear_sala_floating_button_description"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:contentDescription="@string/crear_sala_floating_button_description" />
+
+</FrameLayout>
