@@ -13,6 +13,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
+import com.example.votesapp.activities.menuMisSalas.MenuMisSalas
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
 //import com.example.votesapp.activities.lista_salas.Sala
 import org.json.JSONArray
@@ -92,8 +93,13 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
         nombreSala.text = sala?.nombreSala
 
         view.setOnClickListener{
-            val intent = Intent(view.context, OpcionesVotacion::class.java)
+//            val intent = Intent(view.context, OpcionesVotacion::class.java)
+//            intent.putExtra("param_id",sala?.id?.toInt())
+//            view.context.applicationContext.startActivity(intent)
+
+            val intent = Intent(view.context, MenuMisSalas::class.java)
             intent.putExtra("param_id",sala?.id?.toInt())
+            intent.putExtra("param_nombre",sala?.nombreSala)
             view.context.applicationContext.startActivity(intent)
         }
 

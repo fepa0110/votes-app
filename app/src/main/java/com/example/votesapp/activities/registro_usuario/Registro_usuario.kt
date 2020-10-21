@@ -36,6 +36,8 @@ class Registro_usuario : AppCompatActivity() {
     var registroUserName: TextInputLayout? = null
     var registroCorreo: TextInputLayout? = null
     var registroContra: TextInputLayout? = null
+    var regitroConfirmarContra:TextInputLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro_usuario)
@@ -46,11 +48,14 @@ class Registro_usuario : AppCompatActivity() {
             findViewById<View>(R.id.registro_correoElectronico) as TextInputLayout
         registroContra =
             findViewById<View>(R.id.registro_contraseñaUsuario) as TextInputLayout
+        regitroConfirmarContra =
+            findViewById<View>(R.id.confirmarRegistroContra) as TextInputLayout
 
         //traigo los componentes de la pantalla
         val userNameUsuario = findViewById<TextInputEditText>(R.id.text_registro_userName)
         val correoUsuario = findViewById<TextInputEditText>(R.id.text_registro_correoElectronico)
         val contraUsuario = findViewById<TextInputEditText>(R.id.text_registroContraseña)
+        val confirmarContra = findViewById<TextInputEditText>(R.id.text_confirmarRegistroContra);
 
         //confirmarContraUsuario = (EditText)findViewById(R.id.confirmarContraseñaUsuario);
 
@@ -79,6 +84,15 @@ class Registro_usuario : AppCompatActivity() {
             }
             override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
                 escontraseñaValida(charSequence.toString())
+            }
+            override fun afterTextChanged(editable: Editable) {}
+        })
+
+        confirmarContra.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+            }
+            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+                esConfirmarContraseñaValida(charSequence.toString())
             }
             override fun afterTextChanged(editable: Editable) {}
         })
@@ -132,15 +146,31 @@ class Registro_usuario : AppCompatActivity() {
         }
         return true
     }
+    //Validar la confirmacion de la contraseña
+    private fun esConfirmarContraseñaValida(confirmar: String): Boolean {
+        //Pattern patron = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$");
+        val y = registroContra!!.editText!!.text.toString()
+        if (confirmar.equals(y)) {
+            regitroConfirmarContra!!.error = null
+            return true
+        } else {
+            regitroConfirmarContra!!.error = "Las contraseña no son iguales, vuelva a intentarlo"
+        }
+        return false
+    }
 
     private fun validarDatos() {
         val nombre = registroUserName!!.editText!!.text.toString()
         val correo = registroCorreo!!.editText!!.text.toString()
         val contraseña = registroContra!!.editText!!.text.toString()
+        val confirmar = regitroConfirmarContra!!.editText!!.text.toString()
+
         val a = esNombreValido(nombre)
         val c = esCorreoValido(correo)
         val b = escontraseñaValida(contraseña)
-        if (a && b && c) {
+        val d = esConfirmarContraseñaValida(confirmar)
+
+        if (a && b && c && d) {
             val usuario = Usuario()
             usuario.username = text_registro_userName.text.toString()
             usuario.correoElectronico=text_registro_correoElectronico.text.toString()

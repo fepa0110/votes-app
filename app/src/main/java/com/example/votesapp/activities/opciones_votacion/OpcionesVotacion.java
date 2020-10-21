@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,6 +18,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.votesapp.services.OPVotacionService;
 
-public class OpcionesVotacion extends AppCompatActivity {
+public class OpcionesVotacion extends Fragment {
 
     private AppBarConfiguration mAppBarConfiguration;
     ViewPager viewPager;
@@ -40,16 +45,16 @@ public class OpcionesVotacion extends AppCompatActivity {
     OPVotacionService service;
     private int salaId;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opciones_votacion);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_opciones_votacion,container,false);
 
-        this.salaId = getIntent().getIntExtra("param_id",0);
+        this.salaId = getArguments().getInt("param_id");
 
         //Obtener instancia de la actividad
-        viewPager = findViewById(R.id.viewPager);
-        service = new OPVotacionService(this,viewPager, this.salaId);
+        viewPager = view.findViewById(R.id.viewPager);
+        service = new OPVotacionService(getContext(),viewPager, this.salaId);
 
         viewPager.setPadding(130, 0, 130, 0);
 
@@ -93,7 +98,7 @@ public class OpcionesVotacion extends AppCompatActivity {
         });
 
         //Boton btnAñadir
-        Button btnAgregar = (Button) findViewById(R.id.btnAñadir);
+        Button btnAgregar = (Button) view.findViewById(R.id.btnAñadir);
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,13 +111,14 @@ public class OpcionesVotacion extends AppCompatActivity {
             }
         });
 
-    }
+            return view;
+        }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         viewPager.setAdapter(null);
-        service = new OPVotacionService(this,viewPager,this.salaId);
+        service = new OPVotacionService(getContext(),viewPager,this.salaId);
     }
 
 

@@ -9,14 +9,16 @@
     android:background="@drawable/bg_login"
     tools:context=".activities.newLogin.NewLogin">
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="212dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="70dp"
             android:layout_marginBottom="40dp"
             android:gravity="center"
             android:lineSpacingExtra="8sp"
@@ -29,14 +31,13 @@
 
         <View
             android:id="@+id/newLogin_lineaDebajoTitulo"
-            android:layout_marginBottom="25dp"
             android:layout_width="360dp"
             android:layout_height="1dp"
-            android:background="#FFFFFF"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:background="#FFFFFF" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,9 +75,9 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:textColorHint="#FFFFFF"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="#FFFFFF"
-            android:textColorHint="#FFFFFF">
+            app:passwordToggleTint="#FFFFFF">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/newLogin_password"
