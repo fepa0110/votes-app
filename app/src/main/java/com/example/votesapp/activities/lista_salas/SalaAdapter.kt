@@ -22,14 +22,14 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-class SalaAdapter(context: Context?) : ArrayAdapter<Sala?>(
+class SalaAdapter(context: Context?,  urlComplement: String) : ArrayAdapter<Sala?>(
     context!!, 0
 ) {
     //Atributos
     private val requestQueue: RequestQueue
     var jsArrayRequest: JsonObjectRequest
 
-    private val URL_BASE = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas"
+    private var urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas"
 
     var sList: List<Sala?>? = null
 
@@ -60,12 +60,6 @@ class SalaAdapter(context: Context?) : ArrayAdapter<Sala?>(
         //idSala.text = sala!!.id
         val nombreSala = view.findViewById<TextView>(R.id.nombreSala)
         nombreSala.text = sala?.nombreSala
-
-        /*view.setOnClickListener{
-            val intent = Intent(view.context, OpcionesVotacion::class.java)
-            intent.putExtra("param_id",sala.id?.toInt())
-            view.context.applicationContext.startActivity(intent)
-        }*/
         return view
     }
 
@@ -102,9 +96,9 @@ class SalaAdapter(context: Context?) : ArrayAdapter<Sala?>(
 
         //Crear nueva cola de peticiones
         requestQueue = Volley.newRequestQueue(context)
-
+        this.urlBase = "$urlBase$urlComplement"
         //NUeva peticion JsonObject
-        jsArrayRequest = JsonObjectRequest(Request.Method.GET, URL_BASE, null, { response ->
+        jsArrayRequest = JsonObjectRequest(Request.Method.GET, urlBase, null, { response ->
             sList = parseJson(response)
             notifyDataSetChanged()
         }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }

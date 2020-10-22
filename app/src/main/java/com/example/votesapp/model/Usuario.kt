@@ -7,8 +7,13 @@ class Usuario {
     var correoElectronico : String? = null
     var dni : String? = null
     var contrasenia : String? = null
+    var fechaNacimiento: String? = null
 
     constructor() {}
+
+    constructor(username: String?) {
+        this.username = username
+    }
 
     constructor(username: String?, nombre: String?) {
         this.username = username

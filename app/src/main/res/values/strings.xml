@@ -21,24 +21,24 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <!-- Karen -->
-    <!--Registro de Usuario -->
+    <!--  Karen  -->
+    <!-- Registro de Usuario  -->
     <string name="tituloRegistroUsuario">Registro de Usuario</string>
-    <string name="userNameUsuario">Nombre de usuario</string>
-    <string name="nombreUsuario">Nombre</string>
-    <string name="apellidoUsuario">Apellido</string>
-    <string name="correoUsuario">Correo electronico</string>
-    <string name="contraseñaUsuario">Contraseña</string>
-    <string name="confirmarContraseñaUsuario">Confirmar contraseña</string>
+    <string name="registro_userName">Nombre de usuario</string>
+    <string name="registro_correoElectronico">Correo Electronico</string>
+    <string name="registro_contraseñaUsuario">Contraseña</string>
+    <string name="confirmarRegistroContra">Confirmar contraseña</string>
     <string name="botonVolver">Volver</string>
     <string name="botonSiguiente">Siguiente</string>
 
-    <!-- Registro de Usuario segunda pantalla-->
+    <!-- Registro de usuario segunda pantalla  -->
+    <string name="tituloRegistroUsuario2">Registro de Usuario</string>
+    <string name="nombreUsuario">Nombre</string>
+    <string name="apellidoUsuario">Apellido</string>
     <string name="dniUsuario">Dni</string>
     <string name="fechaNacimientoUsuario">Fecha de nacimiento</string>
-    <string name="ubicacion">Ubicación</string>
+    <string name="botonVolver2">Cancelar</string>
     <string name="botonResgistrar">Registrar</string>
-
     <!-- Fabricio -->
 
     <string name="title_activity_mis_salas">Mis Salas</string>
@@ -84,5 +84,9 @@
     <string name="email_usuario">Email</string>
     <string name="editar_perfil_text_userActivity">Editar perfil</string>
     <string name="cancelar_text_editar_perfil">Cancelar</string>
+    <string name="fechaNacimiento_text_view_userActivity">Fecha de nacimiento:</string>
+    <string name="eliminar_description">Eliminar</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 
 </resources>

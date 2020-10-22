@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class CargaDatosOP extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/opVotaciones/";
     private String TAG = "OPVotacion";
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,13 @@ public class CargaDatosOP extends AppCompatActivity {
                             }
                         });
                         requestQueue.add(jsonObjReq);
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                onBackPressed();
+                            }
+                        },500);
 
                     } else {
 
@@ -162,8 +171,13 @@ public class CargaDatosOP extends AppCompatActivity {
                     }
                 });
                 requestQueue.add(jsonObjReq);
-                btnEliminar.setEnabled(false);
-                btnGuardar.setEnabled(false);
+                handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onBackPressed();
+                    }
+                },500);
             }
         });
 
