@@ -35,7 +35,12 @@ class UserActivity : Fragment() {
         val editarPerfilButton = viewFragment.findViewById<Button>(R.id.editar_perfil_button_userActivity)
         editarPerfilButton.setOnClickListener{
             val intent = Intent(this.context, UpdateUser::class.java)
-            intent.putExtra("param_username",username)
+            intent.putExtra("param_username",user?.username)
+            intent.putExtra("param_nombre", user?.nombre)
+            intent.putExtra("param_apellido", user?.apellido)
+            intent.putExtra("param_contrasenia", user?.contrasenia)
+            intent.putExtra("param_correo", user?.correoElectronico)
+            intent.putExtra("param_fechaNacimiento", user?.fechaNacimiento)
             startActivity(intent)
         }
 
@@ -93,6 +98,9 @@ class UserActivity : Fragment() {
             usuario.apellido = usuarioObject.getString("apellido")
             usuario.dni = usuarioObject.getString("dni")
             usuario.correoElectronico = usuarioObject.getString("correoElectronico")
+            usuario.fechaNacimiento = usuarioObject.getString("fechaNacimiento")
+            usuario.contrasenia = usuarioObject.getString("contrasenia")
+            if(usuario.fechaNacimiento == "null") usuario.fechaNacimiento = ""
 
             //LoggedInUser(usuarioObject.getString("username"), usuarioObject.getString("nombre"))
             //usuario.username = usuarioObject.getString("username")
@@ -120,5 +128,8 @@ class UserActivity : Fragment() {
 
         val emailTextView = viewFragment.findViewById<TextView>(R.id.userActivity_email)
         emailTextView.text = user?.correoElectronico
+
+        val fechaNacimientoTextView = viewFragment.findViewById<TextView>(R.id.userActivity_fechaNacimiento)
+        fechaNacimientoTextView.text = user?.fechaNacimiento
     }
 }

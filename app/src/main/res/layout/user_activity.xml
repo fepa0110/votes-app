@@ -189,6 +189,38 @@
                 app:layout_constraintTop_toBottomOf="@+id/userActivity_apellido" />
 
             <TextView
+                android:id="@+id/fechaNacimiento_text_userActivity"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/fechaNacimiento_text_view_userActivity"
+                android:textAlignment="center"
+                android:textColor="@color/blanco"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/userActivity_fechaNacimiento"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dni_text_userActivity" />
+
+            <TextView
+                android:id="@+id/userActivity_fechaNacimiento"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="36dp"
+                android:textAlignment="center"
+                android:autoSizeTextType="uniform"
+                android:elegantTextHeight="true"
+                android:gravity="center"
+                android:textColor="@color/blanco"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fechaNacimiento_text_userActivity"
+                app:layout_constraintTop_toBottomOf="@+id/userActivity_dni" />
+
+            <TextView
                 android:id="@+id/email_text_userActivity"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
@@ -201,14 +233,14 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/userActivity_email"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dni_text_userActivity" />
+                app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento_text_userActivity" />
 
             <TextView
                 android:id="@+id/userActivity_email"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="36dp"
                 android:textAlignment="center"
                 android:autoSizeTextType="uniform"
@@ -218,7 +250,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/email_text_userActivity"
-                app:layout_constraintTop_toBottomOf="@+id/userActivity_dni" />
+                app:layout_constraintTop_toBottomOf="@+id/userActivity_fechaNacimiento" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -240,7 +272,7 @@
             android:id="@+id/logout_button_userActivity"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="26dp"
             android:background="@color/danger"
             android:text="@string/logout_text_userActivity"
             android:textColor="@color/blanco"
