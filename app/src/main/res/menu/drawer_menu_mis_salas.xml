@@ -8,23 +8,52 @@
         android:title="Principal">
 
         <menu>
+            <item
+                android:id="@+id/inicio"
+                android:icon="@drawable/ic_home"
+                android:title="Inicio">
+
+            </item>
 
             <item
                 android:id="@+id/OpcionesVotacion"
                 android:icon="@drawable/ic_vote"
-                android:title="Opciones de votación">
+                android:title="Opciones de Votación">
 
             </item>
-            <item
-                android:id="@+id/accesoSala"
-                android:icon="@drawable/ic_room"
-                android:title="Acceso a Sala">
 
-            </item>
             <item
                 android:id="@+id/tiempoDeSala"
                 android:icon="@drawable/ic_tiempo"
-                android:title="Tiempo de sala">
+                android:title="Tiempo de Sala">
+
+            </item>
+        </menu>
+
+    </item>
+    <item
+        android:layout_width="66dp"
+        android:layout_height="147dp"
+        android:title="Acceso a Sala">
+
+        <menu>
+
+            <item
+                android:id="@+id/accedoPorDni"
+                android:icon="@drawable/ic_dni"
+                android:title="Acceso por Dni">
+
+            </item>
+            <item
+                android:id="@+id/accesoPorNomUsuario"
+                android:icon="@drawable/ic_usuario"
+                android:title="Acceso por Usuario">
+
+            </item>
+            <item
+                android:id="@+id/accesoPorContraseña"
+                android:icon="@drawable/ic_key"
+                android:title="Acceso por Contraseña">
 
             </item>
         </menu>

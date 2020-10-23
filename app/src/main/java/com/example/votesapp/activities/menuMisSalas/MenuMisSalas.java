@@ -82,7 +82,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         //Cargar fragment Principal
         fragmentManager=getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.contenedor, opcionesVotacion);
+        fragmentTransaction.add(R.id.contenedor, new InicioMenu());
         fragmentTransaction.commit();
 
 
@@ -94,6 +94,14 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         //Para que cierre la ventana cada ves que selecciono
         drawerLayout.closeDrawer(GravityCompat.START);
 
+        if (item.getItemId() == R.id.inicio){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, new InicioMenu());
+            fragmentTransaction.commit();
+
+        }
+
         if (item.getItemId() == R.id.OpcionesVotacion){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
@@ -101,7 +109,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
 
         }
-        if (item.getItemId() == R.id.accesoSala){
+        if (item.getItemId() == R.id.accesoPorNomUsuario){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
