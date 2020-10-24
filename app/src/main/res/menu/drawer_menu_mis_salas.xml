@@ -39,7 +39,7 @@
         <menu>
 
             <item
-                android:id="@+id/accedoPorDni"
+                android:id="@+id/accesoPorDni"
                 android:icon="@drawable/ic_dni"
                 android:title="Acceso por Dni">
 

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:hint="@string/crear_sala_nombre_text"
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="289dp" />

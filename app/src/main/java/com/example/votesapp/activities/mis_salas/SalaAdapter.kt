@@ -1,5 +1,6 @@
 package com.example.votesapp.activities.mis_salas
 
+//import com.example.votesapp.activities.lista_salas.Sala
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -14,9 +15,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
 import com.example.votesapp.activities.menuMisSalas.MenuMisSalas
-import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
-import com.example.votesapp.activities.votante_by_user.AddVotanteByUser
-//import com.example.votesapp.activities.lista_salas.Sala
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -108,6 +106,8 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
             val intent = Intent(view.context, MenuMisSalas::class.java)
             intent.putExtra("param_id", sala?.id?.toInt())
             intent.putExtra("param_nombre", sala?.nombreSala)
+            intent.putExtra("param_contrasenia",sala?.contrasenia)
+            Log.i("param_contrasenia", sala?.contrasenia + "Sala_Adapter ")
             view.context.applicationContext.startActivity(intent)
         }
 
@@ -125,7 +125,7 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
             for (i in 0 until jsonArray.length()) {
                 try {
                     val objeto = jsonArray.getJSONObject(i)
-                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"))
+                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"),objeto.getString("contrasenia"))
                     salas.add(sala)
                     Log.i(TAG, "Sala añadida")
                 } catch (e: JSONException) {

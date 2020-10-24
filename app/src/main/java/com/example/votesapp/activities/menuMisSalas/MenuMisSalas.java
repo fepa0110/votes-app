@@ -30,40 +30,46 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     NavigationView navigationView;
+
     //variables para cargar el fragment principal
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     private  OpcionesVotacion opcionesVotacion;
     private  AddVotanteByUser addVotanteByUser;
+    private AccesoContrasenia accesoContrasenia;
 
     private int salaId;
     private String nombreSala = " ";
+    private  String contrasenia = " ";
 
     TextView tituloMenu;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_mis_salas);
 
-        toolbar= findViewById(R.id.toolbar_menu);
+        toolbar= findViewById(R.id.toolbar_menu_sala);
         setSupportActionBar(toolbar);
 
         salaId = getIntent().getIntExtra("param_id",0);
         nombreSala= getIntent().getStringExtra("param_nombre");
+        contrasenia= getIntent().getStringExtra("param_contrasenia");
         Log.i("param_nombre",nombreSala);
         Log.i("param_id",salaId+" ");
+        Log.i("param_contrasenia",contrasenia+" ");
+
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);
         //establecer el evento onclick al navigationView
         navigationView.setNavigationItemSelectedListener(this);
+
         View header = navigationView.getHeaderView(0);
         tituloMenu=header.findViewById(R.id.tituloMenu);
         tituloMenu.setText(nombreSala);
+
+        toolbar.setTitle(nombreSala);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -72,12 +78,16 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         Bundle bundle= new Bundle();
         bundle.putInt("param_id",salaId);
+        bundle.putString("param_contrasenia",contrasenia);
 
         opcionesVotacion = new OpcionesVotacion();
         opcionesVotacion.setArguments(bundle);
 
         addVotanteByUser = new AddVotanteByUser();
         addVotanteByUser.setArguments(bundle);
+
+        accesoContrasenia = new AccesoContrasenia();
+        accesoContrasenia.setArguments(bundle);
 
         //Cargar fragment Principal
         fragmentManager=getSupportFragmentManager();
@@ -109,13 +119,29 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
 
         }
-        if (item.getItemId() == R.id.accesoPorNomUsuario){
+        if (item.getItemId() == R.id.accesoPorDni){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, new AccesoDni());
             fragmentTransaction.commit();
 
         }
+
+        if (item.getItemId() == R.id.accesoPorNomUsuario){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, addVotanteByUser);
+            fragmentTransaction.commit();
+
+        }
+        if (item.getItemId() == R.id.accesoPorContraseña){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, accesoContrasenia);
+            fragmentTransaction.commit();
+
+        }
+
         return false;
     }
 }
