@@ -104,10 +104,10 @@ class AddVotanteByUser : Fragment() {
             val response = JsonObjectRequest(
                 Request.Method.GET, "$urlBase/$username", null,
                 { response ->
-                    if(parseUsuarioJson(response) == usuario){
-                        votanteByUsernameAdapter!!.addUser(usuario)
+                    val usuarioRecibido = parseUsuarioJson(response)
+                    if(usuarioRecibido == usuario){
+                        votanteByUsernameAdapter!!.addUser(usuarioRecibido)
                         autoCompleteTextView?.text?.clear() //Limpio el texto del editText
-                        // Toast.makeText(view.context, "Usuario $username existe", Toast.LENGTH_SHORT).show()
                     }
                     else autoCompleteTextView?.error = "Este usuario no existe"
                 })

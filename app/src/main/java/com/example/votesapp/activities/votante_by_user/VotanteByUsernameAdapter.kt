@@ -73,6 +73,10 @@ class VotanteByUsernameAdapter(context: Context?, idSala: Int) : ArrayAdapter<Us
         val usernameItem = view.findViewById<TextView>(R.id.item_user_votante_username)
         usernameItem.text = usuario?.username
 
+        val nombreCompletoItem = view.findViewById<TextView>(R.id.item_user_votante_nombreCompleto)
+        val nombreCompleto = usuario?.nombre + " " + usuario?.apellido
+        nombreCompletoItem.text = nombreCompleto
+
         val removeVotanteButton = view.findViewById<Button>(R.id.item_remove_votante_username)
         removeVotanteButton.setOnClickListener {
             usuarios.removeAt(position)

@@ -19,9 +19,22 @@
         android:id="@+id/item_user_votante_username"
         android:textColor="@color/blanco"
         android:layout_width="315dp"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_toEndOf="@id/item_id_votante_username"
         android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/item_user_votante_nombreCompleto"
+        android:layout_width="315dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/item_user_votante_username"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/item_id_votante_username"
+        android:gravity="center"
+        android:textColor="@color/blanco"
         android:textSize="18sp" />
 
     <Button
