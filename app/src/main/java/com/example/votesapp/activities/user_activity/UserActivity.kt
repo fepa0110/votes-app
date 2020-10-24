@@ -65,9 +65,7 @@ class UserActivity : Fragment() {
     private fun getUsernameData(viewFragment: View){
         val urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/usuarios"
 
-        val requestQueue: RequestQueue
-
-        requestQueue = Volley.newRequestQueue(context)
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
 
         //NUeva peticion JsonObject
         val response = JsonObjectRequest(

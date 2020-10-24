@@ -82,8 +82,12 @@ class VotanteByUsernameAdapter(context: Context?, idSala: Int) : ArrayAdapter<Us
         return view
     }
 
+    fun containUser(usuario: Usuario) : Boolean {
+        return usuarios.contains(usuario)
+    }
+
     fun sendVotantes() {
-        var url =
+        val url =
             "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/addByUsername"
 
         val requestQueue= Volley.newRequestQueue(context)
@@ -96,7 +100,7 @@ class VotanteByUsernameAdapter(context: Context?, idSala: Int) : ArrayAdapter<Us
         val usuariosArray = JSONArray()
 
         for(usuario in usuarios){
-            var username = usuario?.username
+            val username = usuario?.username
             val jsonBody = JSONObject()
             jsonBody.put("username",username)
             usuariosArray.put(jsonBody)

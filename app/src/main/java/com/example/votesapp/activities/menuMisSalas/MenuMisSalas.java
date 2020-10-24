@@ -38,11 +38,9 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
     private int salaId;
     private String nombreSala = " ";
+    private String usernameOwner = null;
 
     TextView tituloMenu;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +52,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         salaId = getIntent().getIntExtra("param_id",0);
         nombreSala= getIntent().getStringExtra("param_nombre");
+        usernameOwner = getIntent().getStringExtra("param_username");
         Log.i("param_nombre",nombreSala);
         Log.i("param_id",salaId+" ");
 
@@ -72,6 +71,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         Bundle bundle= new Bundle();
         bundle.putInt("param_id",salaId);
+        bundle.putString("param_username",usernameOwner);
 
         opcionesVotacion = new OpcionesVotacion();
         opcionesVotacion.setArguments(bundle);
@@ -84,8 +84,6 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.contenedor, opcionesVotacion);
         fragmentTransaction.commit();
-
-
     }
 
     //En este metodo programamos el evento onclick
@@ -106,7 +104,6 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
-
         }
         return false;
     }

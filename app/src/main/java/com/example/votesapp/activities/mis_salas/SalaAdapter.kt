@@ -22,7 +22,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?>(
+class SalaAdapter(context: Context?, urlComplement: String, username : String) : ArrayAdapter<Sala?>(
     context!!, 0
 ) 
 {
@@ -36,6 +36,7 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
     private val requestQueue: RequestQueue
     var jsArrayRequest: JsonObjectRequest
     var sList: List<Sala?>? = null
+    var username = username
     
     //Constructor
     init {
@@ -108,6 +109,7 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
             val intent = Intent(view.context, MenuMisSalas::class.java)
             intent.putExtra("param_id", sala?.id?.toInt())
             intent.putExtra("param_nombre", sala?.nombreSala)
+            intent.putExtra("param_username",username)
             view.context.applicationContext.startActivity(intent)
         }
 
