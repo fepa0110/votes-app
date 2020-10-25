@@ -29,7 +29,7 @@ class Lista_Salas : Fragment() {
         username = this.activity?.intent?.getStringExtra("param_username")
 
         //inicializamos el adaptador que va a poner la lista de sala
-        sAdapter = SalaAdapter(activity,"userVotante/$username")
+        sAdapter = SalaAdapter(activity,username.toString())
 
         //Crear adaptador y setear
         slistView?.adapter = sAdapter

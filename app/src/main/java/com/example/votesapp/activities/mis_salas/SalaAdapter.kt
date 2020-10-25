@@ -94,22 +94,15 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
         val nombreSala = view.findViewById<TextView>(R.id.item_nombre_mis_salas)
         nombreSala.text = sala?.nombreSala
 
-/*        view.setOnClickListener{
-            val intent = Intent(view.context, OpcionesVotacion::class.java)
-            intent.putExtra("param_id",sala?.id?.toInt())
-            view.context.applicationContext.startActivity(intent)
-        }*/
- /*       view.setOnClickListener{
-            val intent = Intent(view.context, AddVotanteByUser::class.java)
-            intent.putExtra("param_sala_id",sala?.id?.toInt())
-            view.context.applicationContext.startActivity(intent)
-        }*/
+        val estadoSala = view.findViewById<TextView>(R.id.item_estado_mis_salas)
+        estadoSala.text = sala?.estado
 
         view.setOnClickListener {
             val intent = Intent(view.context, MenuMisSalas::class.java)
             intent.putExtra("param_id", sala?.id?.toInt())
             intent.putExtra("param_nombre", sala?.nombreSala)
             intent.putExtra("param_username",username)
+            intent.putExtra("param_estado",sala?.estado)
             view.context.applicationContext.startActivity(intent)
         }
 
@@ -128,6 +121,7 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
                 try {
                     val objeto = jsonArray.getJSONObject(i)
                     val sala = Sala(objeto.getString("id"), objeto.getString("nombre"))
+                    sala.estado = objeto.getString("estado")
                     salas.add(sala)
                     Log.i(TAG, "Sala añadida")
                 } catch (e: JSONException) {

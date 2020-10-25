@@ -88,5 +88,10 @@
     <string name="eliminar_description">Eliminar</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="icono_de_sala">Icono de sala</string>
+    <string name="nombre_textView">Nombre:</string>
+    <string name="usuario_infoSala">Usuario:</string>
+    <string name="estado_text_infoSala">Estado:</string>
+    <string name="info_sala_item_menu_text">Info. de sala</string>
 
 </resources>

@@ -27,6 +27,13 @@
                 android:title="Tiempo de sala">
 
             </item>
+
+            <item
+                android:id="@+id/infoSala"
+                android:icon="@drawable/ic_info"
+                android:title="@string/info_sala_item_menu_text">
+
+            </item>
         </menu>
 
     </item>

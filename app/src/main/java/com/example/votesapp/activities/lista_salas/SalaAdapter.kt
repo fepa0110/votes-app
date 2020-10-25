@@ -22,7 +22,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-class SalaAdapter(context: Context?,  urlComplement: String) : ArrayAdapter<Sala?>(
+class SalaAdapter(context: Context?,  username: String) : ArrayAdapter<Sala?>(
     context!!, 0
 ) {
     //Atributos
@@ -96,9 +96,8 @@ class SalaAdapter(context: Context?,  urlComplement: String) : ArrayAdapter<Sala
 
         //Crear nueva cola de peticiones
         requestQueue = Volley.newRequestQueue(context)
-        this.urlBase = "$urlBase$urlComplement"
         //NUeva peticion JsonObject
-        jsArrayRequest = JsonObjectRequest(Request.Method.GET, urlBase, null, { response ->
+        jsArrayRequest = JsonObjectRequest(Request.Method.GET, "$urlBase/userVotante/$username", null, { response ->
             sList = parseJson(response)
             notifyDataSetChanged()
         }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }

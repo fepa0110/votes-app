@@ -5,7 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="danger">#AA4301</color>
 
-
     <!--Defino los colores para el degradado -->
     <color name="azul_oscuro">#3023AE</color>
     <color name="purpura">#c86dd7</color>
@@ -25,4 +24,8 @@
     <color name="blanco">#FFFFFF</color>
     <color name="rojo">#F85353</color>
     <color name="clarito">#ACD6AE</color>
+
+    <!-- Fabricio -->
+    <color name="sala_pendiente">#AA0043C9</color>
+    <color name="sala_disponible">#4CAF50</color>
 </resources>

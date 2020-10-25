@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.votesapp.R;
+import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.mis_salas.Sala;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
 import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
@@ -35,6 +36,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     FragmentTransaction fragmentTransaction;
     private  OpcionesVotacion opcionesVotacion;
     private  AddVotanteByUser addVotanteByUser;
+    private  InfoSala infoSala;
 
     private int salaId;
     private String nombreSala = " ";
@@ -79,6 +81,9 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         addVotanteByUser = new AddVotanteByUser();
         addVotanteByUser.setArguments(bundle);
 
+        infoSala = new InfoSala();
+        infoSala.setArguments(bundle);
+
         //Cargar fragment Principal
         fragmentManager=getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -103,6 +108,12 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.commit();
+        }
+        if (item.getItemId() == R.id.infoSala){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, infoSala); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
         return false;

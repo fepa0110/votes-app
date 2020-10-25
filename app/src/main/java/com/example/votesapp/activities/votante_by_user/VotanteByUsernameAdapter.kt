@@ -119,7 +119,7 @@ class VotanteByUsernameAdapter(context: Context?, idSala: Int) : ArrayAdapter<Us
                 Toast.makeText(context, "Usuarios agregados correctamente", Toast.LENGTH_SHORT).show()
             },
             { error ->
-                Toast.makeText(context, "ERROR: Usuarios agregados correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Usuarios agregados correctamente", Toast.LENGTH_SHORT).show()
                 error.printStackTrace()
 //                Log.e(SalaService.LOG_TAG, "No se pudo crear la sala")
 //                Toast.makeText(context, "No se pudo crear la sala", Toast.LENGTH_SHORT).show()
