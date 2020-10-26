@@ -37,10 +37,13 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     private  OpcionesVotacion opcionesVotacion;
     private  AddVotanteByUser addVotanteByUser;
     private  InfoSala infoSala;
+    private AccesoContrasenia accesoContrasenia;
 
     private int salaId;
     private String nombreSala = " ";
+    private String contrasenia = " ";
     private String usernameOwner = null;
+
 
     TextView tituloMenu;
 
@@ -55,6 +58,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         salaId = getIntent().getIntExtra("param_id",0);
         nombreSala= getIntent().getStringExtra("param_nombre");
         usernameOwner = getIntent().getStringExtra("param_username");
+        contrasenia = getIntent().getStringExtra("param_contrasenia");
         Log.i("param_nombre",nombreSala);
         Log.i("param_id",salaId+" ");
 
@@ -65,6 +69,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         View header = navigationView.getHeaderView(0);
         tituloMenu=header.findViewById(R.id.tituloMenu);
         tituloMenu.setText(nombreSala);
+        toolbar.setTitle(nombreSala);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -74,6 +79,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         Bundle bundle= new Bundle();
         bundle.putInt("param_id",salaId);
         bundle.putString("param_username",usernameOwner);
+        bundle.putString("param_contrasenia",contrasenia);
 
         opcionesVotacion = new OpcionesVotacion();
         opcionesVotacion.setArguments(bundle);
@@ -84,10 +90,13 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         infoSala = new InfoSala();
         infoSala.setArguments(bundle);
 
+        accesoContrasenia = new AccesoContrasenia();
+        accesoContrasenia.setArguments(bundle);
+
         //Cargar fragment Principal
         fragmentManager=getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.contenedor, opcionesVotacion);
+        fragmentTransaction.add(R.id.contenedor, infoSala);
         fragmentTransaction.commit();
     }
 
@@ -96,6 +105,12 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         //Para que cierre la ventana cada ves que selecciono
         drawerLayout.closeDrawer(GravityCompat.START);
+        if (item.getItemId() == R.id.infoSala){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, infoSala); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.commit();
+        }
 
         if (item.getItemId() == R.id.OpcionesVotacion){
             fragmentManager=getSupportFragmentManager();
@@ -104,18 +119,19 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
 
         }
-        if (item.getItemId() == R.id.accesoSala){
+        if (item.getItemId() == R.id.accesoPorNomUsuario){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
-        if (item.getItemId() == R.id.infoSala){
+        if (item.getItemId() == R.id.accesoPorContraseña){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, infoSala); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, accesoContrasenia); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
+
         return false;
     }
 }

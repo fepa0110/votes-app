@@ -60,6 +60,20 @@ class SalaAdapter(context: Context?,  username: String) : ArrayAdapter<Sala?>(
         //idSala.text = sala!!.id
         val nombreSala = view.findViewById<TextView>(R.id.nombreSala)
         nombreSala.text = sala?.nombreSala
+        view.setOnClickListener{
+            if(sala?.contrasenia.toString().equals("null")){
+//                val intent = Intent(view.context, OpcionesVotacion::class.java)
+//                 intent.putExtra("param_id",sala?.id?.toInt())
+//                 intent.putExtra("param_contrasenia",sala?.contrasenia)
+//                 view.context.applicationContext.startActivity(intent)
+            }else {
+                DialogoContra(context,sala?.contrasenia);
+            }
+
+
+
+        }
+
         return view
     }
 
@@ -74,7 +88,7 @@ class SalaAdapter(context: Context?,  username: String) : ArrayAdapter<Sala?>(
             for (i in 0 until jsonArray.length()) {
                 try {
                     val objeto = jsonArray.getJSONObject(i)
-                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"))
+                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"),objeto.getString("contrasenia"))
                     salas.add(sala)
                 } catch (e: JSONException) {
                     e.printStackTrace()

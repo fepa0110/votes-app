@@ -10,15 +10,16 @@
         <menu>
 
             <item
+                android:id="@+id/infoSala"
+                android:icon="@drawable/ic_info"
+                android:title="@string/info_sala_item_menu_text">
+
+            </item>
+
+            <item
                 android:id="@+id/OpcionesVotacion"
                 android:icon="@drawable/ic_vote"
                 android:title="Opciones de votación">
-
-            </item>
-            <item
-                android:id="@+id/accesoSala"
-                android:icon="@drawable/ic_room"
-                android:title="Acceso a Sala">
 
             </item>
             <item
@@ -28,10 +29,33 @@
 
             </item>
 
+
+        </menu>
+
+    </item>
+    <item
+        android:layout_width="66dp"
+        android:layout_height="147dp"
+        android:title="Acceso a Sala">
+
+        <menu>
+
             <item
-                android:id="@+id/infoSala"
-                android:icon="@drawable/ic_info"
-                android:title="@string/info_sala_item_menu_text">
+                android:id="@+id/accesoPorDni"
+                android:icon="@drawable/ic_dni"
+                android:title="Acceso por Dni">
+
+            </item>
+            <item
+                android:id="@+id/accesoPorNomUsuario"
+                android:icon="@drawable/ic_usuario"
+                android:title="Acceso por Usuario">
+
+            </item>
+            <item
+                android:id="@+id/accesoPorContraseña"
+                android:icon="@drawable/ic_key"
+                android:title="Acceso por Contraseña">
 
             </item>
         </menu>

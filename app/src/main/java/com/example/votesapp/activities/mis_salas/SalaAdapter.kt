@@ -102,6 +102,7 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
             intent.putExtra("param_id", sala?.id?.toInt())
             intent.putExtra("param_nombre", sala?.nombreSala)
             intent.putExtra("param_username",username)
+            intent.putExtra("param_contrasenia",sala?.contrasenia)
             intent.putExtra("param_estado",sala?.estado)
             view.context.applicationContext.startActivity(intent)
         }
@@ -120,7 +121,7 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
             for (i in 0 until jsonArray.length()) {
                 try {
                     val objeto = jsonArray.getJSONObject(i)
-                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"))
+                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"),objeto.getString("contrasenia"))
                     sala.estado = objeto.getString("estado")
                     salas.add(sala)
                     Log.i(TAG, "Sala añadida")
