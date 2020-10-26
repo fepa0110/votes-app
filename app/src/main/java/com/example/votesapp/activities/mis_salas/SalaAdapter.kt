@@ -98,13 +98,13 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
         estadoSala.text = sala?.estado
 
         view.setOnClickListener {
-            val intent = Intent(view.context, MenuMisSalas::class.java)
+            val intent = Intent(context, MenuMisSalas::class.java)
             intent.putExtra("param_id", sala?.id?.toInt())
             intent.putExtra("param_nombre", sala?.nombreSala)
             intent.putExtra("param_username",username)
             intent.putExtra("param_contrasenia",sala?.contrasenia)
             intent.putExtra("param_estado",sala?.estado)
-            view.context.applicationContext.startActivity(intent)
+            context.startActivity(intent)
         }
 
         return view

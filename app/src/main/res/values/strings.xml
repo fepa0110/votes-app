@@ -93,5 +93,6 @@
     <string name="usuario_infoSala">Usuario:</string>
     <string name="estado_text_infoSala">Estado:</string>
     <string name="info_sala_item_menu_text">Info. de sala</string>
+    <string name="dni">DNI</string>
 
 </resources>

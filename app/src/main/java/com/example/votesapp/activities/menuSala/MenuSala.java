@@ -18,7 +18,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.votesapp.R;
 import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
-import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
 import com.google.android.material.navigation.NavigationView;
 
 public class MenuSala extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{

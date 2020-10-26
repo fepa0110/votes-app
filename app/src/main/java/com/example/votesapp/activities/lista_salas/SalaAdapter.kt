@@ -64,7 +64,7 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
         view.setOnClickListener{
             if(sala?.contrasenia.toString().equals("null")){
 
-                val intent = Intent(view.context, MenuSala::class.java)
+                val intent = Intent(context, MenuSala::class.java)
 
                 intent.putExtra("param_username", username)
                 intent.putExtra("param_estado", sala?.estado)
@@ -73,7 +73,7 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
 
 //                 intent.putExtra("param_id",sala?.id?.toInt())
 //                 intent.putExtra("param_contrasenia",sala?.contrasenia)
-                 view.context.applicationContext.startActivity(intent)
+                 context.startActivity(intent)
             }else {
 
                 DialogoContra(

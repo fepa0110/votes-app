@@ -23,6 +23,7 @@ import com.example.votesapp.R;
 import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.mis_salas.Sala;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
+import com.example.votesapp.activities.votante_by_dni.AccesoDni;
 import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
 import com.google.android.material.navigation.NavigationView;
 
@@ -38,6 +39,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     private  AddVotanteByUser addVotanteByUser;
     private  InfoSala infoSala;
     private AccesoContrasenia accesoContrasenia;
+    private AccesoDni accesoDni;
 
     private int salaId;
     private String nombreSala = " ";
@@ -98,6 +100,9 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         accesoContrasenia = new AccesoContrasenia();
         accesoContrasenia.setArguments(bundle);
 
+        accesoDni = new AccesoDni();
+        accesoDni.setArguments(bundle);
+
         //Cargar fragment Principal
         fragmentManager=getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -134,6 +139,12 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, accesoContrasenia); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.commit();
+        }
+        if (item.getItemId() == R.id.accesoPorDni){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, accesoDni); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
 
