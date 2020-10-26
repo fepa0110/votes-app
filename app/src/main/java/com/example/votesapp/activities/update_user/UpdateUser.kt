@@ -35,20 +35,25 @@ class UpdateUser : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
 
         username = intent.getStringExtra("param_username")
-        this.getUsernameData(queue)
+        //this.getUsernameData(queue)
 
         val nombreEditText = findViewById<EditText>(R.id.nombre_editText_editar_perfil)
         val apellidoEditText = findViewById<EditText>(R.id.apellido_editText_editar_perfil)
         val emailEditText = findViewById<EditText>(R.id.email_editText_editar_perfil)
         val passwordEditText = findViewById<EditText>(R.id.contraseña_editText_editar_perfil)
 
+        nombreEditText.setText(intent.getStringExtra("param_nombre"))
+        apellidoEditText.setText(intent.getStringExtra("param_apellido"))
+        emailEditText.setText(intent.getStringExtra("param_correo"))
+        passwordEditText.setText(intent.getStringExtra("param_contrasenia"))
+        
         val guardarButton = findViewById<Button>(R.id.button_guardar_editar_perfil)
         guardarButton.setOnClickListener {view ->
             if(validateNombre() && validateApellido() && validatePassword() && validateEmail()) {
                 /*Snackbar.make(view, "Enviar update", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()*/
                 val usuario = Usuario()
-                usuario.username = user?.username
+                usuario.username = intent.getStringExtra("param_username")
                 usuario.nombre = nombreEditText.text.toString()
                 usuario.apellido = apellidoEditText.text.toString()
                 usuario.correoElectronico = emailEditText.text.toString()
@@ -101,47 +106,6 @@ class UpdateUser : AppCompatActivity() {
         return true
     }
 
-    private fun getUsernameData(queue: RequestQueue){
-        //NUeva peticion JsonObject
-        val response = JsonObjectRequest(
-            Request.Method.GET, "$urlBase/$username", null,
-            { response ->
-                user = parseUsuarioJson(response)
-            })
-        { error -> Log.d("Usuario", "Error Respuesta en Json: " + error.message)
-        }
-        // Añadir peticion a la cola
-        queue.add(response)
-    }
-
-    private fun parseUsuarioJson(jsonObject: JSONObject): Usuario {
-        //Variables Locales
-        val usuario = Usuario()
-        //lateinit var loggedInUser: LoggedInUser
-
-        val usuarioObject: JSONObject?
-
-        try {
-            usuarioObject = jsonObject.getJSONObject("data")
-
-            usuario.username = usuarioObject.getString("username")
-            usuario.nombre = usuarioObject.getString("nombre")
-            usuario.apellido = usuarioObject.getString("apellido")
-            usuario.dni = usuarioObject.getString("dni")
-            usuario.correoElectronico = usuarioObject.getString("correoElectronico")
-            usuario.contrasenia = usuarioObject.getString("contrasenia")
-
-            //LoggedInUser(usuarioObject.getString("username"), usuarioObject.getString("nombre"))
-            //usuario.username = usuarioObject.getString("username")
-            //usuario.nombre = usuarioObject.getString("nombre")
-            Log.i("UserActivity", "Usuario parseado: $usuario")
-            //Log.i(LOG_TAG, "Usuario parseado: $loggedInUser")
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-        return usuario
-    }
-
     private fun sendResponse(queue: RequestQueue, usuario: Usuario, view: View) {
         val jsonUsuario = JSONObject()
         jsonUsuario.put("username", usuario.username)
@@ -176,6 +140,7 @@ class UpdateUser : AppCompatActivity() {
 
     private fun isEmailExists(queue: RequestQueue, usuario : Usuario, view: View) {
         val jsonUsuario = JSONObject()
+        jsonUsuario.put("username", usuario.username)
         jsonUsuario.put("correoElectronico", usuario.correoElectronico)
 
         val emailEditText = findViewById<EditText>(R.id.email_editText_editar_perfil)
@@ -186,6 +151,7 @@ class UpdateUser : AppCompatActivity() {
                 Log.i(NewLogin.LOG_TAG, "Response is: $response")
 
                 if (usuarioService.parseStatus(response) == "502"){
+                    Log.i("UpdateUser","email response: $response")
                     this.sendResponse(queue,usuario,view)
                 } else{
                     emailEditText.error = "Este email ya esta registrado"
@@ -193,7 +159,7 @@ class UpdateUser : AppCompatActivity() {
             },
             { error ->
                 error.printStackTrace()
-                //Log.e("UpdateUser", "Respuesta servidor: $error.networkResponse")
+                Log.e("UpdateUser", "Respuesta servidor: $error.networkResponse")
                 //Log.e("UpdateUser", "No se pudieron guardar los cambios")
                 //Snackbar.make(view, "El email no existe", Snackbar.LENGTH_LONG).show()
             }

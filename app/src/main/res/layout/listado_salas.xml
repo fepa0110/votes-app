@@ -21,7 +21,8 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
             app:title="@string/salas_title"
-            app:titleTextColor="#FFFFFF" />
+            app:titleTextColor="#FFFFFF"
+            app:navigationIcon="@drawable/ic_salas"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/activity_lista__salas" />

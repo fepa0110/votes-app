@@ -19,9 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/form_tint_blanco"
             app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
             app:title="@string/mis_salas"
             app:titleTextColor="#FFFFFF" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/activity_mis_salas" />

@@ -22,4 +22,10 @@
     <color name="color4">#59717c</color>
     <color name="negro">#000000</color>
     <color name="blanco">#FFFFFF</color>
+    <color name="rojo">#F85353</color>
+    <color name="clarito">#ACD6AE</color>
+
+    <!-- Fabricio -->
+    <color name="sala_pendiente">#AA0043C9</color>
+    <color name="sala_disponible">#4CAF50</color>
 </resources>

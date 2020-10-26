@@ -26,6 +26,8 @@ class NewLogin : AppCompatActivity() {
     //private var userLogin : Usuario? = null
     private var usuarioService = NewLoginService()
 
+    private lateinit var loginButton : Button
+
     companion object {
         const val LOG_TAG = "NewLoginService"
     }
@@ -34,11 +36,10 @@ class NewLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_login)
 
-        val queue = Volley.newRequestQueue(this)
         val userNameEditText = findViewById<EditText>(R.id.newLogin_username)
         val passwordEditText = findViewById<EditText>(R.id.newLogin_password)
-        val loginButton = findViewById<Button>(R.id.btn_login)
         val registerButton = findViewById<Button>(R.id.btn_registrarse)
+        loginButton = findViewById<Button>(R.id.btn_login)
 
         loginButton.setOnClickListener(View.OnClickListener {view ->
             val usuario = Usuario()
@@ -51,8 +52,9 @@ class NewLogin : AppCompatActivity() {
                 passwordEditText.error = "El campo no puede estar vacio";
             }
             if (usuario.username!!.isNotEmpty() && usuario.contrasenia!!.isNotEmpty()) {
-                this.sendResponse(queue, usuario, view)
+                this.sendResponse(usuario, view)
             }
+            loginButton.isEnabled = false
         })
 
         registerButton.setOnClickListener { view ->
@@ -62,7 +64,8 @@ class NewLogin : AppCompatActivity() {
         }
     }
 
-    private fun sendResponse(queue: RequestQueue, usuario: Usuario, view: View) {
+    private fun sendResponse(usuario: Usuario, view: View) {
+        val queue = Volley.newRequestQueue(this)
         val jsonUsuarioLogin = JSONObject()
         jsonUsuarioLogin.put("username", usuario.username)
         jsonUsuarioLogin.put("contrasenia", usuario.contrasenia)
@@ -76,14 +79,15 @@ class NewLogin : AppCompatActivity() {
                     loginSuccessfull(userLogin)
                 } else{
                     Snackbar.make(view, "Usuario o contraseña no validos", Snackbar.LENGTH_LONG).show()
+                    this.loginButton.isEnabled = true
                 }
-
             },
             { error ->
                 error.printStackTrace()
                 Log.e(LOG_TAG, "Respuesta servidor: $error.networkResponse")
                 Log.e(LOG_TAG, "No se pudo loguear correctamente")
                 Snackbar.make(view, "No se pudo loguear correctamente", Snackbar.LENGTH_LONG).show()
+                this.loginButton.isEnabled = true
             }
         )
         queue.add(jsonRequest)

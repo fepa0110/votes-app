@@ -16,11 +16,23 @@
 
     <TextView
         android:id="@+id/item_nombre_mis_salas"
-        android:textColor="#000000"
+        android:textColor="@color/negro"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_toEndOf="@id/item_id_mis_salas"
         android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/item_estado_mis_salas"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/item_nombre_mis_salas"
+        android:layout_marginStart="0dp"
+        android:layout_toEndOf="@id/item_id_mis_salas"
+        android:gravity="center"
+        android:textColor="@color/sala_pendiente"
         android:textSize="18sp" />
 
 </RelativeLayout>

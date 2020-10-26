@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.votesapp.R
 import com.example.votesapp.activities.mis_salas.MisSalas
+import com.example.votesapp.activities.lista_salas.SalaAdapter
 import java.util.*
 
 class Lista_Salas : Fragment() {
@@ -19,12 +20,16 @@ class Lista_Salas : Fragment() {
     //Llamamos el adapter
     private var sAdapter: ListAdapter? = null
 
+    private var username : String? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewFragment = inflater.inflate(R.layout.listado_salas, container, false)
         slistView = viewFragment.findViewById(R.id.listView)
 
+        username = this.activity?.intent?.getStringExtra("param_username")
+
         //inicializamos el adaptador que va a poner la lista de sala
-        sAdapter = SalaAdapter(activity)
+        sAdapter = SalaAdapter(activity,username.toString())
 
         //Crear adaptador y setear
         slistView?.adapter = sAdapter

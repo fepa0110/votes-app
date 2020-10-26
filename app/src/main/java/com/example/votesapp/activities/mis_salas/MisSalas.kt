@@ -39,7 +39,7 @@ class MisSalas : Fragment() {
         username = this.activity?.intent?.getStringExtra("param_username")
 
         //inicializamos el adaptador que va a poner la lista de sala
-        sAdapter = SalaAdapter(activity,"user/$username/")
+        sAdapter = SalaAdapter(activity,"user/$username/",username!!)
 
         //Crear adaptador y setear
         slistView?.adapter = sAdapter
@@ -49,5 +49,17 @@ class MisSalas : Fragment() {
 
     companion object {
         fun newInstance(): MisSalas = MisSalas()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        username = this.activity?.intent?.getStringExtra("param_username")
+        //setear
+        slistView?.adapter = null
+        sAdapter = null
+        //inicializamos el adaptador que va a poner la lista de sala
+        sAdapter = SalaAdapter(activity, "user/$username/",username!!)
+        //Crear adaptador y setear
+        slistView?.adapter = sAdapter
     }
 }
