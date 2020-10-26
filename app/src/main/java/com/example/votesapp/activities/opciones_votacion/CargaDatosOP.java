@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.votesapp.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,12 +30,14 @@ import java.util.Map;
 public class CargaDatosOP extends AppCompatActivity {
 
     private TextInputEditText titulo, descripcion;
-    private Button btnCancelar, btnGuardar, btnEliminar;
+    private TextInputLayout tituloLayout, descripcionLayout;
+    private Button btnCancelar, btnGuardar, btnEliminar, btnVotar;
     private JsonObjectRequest jsonObjReq;
     private RequestQueue requestQueue;
     private String url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/opVotaciones/";
     private String TAG = "OPVotacion";
     private Handler handler;
+    private boolean desdeSalas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +48,25 @@ public class CargaDatosOP extends AppCompatActivity {
 
         //Recibo los componentes de la actividad
         titulo = findViewById(R.id.Text_Titulo_opVotacion);
+        tituloLayout = findViewById(R.id.titulo_opVotacion);
         descripcion = findViewById(R.id.Text_Descripcion_opVotacion);
+        descripcionLayout = findViewById(R.id.descripcion_opVotacion);
         btnCancelar = (Button) findViewById(R.id.btnCancelar);
         btnEliminar = (Button) findViewById(R.id.btnEleminar);
+        btnGuardar = (Button) findViewById(R.id.btnGuardar);
+        btnVotar = (Button) findViewById(R.id.btnVotar);
 
         titulo.setText(getIntent().getStringExtra("param_titulo"));
         descripcion.setText(getIntent().getStringExtra("param_descripcion"));
+
+        this.desdeSalas = getIntent().getBooleanExtra("param_desdeSalas",false);
+
+        if(desdeSalas){
+            btnCancelar.setVisibility(View.INVISIBLE);
+            btnEliminar.setVisibility(View.INVISIBLE);
+            btnGuardar.setVisibility(View.INVISIBLE);
+            btnVotar.setVisibility(View.VISIBLE);
+        }
 
         titulo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,14 +83,13 @@ public class CargaDatosOP extends AppCompatActivity {
             }
         });
 
-        //Boton btnGuardar
-        btnGuardar = (Button) findViewById(R.id.btnGuardar);
+
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (titulo.getText().toString().isEmpty()) {
-                    titulo.setError("El campo no puede estar vacio");
+                    tituloLayout.setError("El campo no puede estar vacio");
                 } else {
                     if (getIntent().getBooleanExtra("param_editable", false) == true) {
                         JSONObject params = new JSONObject();

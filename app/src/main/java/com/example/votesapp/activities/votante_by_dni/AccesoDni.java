@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.example.votesapp.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class AccesoDni extends Fragment {
 
@@ -22,6 +23,7 @@ public class AccesoDni extends Fragment {
     private AccesoDniAdapter dniAdapter;
     private Button btnAñadir, btnGuardar;
     private TextInputEditText inputDni;
+    private TextInputLayout textInputLayout;
 
 
     @Override
@@ -41,21 +43,30 @@ public class AccesoDni extends Fragment {
         listView.setAdapter(dniAdapter);
 
         inputDni = view.findViewById(R.id.text_input_dni);
-
+        textInputLayout = view.findViewById(R.id.textInputLayout_dni);
 
         btnAñadir = view.findViewById(R.id.button_añadir_dni);
         btnAñadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String dni = inputDni.getText().toString();
-                if (dni.length() != 8){
-                    inputDni.setError("El numero de DNI debe ser igual a 8 digitos");
-                }else{
-                    if(dniAdapter.buscarDni(dni)){
-                        inputDni.setError("El DNI ya se encuentra en la lista");
-                    }else {
-                        dniAdapter.addDni(inputDni.getText().toString());
-                        inputDni.setError(null);
+                if(dni.isEmpty()){
+                    textInputLayout.setError("El campo no puede estar vacio");
+                }else {
+                    if (dni.length() != 8) {
+                        textInputLayout.setError("El numero de DNI debe ser igual a 8 digitos");
+                    } else {
+                        if (dni.equals("00000000")){
+                            textInputLayout.setError("DNI invalido");
+                        }else {
+                            if (dniAdapter.buscarDni(dni)) {
+                                textInputLayout.setError("El DNI ya se encuentra en la lista");
+                            } else {
+                                dniAdapter.addDni(inputDni.getText().toString());
+                                textInputLayout.setError(null);
+                                inputDni.setText("");
+                            }
+                        }
                     }
                 }
 

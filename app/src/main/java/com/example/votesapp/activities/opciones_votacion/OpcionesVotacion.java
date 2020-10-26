@@ -44,6 +44,7 @@ public class OpcionesVotacion extends Fragment {
     List<Modelo_OpVt> items;
     OPVotacionService service;
     private int salaId;
+    private boolean desdeSalas;
 
     @Nullable
     @Override
@@ -51,10 +52,12 @@ public class OpcionesVotacion extends Fragment {
         View view = inflater.inflate(R.layout.activity_opciones_votacion,container,false);
 
         this.salaId = getArguments().getInt("param_id");
+        this.desdeSalas = getArguments().getBoolean("param_desde_salas");
+
 
         //Obtener instancia de la actividad
         viewPager = view.findViewById(R.id.viewPager);
-        service = new OPVotacionService(getContext(),viewPager, this.salaId);
+        service = new OPVotacionService(getContext(),viewPager, this.salaId, desdeSalas);
 
         viewPager.setPadding(130, 0, 130, 0);
 
@@ -97,8 +100,12 @@ public class OpcionesVotacion extends Fragment {
             }
         });
 
+
         //Boton btnAñadir
         Button btnAgregar = (Button) view.findViewById(R.id.btnAñadir);
+        if (desdeSalas){
+            btnAgregar.setVisibility(View.INVISIBLE);
+        }
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +125,7 @@ public class OpcionesVotacion extends Fragment {
     public void onResume() {
         super.onResume();
         viewPager.setAdapter(null);
-        service = new OPVotacionService(getContext(),viewPager,this.salaId);
+        service = new OPVotacionService(getContext(),viewPager,this.salaId, desdeSalas);
     }
 
 

@@ -69,6 +69,7 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         bundle.putInt("param_id",salaId);
         bundle.putString("param_username",usernameOwner);
         bundle.putString("param_estado",estado);
+        bundle.putBoolean("param_desde_salas",true);
 
 
         infoSala = new InfoSala();
