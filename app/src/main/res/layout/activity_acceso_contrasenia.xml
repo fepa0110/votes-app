@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="55dp"
     android:layout_width="match_parent"
-    android:background="@drawable/new_bg"
+
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
@@ -29,7 +29,7 @@
         android:textColor="@color/negro"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="0dp"
-        android:text="Seguridad a la Sala"
+        android:text="Acceder con contraseña"
         android:textSize="30dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
         android:id="@+id/lineaDebajoTitulo"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="#fff"
+        android:background="@color/negro"
         app:layout_constraintEnd_toEndOf="@id/guideline_derecha"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
@@ -57,7 +57,6 @@
         android:hint="Ingrese una contraseña"
         app:boxStrokeWidth="0dp"
         app:endIconMode="password_toggle"
-        app:passwordToggleEnabled="true"
         app:errorTextAppearance="@style/Error"
         app:layout_constraintTop_toBottomOf="@id/titulo_acceder_contrasenia"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
@@ -68,8 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="@color/blanco"
-            android:textColorHint="@color/blanco"/>
+            android:textColor="@color/negro"
+            android:textColorHint="@color/negro"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--Confirmar la contraseña -->
@@ -82,7 +81,6 @@
         android:layout_marginTop="50dp"
         android:textColorHint="@color/login_form_details"
         android:hint="Confirmar Contraseña"
-        app:passwordToggleEnabled="true"
         app:errorTextAppearance="@style/Error"
         app:boxStrokeWidth="0dp"
         app:endIconMode="password_toggle"
@@ -103,7 +101,7 @@
         android:layout_width="150dp"
         android:layout_height="52dp"
         android:layout_marginTop="120dp"
-        android:background="@drawable/btn_background"
+        android:background="@color/colorPrimary"
         android:text="Aceptar"
         android:textAllCaps="false"
         android:textColor="@color/login_form_details"

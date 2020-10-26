@@ -59,8 +59,13 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         nombreSala= getIntent().getStringExtra("param_nombre");
         usernameOwner = getIntent().getStringExtra("param_username");
         contrasenia = getIntent().getStringExtra("param_contrasenia");
-        Log.i("param_nombre",nombreSala);
-        Log.i("param_id",salaId+" ");
+//        Log.i("param_nombre",nombreSala);
+//        Log.i("param_id",salaId+" ");
+
+
+
+
+
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);

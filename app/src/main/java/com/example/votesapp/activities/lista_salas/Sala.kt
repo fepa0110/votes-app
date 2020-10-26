@@ -5,6 +5,7 @@ class Sala {
     var id: String? = null
     var nombreSala: String? = null
     var contrasenia:String? = null
+    var estado: String? = null
 
     constructor() {}
     constructor(id: String?, nombreSala: String?, contrasenia: String?) {

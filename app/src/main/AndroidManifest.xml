@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".activities.menuMisSalas.MenuMisSalas" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.menuSala.MenuSala" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".activities.votante_by_user.AddVotanteByUser">
         </activity>
         <activity android:name=".activities.update_user.UpdateUser" />

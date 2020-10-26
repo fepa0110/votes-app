@@ -1,5 +1,6 @@
 package com.example.votesapp.activities.lista_salas
 
+//import androidx.core.content.ContextCompat.startActivity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -8,26 +9,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
-//import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
-import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
-import com.example.votesapp.activities.registro_usuario.Registro_usuario
+import com.example.votesapp.activities.menuSala.MenuSala
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-class SalaAdapter(context: Context?,  username: String) : ArrayAdapter<Sala?>(
+class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
     context!!, 0
 ) {
     //Atributos
     private val requestQueue: RequestQueue
     var jsArrayRequest: JsonObjectRequest
+    var username = username
+
+
 
     private var urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas"
 
@@ -62,16 +63,28 @@ class SalaAdapter(context: Context?,  username: String) : ArrayAdapter<Sala?>(
         nombreSala.text = sala?.nombreSala
         view.setOnClickListener{
             if(sala?.contrasenia.toString().equals("null")){
-//                val intent = Intent(view.context, OpcionesVotacion::class.java)
+
+                val intent = Intent(view.context, MenuSala::class.java)
+
+                intent.putExtra("param_username", username)
+                intent.putExtra("param_estado", sala?.estado)
+                intent.putExtra("param_id",sala?.id)
+                intent.putExtra("param_nombre",sala?.nombreSala)
+
 //                 intent.putExtra("param_id",sala?.id?.toInt())
 //                 intent.putExtra("param_contrasenia",sala?.contrasenia)
-//                 view.context.applicationContext.startActivity(intent)
+                 view.context.applicationContext.startActivity(intent)
             }else {
-                DialogoContra(context,sala?.contrasenia);
+
+                DialogoContra(
+                    context,
+                    sala?.contrasenia,
+                    sala?.id,
+                    sala?.nombreSala,
+                    sala?.estado,
+                    username
+                );
             }
-
-
-
         }
 
         return view
@@ -88,7 +101,11 @@ class SalaAdapter(context: Context?,  username: String) : ArrayAdapter<Sala?>(
             for (i in 0 until jsonArray.length()) {
                 try {
                     val objeto = jsonArray.getJSONObject(i)
-                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"),objeto.getString("contrasenia"))
+                    val sala = Sala(
+                        objeto.getString("id"), objeto.getString("nombre"), objeto.getString(
+                            "contrasenia"
+                        )
+                    )
                     salas.add(sala)
                 } catch (e: JSONException) {
                     e.printStackTrace()
@@ -111,10 +128,14 @@ class SalaAdapter(context: Context?,  username: String) : ArrayAdapter<Sala?>(
         //Crear nueva cola de peticiones
         requestQueue = Volley.newRequestQueue(context)
         //NUeva peticion JsonObject
-        jsArrayRequest = JsonObjectRequest(Request.Method.GET, "$urlBase/userVotante/$username", null, { response ->
-            sList = parseJson(response)
-            notifyDataSetChanged()
-        }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }
+        jsArrayRequest = JsonObjectRequest(
+            Request.Method.GET,
+            "$urlBase/userVotante/$username",
+            null,
+            { response ->
+                sList = parseJson(response)
+                notifyDataSetChanged()
+            }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }
         //        //  Añadir peticion a la cola
         requestQueue.add(jsArrayRequest)
         //
