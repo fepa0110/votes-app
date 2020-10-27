@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,14 +18,28 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.votesapp.R;
 import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.mis_salas.Sala;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
 import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class MenuMisSalas extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -42,8 +57,11 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     private String nombreSala = " ";
     private String usernameOwner = null;
 
+    private Sala sala;
+    ImageView buttonFinalizar;
     TextView tituloMenu;
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +89,8 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
 
+        sala = new Sala();
+
         Bundle bundle= new Bundle();
         bundle.putInt("param_id",salaId);
         bundle.putString("param_username",usernameOwner);
@@ -84,6 +104,16 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         infoSala = new InfoSala();
         infoSala.setArguments(bundle);
 
+        buttonFinalizar = findViewById(R.id.button_finalizar_sala);
+        this.getSala();
+
+        buttonFinalizar.setOnClickListener(
+                view -> {
+                    finalizarSala(view);
+                    buttonFinalizar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
+                    buttonFinalizar.setEnabled(false);
+                }
+        );
         //Cargar fragment Principal
         fragmentManager=getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -117,5 +147,64 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
         }
         return false;
+    }
+
+    private void finalizarSala(View view){
+        String urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //NUeva peticion JsonObject
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.GET,
+                urlBase+"/finalizar/"+salaId, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("FinalizarSala", "Se recupero el json: "+ response);
+                Snackbar mensaje = Snackbar.make(view, "Sala finalizada correctamente", Snackbar.LENGTH_LONG);
+                mensaje.show();
+            }
+        }, error -> Log.d("FinalizarSala", "Error Respuesta en Json: " + error.getMessage()));
+
+        // Añadir peticion a la cola
+        requestQueue.add(jsArrayRequest);
+    }
+
+    private void getSala(){
+        String urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //NUeva peticion JsonObject
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.GET,
+                urlBase+salaId, null, response -> {
+                    sala = parseJson(response);
+                    if(sala.getEstado().equals("FINALIZADA")) {
+                        buttonFinalizar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
+                        buttonFinalizar.setEnabled(false);
+                    }
+                    Log.i("MenuMisSalas", "Se recupero el json de sala:" +response);
+                }, error -> Log.d("FinalizarSala", "Error Respuesta en Json: " + error.getMessage()));
+
+        // Añadir peticion a la cola
+        requestQueue.add(jsArrayRequest);
+    }
+
+    @SuppressLint("UseCompatLoadingForColorStateLists")
+    private Sala parseJson(JSONObject jsonObject) {
+        //Variables Locales
+        Sala sala = new Sala();
+        JSONObject jsonSala;
+        try {
+            //Obtener el array del objeto
+            jsonSala = jsonObject.getJSONObject("data");
+
+            sala.setId(jsonSala.getString("id"));
+            sala.setNombreSala(jsonSala.getString("nombre"));
+            sala.setEstado(jsonSala.getString("estado"));
+
+            Log.i("MenuMisSalas", "Sala recibida");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return sala;
     }
 }

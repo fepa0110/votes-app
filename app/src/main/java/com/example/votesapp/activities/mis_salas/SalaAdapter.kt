@@ -2,6 +2,7 @@ package com.example.votesapp.activities.mis_salas
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -95,6 +96,18 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
         nombreSala.text = sala?.nombreSala
 
         val estadoSala = view.findViewById<TextView>(R.id.item_estado_mis_salas)
+
+        if(sala?.estado == "PENDIENTE") {
+            estadoSala.setTextColor(Color.parseColor("#AA0043C9"))
+        }
+        else if (sala?.estado == "DISPONIBLE")
+        {
+            estadoSala.setTextColor(Color.parseColor("#4CAF50"))
+        }
+        else if (sala?.estado == "FINALIZADA") {
+            estadoSala.setTextColor(Color.parseColor("#AA4301"))
+        }
+
         estadoSala.text = sala?.estado
 
         view.setOnClickListener {

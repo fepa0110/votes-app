@@ -3,13 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_menu"
-        app:title="Sala"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Sala">
+
+        <ImageView
+            android:id="@+id/button_finalizar_sala"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="200dp"
+            android:background="@drawable/ic_close"
+            android:backgroundTint="@color/danger"
+            android:contentDescription="@string/finalizar_sala_button_description"
+            android:tooltipText="Finalizar sala"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.appcompat.widget.Toolbar>
 
