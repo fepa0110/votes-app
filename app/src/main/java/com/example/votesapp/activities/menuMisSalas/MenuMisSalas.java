@@ -93,13 +93,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
                habilitarSala(view);
                 botonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
                 botonHabilitar.setEnabled(false);
-                handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        onBackPressed();
-                    }
-                },500);
+
 
             }
         });
@@ -159,13 +153,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
                     finalizarSala(view);
                     buttonFinalizar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
                     buttonFinalizar.setEnabled(false);
-                    handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            onBackPressed();
-                        }
-                    },500);
+
                 }
         );
 

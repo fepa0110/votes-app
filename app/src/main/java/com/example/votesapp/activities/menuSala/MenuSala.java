@@ -115,15 +115,14 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         }
 
         if (item.getItemId() == R.id.recuentoVoto) {
-            Log.i("estadoooooo",estado);
-           if (estado.equals("FINALIZADA")) {
-
+            String fin = "FINALIZADA";
+            if (estado.equals(fin)) {
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.contenedor2, lista_votos);
                 fragmentTransaction.commit();
 
-           }
+            }
         }
 
 
