@@ -68,22 +68,24 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
 
                 intent.putExtra("param_username", username)
                 intent.putExtra("param_estado", sala?.estado)
-                intent.putExtra("param_id",sala?.id)
+                intent.putExtra("param_id",sala?.id?.toInt())
                 intent.putExtra("param_nombre",sala?.nombreSala)
 
 //                 intent.putExtra("param_id",sala?.id?.toInt())
 //                 intent.putExtra("param_contrasenia",sala?.contrasenia)
                  context.startActivity(intent)
             }else {
-
-                DialogoContra(
-                    context,
-                    sala?.contrasenia,
-                    sala?.id,
-                    sala?.nombreSala,
-                    sala?.estado,
-                    username
-                );
+                val idSala = sala?.id?.toInt()
+                if (idSala != null) {
+                    DialogoContra(
+                        context,
+                        sala?.contrasenia,
+                        idSala.toInt(),
+                        sala?.nombreSala,
+                        sala?.estado,
+                        username
+                    )
+                };
             }
         }
 
@@ -106,7 +108,9 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
                             "contrasenia"
                         )
                     )
-                    salas.add(sala)
+                    if(objeto.getString("estado")!="PENDIENTE") {
+                        salas.add(sala)
+                    }
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }

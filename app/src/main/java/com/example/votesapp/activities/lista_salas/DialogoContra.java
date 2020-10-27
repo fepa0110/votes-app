@@ -22,7 +22,7 @@ public class DialogoContra {
 
 
 
-    public DialogoContra (Context context,String contraseniaSala,String id,String nombreSala,String estado,String username){
+    public DialogoContra (Context context,String contraseniaSala,int id,String nombreSala,String estado,String username){
 
         final Dialog dialogo = new Dialog(context);
         dialogo.requestWindowFeature(Window.FEATURE_NO_TITLE);
