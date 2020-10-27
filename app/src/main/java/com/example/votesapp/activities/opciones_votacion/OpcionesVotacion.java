@@ -44,6 +44,7 @@ public class OpcionesVotacion extends Fragment {
     List<Modelo_OpVt> items;
     OPVotacionService service;
     private int salaId;
+    private String userName;
     private boolean desdeSalas;
 
     @Nullable
@@ -52,12 +53,13 @@ public class OpcionesVotacion extends Fragment {
         View view = inflater.inflate(R.layout.activity_opciones_votacion,container,false);
 
         this.salaId = getArguments().getInt("param_id");
+        this.userName = getArguments().getString("param_username");
         this.desdeSalas = getArguments().getBoolean("param_desde_salas");
 
 
         //Obtener instancia de la actividad
         viewPager = view.findViewById(R.id.viewPager);
-        service = new OPVotacionService(getContext(),viewPager, this.salaId, desdeSalas);
+        service = new OPVotacionService(getContext(),viewPager, this.salaId, userName, desdeSalas);
 
         viewPager.setPadding(130, 0, 130, 0);
 
@@ -125,7 +127,7 @@ public class OpcionesVotacion extends Fragment {
     public void onResume() {
         super.onResume();
         viewPager.setAdapter(null);
-        service = new OPVotacionService(getContext(),viewPager,this.salaId, desdeSalas);
+        service = new OPVotacionService(getContext(),viewPager,this.salaId,userName, desdeSalas);
     }
 
 

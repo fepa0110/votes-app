@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.an.biometric.BiometricCallback;
+import com.an.biometric.BiometricManager;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,7 +29,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CargaDatosOP extends AppCompatActivity {
+public class CargaDatosOP extends AppCompatActivity implements BiometricCallback {
 
     private TextInputEditText titulo, descripcion;
     private TextInputLayout tituloLayout, descripcionLayout;
@@ -35,9 +37,14 @@ public class CargaDatosOP extends AppCompatActivity {
     private JsonObjectRequest jsonObjReq;
     private RequestQueue requestQueue;
     private String url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/opVotaciones/";
+    private String urlVotacion = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/";
     private String TAG = "OPVotacion";
+    private int cantVotos;
     private Handler handler;
     private boolean desdeSalas;
+    private int salaId;
+    private String userName;
+    BiometricManager mBiometricManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +65,9 @@ public class CargaDatosOP extends AppCompatActivity {
 
         titulo.setText(getIntent().getStringExtra("param_titulo"));
         descripcion.setText(getIntent().getStringExtra("param_descripcion"));
-
+        cantVotos = getIntent().getIntExtra("param_cantVotos",0);
+        this.salaId = getIntent().getIntExtra("param_sala_id",0);
+        this.userName = getIntent().getStringExtra("param_username");
         this.desdeSalas = getIntent().getBooleanExtra("param_desdeSalas",false);
 
         if(desdeSalas){
@@ -69,6 +78,21 @@ public class CargaDatosOP extends AppCompatActivity {
             titulo.setEnabled(false);
             descripcion.setEnabled(false);
         }
+
+        btnVotar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBiometricManager = new BiometricManager.BiometricBuilder(CargaDatosOP.this)
+                        .setTitle(getString(R.string.biometric_title))
+                        .setSubtitle(getString(R.string.biometric_subtitle))
+                        .setDescription(getString(R.string.biometric_description))
+                        .setNegativeButtonText(getString(R.string.biometric_negative_button_text))
+                        .build();
+
+                //start authentication
+                mBiometricManager.authenticate(CargaDatosOP.this);
+            }
+        });
 
         titulo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +159,7 @@ public class CargaDatosOP extends AppCompatActivity {
                         try {
                             params.put("titulo", titulo.getText().toString());
                             params.put("descripcion", descripcion.getText().toString());
+                            params.put("cantVotos",0);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -199,6 +224,81 @@ public class CargaDatosOP extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onSdkVersionNotSupported() {
+        Toast.makeText(getApplicationContext(), getString(R.string.biometric_error_sdk_not_supported), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationNotSupported() {
+        Toast.makeText(getApplicationContext(), getString(R.string.biometric_error_hardware_not_supported), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationNotAvailable() {
+        Toast.makeText(getApplicationContext(), getString(R.string.biometric_error_fingerprint_not_available), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationPermissionNotGranted() {
+        Toast.makeText(getApplicationContext(), getString(R.string.biometric_error_permission_not_granted), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationInternalError(String error) {
+        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAuthenticationFailed() {
+//        Toast.makeText(getApplicationContext(), getString(R.string.biometric_failure), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAuthenticationCancelled() {
+        Toast.makeText(getApplicationContext(), getString(R.string.biometric_cancelled), Toast.LENGTH_LONG).show();
+        mBiometricManager.cancelAuthentication();
+    }
+
+    @Override
+    public void onAuthenticationSuccessful() {
+        Toast.makeText(getApplicationContext(), getString(R.string.biometric_success), Toast.LENGTH_LONG).show();
+        JSONObject params = new JSONObject();
+        try {
+            params.put("id", getIntent().getIntExtra("param_id", 0));
+            params.put("titulo", titulo.getText().toString());
+            params.put("descripcion", descripcion.getText().toString());
+            params.put("cantVotos",cantVotos+1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        jsonObjReq = new JsonObjectRequest(Request.Method.PUT, urlVotacion+"addVotacion/"+salaId+"/"+userName, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //Toast.makeText(CargaDatosOP.this, "Opcion Modificada Correctamente", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Log.i(TAG, error.getMessage());
+            }
+        });
+        requestQueue.add(jsonObjReq);
+    }
+
+    @Override
+    public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
+//        Toast.makeText(getApplicationContext(), helpString, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAuthenticationError(int errorCode, CharSequence errString) {
+//        Toast.makeText(getApplicationContext(), errString, Toast.LENGTH_LONG).show();
     }
 
 }

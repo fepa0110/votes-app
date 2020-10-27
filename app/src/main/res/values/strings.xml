@@ -96,5 +96,18 @@
     <string name="info_sala_item_menu_text">Info. de sala</string>
     <string name="dni">DNI</string>
     <string name="button_votar">Votar</string>
+    <string name="biometric_title">Votar</string>
+    <string name="biometric_subtitle"></string>
+    <string name="biometric_description">Para realizar su voto debe Autentificarse</string>
+    <string name="biometric_negative_button_text">CANCELAR</string>
+
+
+    <string name="biometric_error_sdk_not_supported">Sdk version not supported</string>
+    <string name="biometric_error_hardware_not_supported">Device does not support biometric authentication</string>
+    <string name="biometric_error_fingerprint_not_available">Fingerprint is not registered in device</string>
+    <string name="biometric_error_permission_not_granted">Permission is not granted by user</string>
+    <string name="biometric_failure">Error en la verificacion</string>
+    <string name="biometric_cancelled">Verificacion cancelada</string>
+    <string name="biometric_success">Verificacion Exitosa!</string>
 
 </resources>
