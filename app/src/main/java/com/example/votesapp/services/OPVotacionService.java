@@ -38,7 +38,7 @@ public class OPVotacionService extends ArrayAdapter {
     ViewPager viewPager;
     Adapter adapter;
 
-    public OPVotacionService(Context context, ViewPager viewPager1, int salaId, boolean desdeSalas) {
+    public OPVotacionService(Context context, ViewPager viewPager1, int salaId, String userName, boolean desdeSalas) {
         super(context, 0);
 
         this.url += salaId;
@@ -58,7 +58,7 @@ public class OPVotacionService extends ArrayAdapter {
                     public void onResponse(JSONObject response) {
                         items = parseJson(response);
                         //Obtener instancia de la actividad
-                        adapter = new Adapter(items,context, salaId, desdeSalas);
+                        adapter = new Adapter(items,context, salaId, userName, desdeSalas);
                         viewPager.setAdapter(adapter);
                         viewPager.setPadding(130, 0, 130, 0);
                         notifyDataSetChanged();
@@ -97,7 +97,8 @@ public class OPVotacionService extends ArrayAdapter {
                     Modelo_OpVt post = new Modelo_OpVt(
                             objeto.getInt("id"),
                             objeto.getString("titulo"),
-                            objeto.getString("descripcion"));
+                            objeto.getString("descripcion"),
+                            objeto.getInt("cantVotos"));
 
 
                     posts.add(post);

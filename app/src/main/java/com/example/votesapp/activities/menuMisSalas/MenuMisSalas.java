@@ -76,7 +76,6 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     ImageButton botonHabilitar;
     private RequestQueue requestQueue;
 
-
     TextView tituloMenu;
     @SuppressLint("UseCompatLoadingForColorStateLists")
     @Override
@@ -94,10 +93,17 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
                habilitarSala(view);
                 botonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
                 botonHabilitar.setEnabled(false);
-                finish();
+                handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onBackPressed();
+                    }
+                },500);
 
             }
         });
+
 
         salaId = getIntent().getIntExtra("param_id",0);
         nombreSala= getIntent().getStringExtra("param_nombre");
@@ -153,6 +159,13 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
                     finalizarSala(view);
                     buttonFinalizar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
                     buttonFinalizar.setEnabled(false);
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            onBackPressed();
+                        }
+                    },500);
                 }
         );
 
