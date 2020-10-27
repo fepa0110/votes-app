@@ -11,8 +11,9 @@
     <include
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        layout="@layout/drawer_toolbar_menu_sala"
+        layout="@layout/toolbar_menu_sala"
         >
+
 
     </include>
     <include

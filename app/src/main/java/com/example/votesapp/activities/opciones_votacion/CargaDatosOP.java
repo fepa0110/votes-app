@@ -66,6 +66,8 @@ public class CargaDatosOP extends AppCompatActivity {
             btnEliminar.setVisibility(View.INVISIBLE);
             btnGuardar.setVisibility(View.INVISIBLE);
             btnVotar.setVisibility(View.VISIBLE);
+            titulo.setEnabled(false);
+            descripcion.setEnabled(false);
         }
 
         titulo.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +144,7 @@ public class CargaDatosOP extends AppCompatActivity {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         Toast.makeText(CargaDatosOP.this, "Opcion Agregada Correctamente", Toast.LENGTH_SHORT).show();
+                                        finish();
                                     }
                                 }, new Response.ErrorListener() {
                             @Override

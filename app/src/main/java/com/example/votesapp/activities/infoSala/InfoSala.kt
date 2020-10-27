@@ -23,6 +23,7 @@ import com.example.votesapp.activities.update_user.UpdateUser
 import com.example.votesapp.model.Sala
 import com.example.votesapp.model.Usuario
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.toolbar_menu_mis_salas.*
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -107,4 +108,11 @@ class InfoSala : Fragment() {
 
         estadoTextView.text = sala?.estado
     }
+
+    private fun habilitarSala(viewFragment: View){
+
+
+
+    }
+
 }

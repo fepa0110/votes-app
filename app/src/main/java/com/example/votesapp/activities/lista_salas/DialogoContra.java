@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.votesapp.R;
+import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.menuMisSalas.MenuMisSalas;
 import com.example.votesapp.activities.menuSala.MenuSala;
 import com.example.votesapp.activities.opciones_votacion.CargaDatosOP;
@@ -43,6 +44,7 @@ public class DialogoContra {
             public void onClick(View view) {
                 if(contraDialog.getText().toString().contentEquals(contraseniaSala)) {
                     Intent intent = new Intent(context, MenuSala.class);
+                    Intent intent1 = new Intent(context, InfoSala.class);
                     intent.putExtra("param_id",id);
                     intent.putExtra("param_nombre",nombreSala);
                     intent.putExtra("param_estado",estado);

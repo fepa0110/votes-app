@@ -43,7 +43,7 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_salas);
-        toolbar= findViewById(R.id.toolbar_menu);
+        toolbar= findViewById(R.id.toolbar_menu2);
         setSupportActionBar(toolbar);
 
         salaId = getIntent().getIntExtra("param_id",0);
@@ -68,7 +68,6 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         Bundle bundle= new Bundle();
         bundle.putInt("param_id",salaId);
         bundle.putString("param_username",usernameOwner);
-        bundle.putString("param_estado",estado);
         bundle.putBoolean("param_desde_salas",true);
 
 

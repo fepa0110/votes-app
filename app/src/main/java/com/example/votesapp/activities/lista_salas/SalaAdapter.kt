@@ -19,6 +19,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 
 class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
     context!!, 0
@@ -32,7 +33,7 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
 
     private var urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas"
 
-    var sList: List<Sala?>? = null
+    var sList: List<Sala?>? = ArrayList<Sala?>()
 
     override fun getCount(): Int {
         return if (sList != null) sList!!.size else 0
@@ -68,8 +69,8 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
 
                 intent.putExtra("param_username", username)
                 intent.putExtra("param_estado", sala?.estado)
-                intent.putExtra("param_id",sala?.id?.toInt())
-                intent.putExtra("param_nombre",sala?.nombreSala)
+                intent.putExtra("param_id", sala?.id?.toInt())
+                intent.putExtra("param_nombre", sala?.nombreSala)
 
 //                 intent.putExtra("param_id",sala?.id?.toInt())
 //                 intent.putExtra("param_contrasenia",sala?.contrasenia)
@@ -127,6 +128,10 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
 
     //Constructor
     init {
+
+        var salasUser: List<Sala?> = ArrayList<Sala?>()
+        var salasDni: List<Sala?> = ArrayList<Sala?>()
+
         //Gestionar peticion del archivo JSON
 
         //Crear nueva cola de peticiones
@@ -137,11 +142,45 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
             "$urlBase/userVotante/$username",
             null,
             { response ->
-                sList = parseJson(response)
-                notifyDataSetChanged()
+                salasUser = parseJson(response)
+                for (i in 0 until salasUser.size) {
+                    Log.i("Salas User", salasUser.get(i)?.nombreSala)
+                }
+                agregarSalas(salasUser)
+                //notifyDataSetChanged()
             }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }
         //        //  Añadir peticion a la cola
         requestQueue.add(jsArrayRequest)
         //
+
+        //NUeva peticion JsonObject
+        jsArrayRequest = JsonObjectRequest(
+            Request.Method.GET,
+            "$urlBase/userVotanteDni/$username",
+            null,
+            { response ->
+                salasDni = parseJson(response)
+                for (i in 0 until salasDni.size) {
+                    Log.i("Salas DNI", salasDni.get(i)?.nombreSala)
+                }
+                agregarSalas(salasDni)
+                //notifyDataSetChanged()
+            }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }
+        //        //  Añadir peticion a la cola
+        requestQueue.add(jsArrayRequest)
+    }
+
+    fun agregarSalas(salasVotante : List<Sala?>){
+        var salas : MutableList<Sala?> = ArrayList<Sala?>()
+        for (i in 0 until sList!!.size) {
+            salas.add(sList!!.get(i))
+        }
+
+        for (i in 0 until salasVotante.size) {
+            salas.add(salasVotante.get(i))
+        }
+
+        sList = salas
+        notifyDataSetChanged()
     }
 }
