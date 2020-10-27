@@ -35,11 +35,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.votesapp.R;
 import com.example.votesapp.activities.infoSala.InfoSala;
+import com.example.votesapp.activities.lista_salas.Lista_Salas;
 import com.example.votesapp.activities.mis_salas.Sala;
 import com.example.votesapp.activities.opciones_votacion.CargaDatosOP;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
 import com.example.votesapp.activities.votante_by_dni.AccesoDni;
 import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
+import com.example.votesapp.activities.votoTotal.Lista_votos;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -60,6 +62,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     private  InfoSala infoSala;
     private AccesoContrasenia accesoContrasenia;
     private AccesoDni accesoDni;
+    private Lista_votos lista_votos;
 
     private Sala sala;
     ImageView buttonFinalizar;
@@ -72,7 +75,6 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
     ImageButton botonHabilitar;
     private RequestQueue requestQueue;
-    private Handler handler;
 
 
     TextView tituloMenu;
@@ -140,6 +142,9 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         accesoDni = new AccesoDni();
         accesoDni.setArguments(bundle);
 
+        lista_votos = new Lista_votos();
+        lista_votos.setArguments(bundle);
+
         buttonFinalizar = findViewById(R.id.button_finalizar_sala);
         this.getSala();
 
@@ -198,6 +203,13 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, accesoDni); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.commit();
+        }
+        if (item.getItemId() == R.id.recuentoVoto){
+            botonHabilitar.setVisibility(View.INVISIBLE);
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, lista_votos); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
 

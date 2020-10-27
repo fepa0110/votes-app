@@ -53,7 +53,7 @@ class Registro_usuario : AppCompatActivity() {
 
         //traigo los componentes de la pantalla
         val userNameUsuario = findViewById<TextInputEditText>(R.id.text_registro_userName)
-        val correoUsuario = findViewById<TextInputEditText>(R.id.text_registro_correoElectronico)
+       correoUsuario = findViewById<View>(R.id.text_registro_correoElectronico) as TextInputEditText
         val contraUsuario = findViewById<TextInputEditText>(R.id.text_registroContraseña)
         val confirmarContra = findViewById<TextInputEditText>(R.id.text_confirmarRegistroContra);
 
@@ -71,7 +71,7 @@ class Registro_usuario : AppCompatActivity() {
             }
             override fun afterTextChanged(editable: Editable) {}
         })
-        correoUsuario.addTextChangedListener(object : TextWatcher {
+        correoUsuario!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence,start: Int,count: Int, after: Int) {}
 
             override fun onTextChanged(charSequence: CharSequence, start: Int,before: Int,count: Int) {
@@ -173,7 +173,7 @@ class Registro_usuario : AppCompatActivity() {
         if (a && b && c && d) {
             val usuario = Usuario()
             usuario.username = text_registro_userName.text.toString()
-            usuario.correoElectronico=text_registro_correoElectronico.text.toString()
+            usuario.correoElectronico=correoUsuario!!.text.toString()
             usuario.contrasenia = text_registroContraseña.text.toString()
            this.isEmailExist(usuario)
         }
@@ -235,7 +235,7 @@ class Registro_usuario : AppCompatActivity() {
             },
             { error ->
                 error.printStackTrace()
-                //Log.e("UpdateUser", "Respuesta servidor: $error.networkResponse")
+                Log.e("UpdateUser", "Respuesta servidor: $error.networkResponse")
                 //Log.e("UpdateUser", "No se pudieron guardar los cambios")
                 //Snackbar.make(view, "El email no existe", Snackbar.LENGTH_LONG).show()
             }
