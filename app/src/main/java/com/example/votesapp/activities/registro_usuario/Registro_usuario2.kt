@@ -208,7 +208,6 @@ class Registro_usuario2 : AppCompatActivity() {
         val jsonUsuario = JSONObject()
         jsonUsuario.put("dni", usuario.dni)
 
-        val registroDni = findViewById<TextInputEditText>(R.id.text_registrodni)
         val dniLayout=findViewById<TextInputLayout>(R.id.dniUsuario);
 
         val jsonRequest = JsonObjectRequest(

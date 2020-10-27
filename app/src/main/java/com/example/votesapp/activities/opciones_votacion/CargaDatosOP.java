@@ -142,6 +142,7 @@ public class CargaDatosOP extends AppCompatActivity {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         Toast.makeText(CargaDatosOP.this, "Opcion Agregada Correctamente", Toast.LENGTH_SHORT).show();
+                                        finish();
                                     }
                                 }, new Response.ErrorListener() {
                             @Override

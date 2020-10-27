@@ -29,7 +29,6 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
     var username = username
 
 
-
     private var urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas"
 
     var sList: List<Sala?>? = null
@@ -61,29 +60,32 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
         //idSala.text = sala!!.id
         val nombreSala = view.findViewById<TextView>(R.id.nombreSala)
         nombreSala.text = sala?.nombreSala
-        view.setOnClickListener{
-            if(sala?.contrasenia.toString().equals("null")){
+        view.setOnClickListener {
+            if (sala?.contrasenia.toString().equals("null")) {
 
                 val intent = Intent(context, MenuSala::class.java)
 
                 intent.putExtra("param_username", username)
                 intent.putExtra("param_estado", sala?.estado)
-                intent.putExtra("param_id",sala?.id)
-                intent.putExtra("param_nombre",sala?.nombreSala)
+                intent.putExtra("param_id", sala?.id?.toInt())
+                intent.putExtra("param_nombre", sala?.nombreSala)
 
 //                 intent.putExtra("param_id",sala?.id?.toInt())
 //                 intent.putExtra("param_contrasenia",sala?.contrasenia)
-                 context.startActivity(intent)
-            }else {
+                context.startActivity(intent)
+            } else {
+                val idSala = sala?.id?.toInt()
+                if (idSala != null) {
+                    DialogoContra(
+                        context,
+                        sala?.contrasenia,
+                        idSala.toInt(),
+                        sala?.nombreSala,
+                        sala?.estado,
+                        username
 
-                DialogoContra(
-                    context,
-                    sala?.contrasenia,
-                    sala?.id,
-                    sala?.nombreSala,
-                    sala?.estado,
-                    username
-                );
+                    )
+                }
             }
         }
 
@@ -102,10 +104,15 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
                 try {
                     val objeto = jsonArray.getJSONObject(i)
                     val sala = Sala(
-                        objeto.getString("id"), objeto.getString("nombre"), objeto.getString(
-                            "contrasenia"
-                        )
+                        objeto.getString("id"),
+                        objeto.getString("nombre"),
+                        objeto.getString("contrasenia")
                     )
+                    sala.estado = objeto.getString("estado")
+                    if(objeto.getString("estado")!="PENDIENTE") {
+                        salas.add(sala)
+                    }
+
                     salas.add(sala)
                 } catch (e: JSONException) {
                     e.printStackTrace()

@@ -103,7 +103,7 @@ public class OpcionesVotacion extends Fragment {
 
         //Boton btnAñadir
         Button btnAgregar = (Button) view.findViewById(R.id.btnAñadir);
-        if (desdeSalas){
+        if (desdeSalas==true){
             btnAgregar.setVisibility(View.INVISIBLE);
         }
         btnAgregar.setOnClickListener(new View.OnClickListener() {

@@ -28,4 +28,5 @@
     <!-- Fabricio -->
     <color name="sala_pendiente">#AA0043C9</color>
     <color name="sala_disponible">#4CAF50</color>
+    <color name="gris">#6A6A6A</color>
 </resources>
