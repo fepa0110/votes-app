@@ -40,6 +40,7 @@ import com.example.votesapp.activities.opciones_votacion.CargaDatosOP;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
 import com.example.votesapp.activities.votante_by_dni.AccesoDni;
 import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
+import com.example.votesapp.activities.votoTotal.Lista_votos;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -60,6 +61,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     private  InfoSala infoSala;
     private AccesoContrasenia accesoContrasenia;
     private AccesoDni accesoDni;
+    private Lista_votos lista_votos;
 
     private Sala sala;
     ImageView buttonFinalizar;
@@ -85,6 +87,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         botonHabilitar=(ImageButton)findViewById(R.id.botonHabilitar);
 
+
         botonHabilitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +106,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         });
 
 
+
         salaId = getIntent().getIntExtra("param_id",0);
         nombreSala= getIntent().getStringExtra("param_nombre");
         usernameOwner = getIntent().getStringExtra("param_username");
@@ -119,6 +123,8 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         tituloMenu.setText(nombreSala);
         toolbar.setTitle(nombreSala);
 
+        this.getSala();
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         sala = new Sala();
@@ -130,6 +136,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         bundle.putInt("param_id",salaId);
         bundle.putString("param_username",usernameOwner);
         bundle.putString("param_contrasenia",contrasenia);
+        bundle.putString("param_estado",sala.getEstado());
 
         opcionesVotacion = new OpcionesVotacion();
         opcionesVotacion.setArguments(bundle);
@@ -146,8 +153,11 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         accesoDni = new AccesoDni();
         accesoDni.setArguments(bundle);
 
+        lista_votos = new Lista_votos();
+        lista_votos.setArguments(bundle);
+
         buttonFinalizar = findViewById(R.id.button_finalizar_sala);
-        this.getSala();
+
 
         buttonFinalizar.setOnClickListener(
                 view -> {
@@ -211,6 +221,13 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, accesoDni); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.commit();
+        }
+        if (item.getItemId() == R.id.recuentoVoto){
+            botonHabilitar.setVisibility(View.INVISIBLE);
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, lista_votos); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
 

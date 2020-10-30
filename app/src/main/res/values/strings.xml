@@ -109,5 +109,6 @@
     <string name="biometric_failure">Error en la verificacion</string>
     <string name="biometric_cancelled">Verificacion cancelada</string>
     <string name="biometric_success">Verificacion Exitosa!</string>
+    <string name="button_eliminar_sala">Eliminar Sala</string>
 
 </resources>

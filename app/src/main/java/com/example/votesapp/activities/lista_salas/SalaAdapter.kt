@@ -109,6 +109,7 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
                             "contrasenia"
                         )
                     )
+                    sala.estado = objeto.getString("estado")
                     if(objeto.getString("estado")!="PENDIENTE") {
                         salas.add(sala)
                     }

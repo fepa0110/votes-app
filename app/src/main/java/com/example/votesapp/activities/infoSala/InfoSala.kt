@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
@@ -23,6 +25,7 @@ import com.example.votesapp.activities.update_user.UpdateUser
 import com.example.votesapp.model.Sala
 import com.example.votesapp.model.Usuario
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_carga_datos_op.*
 import kotlinx.android.synthetic.main.toolbar_menu_mis_salas.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -35,8 +38,28 @@ class InfoSala : Fragment() {
         val viewFragment = inflater.inflate(layout.info_sala, container, false)
 
         salaId = this.activity?.intent?.getIntExtra("param_id",0)
-
+        val btnEliminar = viewFragment.findViewById<Button>(R.id.button_eliminar_sala);
+        val ocultar = arguments?.getBoolean("param_desde_salas",false)
         this.getSalaData(viewFragment)
+
+        if(ocultar != null){
+            if(ocultar) {
+                btnEliminar.visibility = View.INVISIBLE
+            }
+        }
+
+
+
+        btnEliminar.setOnClickListener{ view->
+            if (sala?.estado == "PENDIENTE"){
+                eliminarSala(viewFragment)
+                val handler = Handler()
+                handler.postDelayed({this.activity?.onBackPressed()}, 500)
+            }
+        }
+
+
+
 
         return viewFragment
     }
@@ -109,8 +132,22 @@ class InfoSala : Fragment() {
         estadoTextView.text = sala?.estado
     }
 
-    private fun habilitarSala(viewFragment: View){
+    private fun eliminarSala(viewFragment: View){
+        val urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas"
 
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+
+        //NUeva peticion JsonObject
+        val response = JsonObjectRequest(
+            Request.Method.DELETE, "$urlBase/$salaId", null,
+            { response ->
+                Toast.makeText(viewFragment.context,"Sala eliminada correctamente",Toast.LENGTH_SHORT)
+            })
+        { error -> Log.d("InfoSala", "Error Respuesta en Json: " + error.message)
+        }
+
+        // Añadir peticion a la cola
+        requestQueue.add(response)
 
 
     }

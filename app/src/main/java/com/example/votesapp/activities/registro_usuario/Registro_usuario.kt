@@ -218,7 +218,7 @@ class Registro_usuario : AppCompatActivity() {
         val registroCorreo=findViewById<TextInputLayout>(R.id.registro_correoElectronico);
 
         val jsonRequest = JsonObjectRequest(
-            "$urlBase/email", jsonUsuario,
+            "$urlBase/emailExists", jsonUsuario,
             { response ->
                 Log.i(NewLogin.LOG_TAG, "Response is: $response")
 

@@ -1,6 +1,7 @@
 package com.example.votesapp.activities.menuSala;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.votesapp.R;
 import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
+import com.example.votesapp.activities.votoTotal.Lista_votos;
 import com.google.android.material.navigation.NavigationView;
 
 public class MenuSala extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -37,6 +39,7 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
     FragmentTransaction fragmentTransaction;
     private  OpcionesVotacion opcionesVotacion;
     private  InfoSala infoSala;
+    private Lista_votos lista_votos;
 
 
     @Override
@@ -69,12 +72,16 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         bundle.putInt("param_id",salaId);
         bundle.putString("param_username",usernameOwner);
         bundle.putBoolean("param_desde_salas",true);
+        bundle.putString("param_estado",estado);
 
 
         infoSala = new InfoSala();
         infoSala.setArguments(bundle);
         opcionesVotacion = new OpcionesVotacion();
         opcionesVotacion.setArguments(bundle);
+
+        lista_votos = new Lista_votos();
+        lista_votos.setArguments(bundle);
 
 
         //Cargar fragment Principal
@@ -103,6 +110,17 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
             fragmentTransaction.replace(R.id.contenedor2, opcionesVotacion);
             fragmentTransaction.commit();
 
+        }
+        if (item.getItemId() == R.id.recuentoVoto) {
+            Log.i("estadoooooo",estado);
+            if (estado.equals("FINALIZADA")) {
+
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contenedor2, lista_votos);
+                fragmentTransaction.commit();
+
+            }
         }
 
         return false;
