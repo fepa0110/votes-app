@@ -32,34 +32,43 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.votesapp.services.OPVotacionService;
 
 public class OpcionesVotacion extends Fragment {
 
     private AppBarConfiguration mAppBarConfiguration;
-    ViewPager viewPager;
-    Adapter adapter;
-    Integer[] colors = null;
-    ArgbEvaluator argbEvaluator = new ArgbEvaluator();
-    List<Modelo_OpVt> items;
-    OPVotacionService service;
+    private ViewPager viewPager;
+    private Adapter adapter;
+    private Integer[] colors = null;
+    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+    private List<Modelo_OpVt> items;
+    private OPVotacionService service;
     private int salaId;
     private String userName;
+    private String estado;
     private boolean desdeSalas;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_opciones_votacion,container,false);
+        View view = inflater.inflate(R.layout.activity_opciones_votacion, container, false);
 
         this.salaId = getArguments().getInt("param_id");
         this.userName = getArguments().getString("param_username");
         this.desdeSalas = getArguments().getBoolean("param_desde_salas");
+        this.estado = getArguments().getString("param_estado");
 
-
+        Button btnAgregar = (Button) view.findViewById(R.id.btnAñadir);
+        if (desdeSalas || this.estado.equals("FINALIZADA")) {
+            btnAgregar.setEnabled(false);
+            btnAgregar.setActivated(false);
+            btnAgregar.setVisibility(View.INVISIBLE);
+        }
+        
         //Obtener instancia de la actividad
         viewPager = view.findViewById(R.id.viewPager);
-        service = new OPVotacionService(getContext(),viewPager, this.salaId, userName, desdeSalas);
+        service = new OPVotacionService(getContext(), viewPager, this.salaId, userName, desdeSalas);
 
         viewPager.setPadding(130, 0, 130, 0);
 
@@ -76,7 +85,7 @@ public class OpcionesVotacion extends Fragment {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (position < (viewPager.getAdapter().getCount() -1) && position < (colors.length - 1)) {
+                if (position < (viewPager.getAdapter().getCount() - 1) && position < (colors.length - 1)) {
                     viewPager.setBackgroundColor(
 
                             (Integer) argbEvaluator.evaluate(
@@ -85,8 +94,7 @@ public class OpcionesVotacion extends Fragment {
                                     colors[position + 1]
                             )
                     );
-                }
-                else {
+                } else {
                     viewPager.setBackgroundColor(colors[colors.length - 1]);
                 }
             }
@@ -104,33 +112,22 @@ public class OpcionesVotacion extends Fragment {
 
 
         //Boton btnAñadir
-        Button btnAgregar = (Button) view.findViewById(R.id.btnAñadir);
-        if (desdeSalas==true){
-            btnAgregar.setVisibility(View.INVISIBLE);
-        }
-        btnAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(viewPager.getContext(), CargaDatosOP.class);
-                intent.putExtra("param_titulo", "");
-                intent.putExtra("param_descripcion", "");
-                intent.putExtra("param_editable", false);
-                intent.putExtra("param_sala_id", salaId);
-                startActivity(intent);
-            }
+        btnAgregar.setOnClickListener(viewListener -> {
+            Intent intent = new Intent(viewPager.getContext(), CargaDatosOP.class);
+            intent.putExtra("param_titulo", "");
+            intent.putExtra("param_descripcion", "");
+            intent.putExtra("param_editable", false);
+            intent.putExtra("param_sala_id", salaId);
+            startActivity(intent);
         });
 
-            return view;
-        }
+        return view;
+    }
 
     @Override
     public void onResume() {
         super.onResume();
         viewPager.setAdapter(null);
-        service = new OPVotacionService(getContext(),viewPager,this.salaId,userName, desdeSalas);
+        service = new OPVotacionService(getContext(), viewPager, this.salaId, userName, desdeSalas);
     }
-
-
-
-
 }

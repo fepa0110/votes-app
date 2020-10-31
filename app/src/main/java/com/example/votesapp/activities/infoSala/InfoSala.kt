@@ -34,21 +34,16 @@ class InfoSala : Fragment() {
     private var salaId : Int? = null
     private var sala : Sala? = null
 
+    private lateinit var btnEliminar : Button
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewFragment = inflater.inflate(layout.info_sala, container, false)
 
         salaId = this.activity?.intent?.getIntExtra("param_id",0)
-        val btnEliminar = viewFragment.findViewById<Button>(R.id.button_eliminar_sala);
-        val ocultar = arguments?.getBoolean("param_desde_salas",false)
+
         this.getSalaData(viewFragment)
 
-        if(ocultar != null){
-            if(ocultar) {
-                btnEliminar.visibility = View.INVISIBLE
-            }
-        }
-
-
+        btnEliminar = viewFragment.findViewById<Button>(R.id.button_eliminar_sala)
 
         btnEliminar.setOnClickListener{ view->
             if (sala?.estado == "PENDIENTE"){
@@ -57,9 +52,6 @@ class InfoSala : Fragment() {
                 handler.postDelayed({this.activity?.onBackPressed()}, 500)
             }
         }
-
-
-
 
         return viewFragment
     }
@@ -79,6 +71,10 @@ class InfoSala : Fragment() {
             { response ->
                 sala = parseSalaJson(response)
                 setSalaInfo(viewFragment)
+                if(sala?.estado == "PENDIENTE"){
+                    btnEliminar.visibility = View.VISIBLE
+                    btnEliminar.isEnabled = true
+                }
             })
         { error -> Log.d("InfoSala", "Error Respuesta en Json: " + error.message)
         }
@@ -141,14 +137,13 @@ class InfoSala : Fragment() {
         val response = JsonObjectRequest(
             Request.Method.DELETE, "$urlBase/$salaId", null,
             { response ->
-                Toast.makeText(viewFragment.context,"Sala eliminada correctamente",Toast.LENGTH_SHORT)
+                Toast.makeText(viewFragment.context,"Sala eliminada correctamente",Toast.LENGTH_SHORT).show()
             })
         { error -> Log.d("InfoSala", "Error Respuesta en Json: " + error.message)
         }
 
         // Añadir peticion a la cola
         requestQueue.add(response)
-
 
     }
 

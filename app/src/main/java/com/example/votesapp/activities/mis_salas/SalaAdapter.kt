@@ -117,6 +117,8 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
             intent.putExtra("param_username",username)
             intent.putExtra("param_contrasenia",sala?.contrasenia)
             intent.putExtra("param_estado",sala?.estado)
+            intent.putExtra("param_desde_salas", false)
+
             context.startActivity(intent)
         }
 

@@ -20,13 +20,6 @@
         app:title="Sala">
 
         <ImageButton
-            android:id="@+id/botonBorrarSala"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@color/colorPrimary"
-            tools:src="@drawable/ic_delete_trash" />
-
-        <ImageView
             android:id="@+id/button_finalizar_sala"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -35,18 +28,21 @@
             android:backgroundTint="@color/danger"
             android:contentDescription="@string/finalizar_sala_button_description"
             android:tooltipText="Finalizar sala"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ImageButton
             android:id="@+id/botonHabilitar"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:src="@drawable/ic_habilitado" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_check"
+            android:backgroundTint="@color/sala_disponible"
+            android:visibility="invisible"
+            android:tooltipText="Habilitar sala"
+            android:contentDescription="Habilitar sala" />
 
 
     </androidx.appcompat.widget.Toolbar>

@@ -38,7 +38,7 @@ public class OPVotacionService extends ArrayAdapter {
     ViewPager viewPager;
     Adapter adapter;
 
-    public OPVotacionService(Context context, ViewPager viewPager1, int salaId, String userName, boolean desdeSalas) {
+    public OPVotacionService(Context context, ViewPager viewPager1, int salaId, String userName, boolean disable) {
         super(context, 0);
 
         this.url += salaId;
@@ -58,7 +58,7 @@ public class OPVotacionService extends ArrayAdapter {
                     public void onResponse(JSONObject response) {
                         items = parseJson(response);
                         //Obtener instancia de la actividad
-                        adapter = new Adapter(items,context, salaId, userName, desdeSalas);
+                        adapter = new Adapter(items,context, salaId, userName, disable);
                         viewPager.setAdapter(adapter);
                         viewPager.setPadding(130, 0, 130, 0);
                         notifyDataSetChanged();

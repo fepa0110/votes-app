@@ -47,7 +47,6 @@ class CrearSala : AppCompatActivity() {
         }
         else {
             Snackbar.make(view, "Por favor escriba un nombre de sala", Snackbar.LENGTH_LONG).show()
-            //finish()
         }
     }
 }

@@ -3,8 +3,11 @@ package com.example.votesapp.activities.update_user
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -19,8 +22,10 @@ import com.example.votesapp.activities.newLogin.NewLogin
 import com.example.votesapp.activities.newLogin.NewLoginService
 import com.example.votesapp.model.Usuario
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.regex.Pattern
 
 class UpdateUser : AppCompatActivity() {
     private var username : String? = null
@@ -46,7 +51,43 @@ class UpdateUser : AppCompatActivity() {
         apellidoEditText.setText(intent.getStringExtra("param_apellido"))
         emailEditText.setText(intent.getStringExtra("param_correo"))
         passwordEditText.setText(intent.getStringExtra("param_contrasenia"))
-        
+
+        nombreEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+            }
+            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+                validateNombre()
+            }
+            override fun afterTextChanged(editable: Editable) {}
+        })
+
+        apellidoEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+            }
+            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+                validateApellido()
+            }
+            override fun afterTextChanged(editable: Editable) {}
+        })
+
+        emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+            }
+            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+                validateEmail()
+            }
+            override fun afterTextChanged(editable: Editable) {}
+        })
+
+        passwordEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+            }
+            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+                validatePassword()
+            }
+            override fun afterTextChanged(editable: Editable) {}
+        })
+
         val guardarButton = findViewById<Button>(R.id.button_guardar_editar_perfil)
         guardarButton.setOnClickListener {view ->
             if(validateNombre() && validateApellido() && validatePassword() && validateEmail()) {
@@ -60,7 +101,6 @@ class UpdateUser : AppCompatActivity() {
                 usuario.contrasenia = passwordEditText.text.toString()
 
                 this.isEmailExists(queue,usuario,view)
-                //this.sendResponse(queue,usuario,view)
             }
         }
 
@@ -71,36 +111,68 @@ class UpdateUser : AppCompatActivity() {
     }
 
     private fun validateNombre() : Boolean{
+        val nombreEditTextLayout = findViewById<EditText>(R.id.nombre_layout_editarPerfil) as TextInputLayout
         val nombreEditText = findViewById<EditText>(R.id.nombre_editText_editar_perfil)
         if(nombreEditText.text.toString() == user?.nombre) {
-            nombreEditText.error = "Ya tienes ese nombre"
+            nombreEditTextLayout.error = "Ya tienes ese nombre"
+            return false
+        }
+        if(nombreEditText.text.isBlank() or nombreEditText.text.isEmpty()) {
+            nombreEditTextLayout.error =  "El nombre no puede estar vacio"
             return false
         }
         return true
     }
 
     private fun validateApellido() : Boolean{
+        val apellidoEditTextLayout = findViewById<EditText>(R.id.apellido_layout_editarPerfil) as TextInputLayout
         val apellidoEditText = findViewById<EditText>(R.id.apellido_editText_editar_perfil)
         if(apellidoEditText.text.toString() == user?.apellido) {
-            apellidoEditText.error = "Ya tienes ese apellido"
+            apellidoEditTextLayout.error = "Ya tienes ese apellido"
+            return false
+        }
+        if(apellidoEditText.text.isBlank() or apellidoEditText.text.isEmpty()) {
+            apellidoEditTextLayout.error =  "El apellido no puede estar vacio"
             return false
         }
         return true
     }
 
     private fun validatePassword() : Boolean{
+        val passwordEditTextLayout = findViewById<EditText>(R.id.contraseña_layout_editarPerfil) as TextInputLayout
         val passwordEditText = findViewById<EditText>(R.id.contraseña_editText_editar_perfil)
-        if(passwordEditText.text.toString() == user?.contrasenia) {
-            passwordEditText.error = "Ya tienes esa contrasenia"
+        val passwordPattern = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$")
+
+        if (!passwordPattern.matcher(passwordEditText.text).matches()) {
+            passwordEditTextLayout.error =
+                "La contraseña debe tener entre 8 y 16 caracteres, al menos un digito, al menos una minuscula y al menos una mayuscula"
             return false
         }
+        if(passwordEditText.text.toString() == user?.contrasenia) {
+            passwordEditTextLayout.error = "Ya tienes esa contrasenia"
+            return false
+        }
+        if(passwordEditText.text.isEmpty()) {
+            passwordEditTextLayout.error = "La contraseña no puede estar vacia"
+            return false
+        }
+        if(passwordEditText.text.isBlank()) {
+            passwordEditTextLayout.error = "La contraseña no puede contener espacios"
+            return false
+        }
+
         return true
     }
 
     private fun validateEmail() : Boolean{
         val emailEditText = findViewById<EditText>(R.id.email_editText_editar_perfil)
+        val emailEditTextLayout = findViewById<EditText>(R.id.email_layout_editarPerfil) as TextInputLayout
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailEditText.text).matches()) {
+            emailEditTextLayout.error = "Correo electrónico inválido"
+            return false
+        }
         if(emailEditText.text.toString() == user?.correoElectronico) {
-            emailEditText.error = "Ya tienes ese email"
+            emailEditTextLayout.error = "Ya tienes ese email"
             return false
         }
         return true
@@ -169,6 +241,7 @@ class UpdateUser : AppCompatActivity() {
 
     private fun updateSuccessfull(){
         Toast.makeText(this, "Se guardaron los cambios correctamente", Toast.LENGTH_SHORT).show()
-        finish()
+        val handler = Handler()
+        handler.postDelayed({onBackPressed()}, 500)
     }
 }

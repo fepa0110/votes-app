@@ -74,9 +74,9 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         bundle.putBoolean("param_desde_salas",true);
         bundle.putString("param_estado",estado);
 
-
         infoSala = new InfoSala();
         infoSala.setArguments(bundle);
+
         opcionesVotacion = new OpcionesVotacion();
         opcionesVotacion.setArguments(bundle);
 

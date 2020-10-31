@@ -48,11 +48,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MenuMisSalas extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     NavigationView navigationView;
+
     //variables para cargar el fragment principal
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -64,15 +64,19 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     private Lista_votos lista_votos;
 
     private Sala sala;
-    ImageView buttonFinalizar;
+
     private int salaId;
     private String nombreSala = " ";
     private String contrasenia = " ";
+    private String estado = " ";
     private String usernameOwner = null;
+
     private JsonObjectRequest jsonObjReq;
     private String TAG = "estadoHabilitado";
 
-    ImageButton botonHabilitar;
+    private ImageButton buttonHabilitar;
+    private ImageButton buttonFinalizar;
+
     private RequestQueue requestQueue;
     private Handler handler;
 
@@ -85,34 +89,14 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         toolbar= findViewById(R.id.toolbar_menu);
         setSupportActionBar(toolbar);
-        botonHabilitar=(ImageButton)findViewById(R.id.botonHabilitar);
-
-
-        botonHabilitar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               habilitarSala(view);
-                botonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
-                botonHabilitar.setEnabled(false);
-                handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        onBackPressed();
-                    }
-                },500);
-
-            }
-        });
-
-
+        buttonHabilitar=(ImageButton)findViewById(R.id.botonHabilitar);
+        buttonFinalizar = findViewById(R.id.button_finalizar_sala);
 
         salaId = getIntent().getIntExtra("param_id",0);
         nombreSala= getIntent().getStringExtra("param_nombre");
         usernameOwner = getIntent().getStringExtra("param_username");
         contrasenia = getIntent().getStringExtra("param_contrasenia");
-//        Log.i("param_nombre",nombreSala);
-//        Log.i("param_id",salaId+" ");
+        estado = getIntent().getStringExtra("param_estado");
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);
@@ -136,7 +120,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         bundle.putInt("param_id",salaId);
         bundle.putString("param_username",usernameOwner);
         bundle.putString("param_contrasenia",contrasenia);
-        bundle.putString("param_estado",sala.getEstado());
+        bundle.putString("param_estado",estado);
 
         opcionesVotacion = new OpcionesVotacion();
         opcionesVotacion.setArguments(bundle);
@@ -156,9 +140,6 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         lista_votos = new Lista_votos();
         lista_votos.setArguments(bundle);
 
-        buttonFinalizar = findViewById(R.id.button_finalizar_sala);
-
-
         buttonFinalizar.setOnClickListener(
                 view -> {
                     finalizarSala(view);
@@ -174,10 +155,27 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
                 }
         );
 
+        buttonHabilitar.setOnClickListener(
+            view -> {
+                habilitarSala(view);
+                buttonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
+                buttonHabilitar.setEnabled(false);
+                handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onBackPressed();
+                    }
+                },500);
+
+            });
+
         //Cargar fragment Principal
         fragmentManager=getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.contenedor, infoSala);
+        buttonHabilitar.setVisibility(View.VISIBLE);
+        buttonFinalizar.setVisibility(View.VISIBLE);
         fragmentTransaction.commit();
     }
 
@@ -187,15 +185,20 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         //Para que cierre la ventana cada ves que selecciono
         drawerLayout.closeDrawer(GravityCompat.START);
         if (item.getItemId() == R.id.infoSala){
-            botonHabilitar.setVisibility(View.VISIBLE);
+            buttonHabilitar.setVisibility(View.VISIBLE);
+            buttonFinalizar.setVisibility(View.VISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, infoSala); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
+        else {
+            buttonHabilitar.setVisibility(View.INVISIBLE);
+            buttonFinalizar.setVisibility(View.INVISIBLE);
+        }
+
 
         if (item.getItemId() == R.id.OpcionesVotacion){
-            botonHabilitar.setVisibility(View.INVISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, opcionesVotacion);
@@ -203,28 +206,24 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         }
         if (item.getItemId() == R.id.accesoPorNomUsuario){
-            botonHabilitar.setVisibility(View.INVISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.accesoPorContraseña){
-            botonHabilitar.setVisibility(View.INVISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, accesoContrasenia); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.accesoPorDni){
-            botonHabilitar.setVisibility(View.INVISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, accesoDni); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.recuentoVoto){
-            botonHabilitar.setVisibility(View.INVISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, lista_votos); // aca hiria el fragment o clase de accesoSala
@@ -263,12 +262,15 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             if(sala.getEstado().equals("FINALIZADA")) {
                 buttonFinalizar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
                 buttonFinalizar.setEnabled(false);
+
+                buttonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
+                buttonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
+                buttonHabilitar.setEnabled(false);
             }{
                 if(sala.getEstado().equals("DISPONIBLE")){
-                   botonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
-                   botonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
-                   botonHabilitar.setEnabled(false);
-
+                   buttonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
+                   buttonHabilitar.setBackgroundTintList(getResources().getColorStateList(R.color.gris));
+                   buttonHabilitar.setEnabled(false);
                 }
             }
             Log.i("MenuMisSalas", "Se recupero el json de sala:" +response);

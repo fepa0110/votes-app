@@ -44,24 +44,40 @@ class AddVotanteByUser : Fragment() {
 
     private var salaId : Int? = null
     private var usernameOwner : String? = null
+    private var estadoSala : String? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewFragment = inflater.inflate(R.layout.activity_add_votante_by_user, container, false)
 
+        val agregarVotanteButton = viewFragment.findViewById<FloatingActionButton>(R.id.add_votante_button)
+        val finalizarButton = viewFragment.findViewById<Button>(R.id.add_votante_button_finalizar)
+
         this.salaId = arguments?.getInt("param_id")
         this.usernameOwner = arguments?.getString("param_username")
+        this.estadoSala = arguments?.getString("param_estado")
 
         usuariosListView = viewFragment.findViewById(R.id.add_votante_username_listView)
 
         //Inicializo el adapter y le paso id de sala
         votanteByUsernameAdapter = VotanteByUsernameAdapter(viewFragment.context,salaId!!)
 
+        if(estadoSala == "FINALIZADA"){
+            agregarVotanteButton.isEnabled = false
+            agregarVotanteButton.backgroundTintList =  resources.getColorStateList(R.color.gris, null)
+
+            finalizarButton.isEnabled = false
+            finalizarButton.setBackgroundColor(resources.getColor(R.color.gris, null))
+
+            autoCompleteTextView = view?.findViewById(R.id.add_votante_autoCompleteText)
+            autoCompleteTextView?.isEnabled = false
+            autoCompleteTextView?.isActivated = false
+        }
         //Busco todos los usuarios registrados
-        this.getAllUsuarios(viewFragment)
+        else this.getAllUsuarios(viewFragment)
 
         //Crear adaptador y setear
         usuariosListView?.adapter = votanteByUsernameAdapter
 
-        val agregarVotanteButton = viewFragment.findViewById<FloatingActionButton>(R.id.add_votante_button)
         agregarVotanteButton.setOnClickListener {view ->
             val agregarVotanteText = autoCompleteTextView?.text.toString()
 
@@ -86,7 +102,6 @@ class AddVotanteByUser : Fragment() {
             }
         }
 
-        val finalizarButton = viewFragment.findViewById<Button>(R.id.add_votante_button_finalizar)
         finalizarButton.setOnClickListener {
             votanteByUsernameAdapter!!.sendVotantes()
         }

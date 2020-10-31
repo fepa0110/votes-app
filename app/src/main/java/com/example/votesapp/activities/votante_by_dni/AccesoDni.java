@@ -20,6 +20,7 @@ public class AccesoDni extends Fragment {
     private ListView listView;
     private int salaId;
     private String nombreUsuario;
+    private String estado;
     private AccesoDniAdapter dniAdapter;
     private Button btnAñadir, btnGuardar;
     private TextInputEditText inputDni;
@@ -35,6 +36,7 @@ public class AccesoDni extends Fragment {
         //Parametros
         this.salaId = getArguments().getInt("param_id");
         this.nombreUsuario = getArguments().getString("param_username");
+        this.estado = getArguments().getString("param_estado");
 
         listView = view.findViewById(R.id.add_votante_dni_listView);
 
@@ -80,6 +82,16 @@ public class AccesoDni extends Fragment {
                 dniAdapter.sendVotantesByDni();
             }
         });
+
+        //Deshabilitar nuevos ingresos si esta finalizada la sala
+        if(estado.equals("FINALIZADA")){
+            inputDni.setEnabled(false);
+            btnAñadir.setEnabled(false);
+            btnAñadir.setBackground(getResources().getDrawable(R.drawable.button_circle_disabled,null));
+
+            btnGuardar.setEnabled(false);
+            btnGuardar.setBackground(getResources().getDrawable(R.drawable.button_circle_disabled,null));
+        }
 
         return view;
 

@@ -71,10 +71,9 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
                 intent.putExtra("param_estado", sala?.estado)
                 intent.putExtra("param_id", sala?.id?.toInt())
                 intent.putExtra("param_nombre", sala?.nombreSala)
+                intent.putExtra("param_desde_salas", true)
 
-//                 intent.putExtra("param_id",sala?.id?.toInt())
-//                 intent.putExtra("param_contrasenia",sala?.contrasenia)
-                 context.startActivity(intent)
+                context.startActivity(intent)
             }else {
                 val idSala = sala?.id?.toInt()
                 if (idSala != null) {
