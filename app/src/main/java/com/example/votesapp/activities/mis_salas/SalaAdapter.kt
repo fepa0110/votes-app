@@ -2,6 +2,7 @@ package com.example.votesapp.activities.mis_salas
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +14,16 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
+import com.example.votesapp.activities.menuMisSalas.MenuMisSalas
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
+import com.example.votesapp.activities.votante_by_user.AddVotanteByUser
 //import com.example.votesapp.activities.lista_salas.Sala
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
-class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?>(
+class SalaAdapter(context: Context?, urlComplement: String, username : String) : ArrayAdapter<Sala?>(
     context!!, 0
 ) 
 {
@@ -34,11 +37,12 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
     private val requestQueue: RequestQueue
     var jsArrayRequest: JsonObjectRequest
     var sList: List<Sala?>? = null
+    var username = username
     
     //Constructor
     init {
         //Gestionar peticion del archivo JSON
-        this.urlBase = urlBase + urlComplement
+        this.urlBase = "$urlBase$urlComplement"
         //Crear nueva cola de peticiones
         requestQueue = Volley.newRequestQueue(context)
 
@@ -91,10 +95,29 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
         val nombreSala = view.findViewById<TextView>(R.id.item_nombre_mis_salas)
         nombreSala.text = sala?.nombreSala
 
-        view.setOnClickListener{
-            val intent = Intent(view.context, OpcionesVotacion::class.java)
-            intent.putExtra("param_id",sala?.id?.toInt())
-            view.context.applicationContext.startActivity(intent)
+        val estadoSala = view.findViewById<TextView>(R.id.item_estado_mis_salas)
+
+        if(sala?.estado == "PENDIENTE") {
+            estadoSala.setTextColor(Color.parseColor("#AA0043C9"))
+        }
+        else if (sala?.estado == "DISPONIBLE")
+        {
+            estadoSala.setTextColor(Color.parseColor("#4CAF50"))
+        }
+        else if (sala?.estado == "FINALIZADA") {
+            estadoSala.setTextColor(Color.parseColor("#AA4301"))
+        }
+
+        estadoSala.text = sala?.estado
+
+        view.setOnClickListener {
+            val intent = Intent(context, MenuMisSalas::class.java)
+            intent.putExtra("param_id", sala?.id?.toInt())
+            intent.putExtra("param_nombre", sala?.nombreSala)
+            intent.putExtra("param_username",username)
+            intent.putExtra("param_contrasenia",sala?.contrasenia)
+            intent.putExtra("param_estado",sala?.estado)
+            context.startActivity(intent)
         }
 
         return view
@@ -111,7 +134,8 @@ class SalaAdapter(context: Context?, urlComplement: String) : ArrayAdapter<Sala?
             for (i in 0 until jsonArray.length()) {
                 try {
                     val objeto = jsonArray.getJSONObject(i)
-                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"))
+                    val sala = Sala(objeto.getString("id"), objeto.getString("nombre"),objeto.getString("contrasenia"))
+                    sala.estado = objeto.getString("estado")
                     salas.add(sala)
                     Log.i(TAG, "Sala añadida")
                 } catch (e: JSONException) {

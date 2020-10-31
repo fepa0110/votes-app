@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/numeroSala"
+        android:layout_marginStart="5dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_total_voto"
+        android:backgroundTint="#000000"
+        android:gravity="center"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/nombreSala"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="-1dp"
+        android:layout_toEndOf="@+id/numeroSala"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/cantidadVoto"
+        android:layout_width="93dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_toEndOf="@+id/nombreSala"
+        android:gravity="center"
+        android:textSize="18sp" />
+</RelativeLayout>

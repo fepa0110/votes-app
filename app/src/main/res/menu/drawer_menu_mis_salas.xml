@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <item
+        android:layout_width="66dp"
+        android:layout_height="147dp"
+        android:title="Principal">
+
+        <menu>
+
+            <item
+                android:id="@+id/infoSala"
+                android:icon="@drawable/ic_info"
+                android:title="@string/info_sala_item_menu_text">
+
+            </item>
+
+            <item
+                android:id="@+id/OpcionesVotacion"
+                android:icon="@drawable/ic_vote"
+                android:title="Opciones de votación">
+
+            </item>
+            <item
+                android:id="@+id/tiempoDeSala"
+                android:icon="@drawable/ic_tiempo"
+                android:title="Tiempo de sala">
+
+            </item>
+
+
+        </menu>
+
+    </item>
+    <item
+        android:layout_width="66dp"
+        android:layout_height="147dp"
+        android:title="Acceso a Sala">
+
+        <menu>
+
+            <item
+                android:id="@+id/accesoPorDni"
+                android:icon="@drawable/ic_dni"
+                android:title="Acceso por Dni">
+
+            </item>
+            <item
+                android:id="@+id/accesoPorNomUsuario"
+                android:icon="@drawable/ic_usuario"
+                android:title="Acceso por Usuario">
+
+            </item>
+            <item
+                android:id="@+id/accesoPorContraseña"
+                android:icon="@drawable/ic_key"
+                android:title="Acceso por Contraseña">
+
+            </item>
+        </menu>
+
+    </item>
+
+    <item
+        android:layout_width="66dp"
+        android:layout_height="147dp"
+        android:title="Votos">
+
+        <menu>
+
+            <item
+                android:id="@+id/recuentoVoto"
+                android:icon="@drawable/ic_total_voto"
+                android:title="Recuento de Votos">
+
+            </item>
+
+        </menu>
+
+    </item>
+
+</menu>

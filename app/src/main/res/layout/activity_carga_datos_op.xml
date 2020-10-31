@@ -133,6 +133,17 @@
                 android:background="@drawable/roundred"
                 android:text="@string/button_eliminar"
                 android:textColor="#fff" />
+            <Button
+                android:id="@+id/btnVotar"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/roundgreen"
+                android:text="@string/button_votar"
+                android:visibility="invisible"
+                android:textColor="#fff" />
+
 
         </LinearLayout>
 

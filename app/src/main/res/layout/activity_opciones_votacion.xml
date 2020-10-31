@@ -7,14 +7,14 @@
     android:layout_height="match_parent">
 
     <androidx.viewpager.widget.ViewPager
-        android:foregroundGravity="center"
         android:id="@+id/viewPager"
-        android:layout_centerInParent="true"
-        android:overScrollMode="never"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.viewpager.widget.ViewPager>
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:overScrollMode="never"></androidx.viewpager.widget.ViewPager>
 
     <Button
         android:id="@+id/btnAñadir"

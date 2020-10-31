@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lista_mis_salas_frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
+    android:layout_toStartOf="@+id/navigationView"
+    tools:context=".activities.user_activity.UserActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/foto_perfil_userActivity"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/ic_sala"
+            android:backgroundTint="@color/negro"
+            android:backgroundTintMode="src_in"
+            android:contentDescription="@string/icono_de_sala"
+            android:cropToPadding="false"
+            android:fadingEdge="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Informacion usuario -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="418dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foto_perfil_userActivity">
+
+            <!-- Username -->
+
+            <!-- Nombre -->
+            <!-- Apellido -->
+
+            <TextView
+                android:id="@+id/nombre_label_text_infoSala"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/nombre_textView"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/nombre_text_infoSala"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/nombre_text_infoSala"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="36dp"
+                android:autoSizeTextType="uniform"
+                android:elegantTextHeight="true"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/nombre_label_text_infoSala"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- DNI -->
+
+            <TextView
+                android:id="@+id/usuario_label_text_infoSala"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/usuario_infoSala"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/usuario_text_infoSala"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nombre_label_text_infoSala" />
+
+            <!-- Email -->
+
+            <TextView
+                android:id="@+id/usuario_text_infoSala"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="36dp"
+                android:autoSizeTextType="uniform"
+                android:elegantTextHeight="true"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/usuario_label_text_infoSala"
+                app:layout_constraintTop_toBottomOf="@+id/nombre_text_infoSala" />
+
+            <TextView
+                android:id="@+id/estado_label_text_infoSala"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/estado_text_infoSala"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/estado_text_infoSala"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/usuario_label_text_infoSala" />
+
+            <TextView
+                android:id="@+id/estado_text_infoSala"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="36dp"
+                android:autoSizeTextType="uniform"
+                android:elegantTextHeight="true"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/estado_label_text_infoSala"
+                app:layout_constraintTop_toBottomOf="@+id/usuario_text_infoSala" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/button_eliminar_sala"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginBottom="198dp"
+            android:background="@drawable/roundred"
+            android:text="@string/button_eliminar_sala"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

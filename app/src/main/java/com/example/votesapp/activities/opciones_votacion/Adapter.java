@@ -36,11 +36,15 @@ public class Adapter extends PagerAdapter {
     private Context context;
     private TextView title, desc;
     private int salaId;
+    private String userName;
+    private boolean desdeSalas;
 
-    public Adapter(List<Modelo_OpVt> models, Context context, int salaId) {
+    public Adapter(List<Modelo_OpVt> models, Context context, int salaId, String userName, boolean desdeSalas) {
         this.models = models;
         this.context = context;
         this.salaId = salaId;
+        this.desdeSalas = desdeSalas;
+        this.userName = userName;
     }
 
     @Override
@@ -73,9 +77,12 @@ public class Adapter extends PagerAdapter {
                 Intent intent = new Intent(context, CargaDatosOP.class);
                 intent.putExtra("param_id", models.get(position).getId());
                 intent.putExtra("param_sala_id", salaId);
+                intent.putExtra("param_username", userName);
                 intent.putExtra("param_titulo", models.get(position).getTitle());
                 intent.putExtra("param_descripcion", models.get(position).getDesc());
+                intent.putExtra("param_cantVotos", models.get(position).getCantVotos());
                 intent.putExtra("param_editable", true);
+                intent.putExtra("param_desdeSalas",desdeSalas);
                 context.startActivity(intent);
                 // finish();
             }

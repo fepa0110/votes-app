@@ -6,12 +6,14 @@ public class Modelo_OpVt {
     private int id;
     private String title;
     private String desc;
+    private int cantVotos;
 
-    public Modelo_OpVt(int id, String title, String desc) {
+    public Modelo_OpVt(int id, String title, String desc, int cantVotos) {
         //this.image = image;
         this.id = id;
         this.title = title;
         this.desc = desc;
+        this.cantVotos = cantVotos;
     }
 
    /* public int getImage() {
@@ -47,11 +49,20 @@ public class Modelo_OpVt {
         this.desc = desc;
     }
 
+    public int getCantVotos() {
+        return cantVotos;
+    }
+
+    public void setCantVotos(int cantVotos) {
+        this.cantVotos = cantVotos;
+    }
+
     @Override
     public String toString() {
         return "Modelo_OpVt{" +
                 "title='" + title + '\'' +
                 ", desc='" + desc + '\'' +
+                ", cantVotos='" + cantVotos + '\'' +
                 '}';
     }
 }

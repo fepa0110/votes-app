@@ -39,16 +39,19 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_mis_salas -> {
                     this.title = "Mis salas"
-                    val salasFragment = MisSalas.newInstance()
+                    val misSalasFragment = MisSalas.newInstance()
 
-                    salasFragment.activity?.intent?.putExtra("param_username",username)
+                    misSalasFragment.activity?.intent?.putExtra("param_username",username)
 
-                    openFragment(salasFragment)
+                    openFragment(misSalasFragment)
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_salas -> {
                     this.title = "Salas"
                     val salasFragment = Lista_Salas.newInstance()
+
+                    salasFragment.activity?.intent?.putExtra("param_username",username)
+
                     openFragment(salasFragment)
                     return@OnNavigationItemSelectedListener true
                 }
