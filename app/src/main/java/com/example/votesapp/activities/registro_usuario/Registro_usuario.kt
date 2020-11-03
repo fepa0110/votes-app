@@ -112,7 +112,7 @@ class Registro_usuario : AppCompatActivity() {
     //Validar el nombre de usuario
     private fun esNombreValido(nombre: String): Boolean {
         val patron =
-            Pattern.compile("^[a-zA-Z0-9](_(?!(\\.|_))|\\.(?!(_|\\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$")
+            Pattern.compile("/^[a-z0-9_-]{3,16}\$/")
         if (!patron.matcher(nombre).matches() || nombre.length > 30) {
             registroUserName!!.error = "Nombre inválido"
             return false
@@ -175,7 +175,7 @@ class Registro_usuario : AppCompatActivity() {
             usuario.username = text_registro_userName.text.toString()
             usuario.correoElectronico=text_registro_correoElectronico.text.toString()
             usuario.contrasenia = text_registroContraseña.text.toString()
-           this.isEmailExist(usuario)
+           this.isUserNameExists(usuario)
         }
     }
     private fun isUserNameExists( usuario : Usuario) {
@@ -188,7 +188,7 @@ class Registro_usuario : AppCompatActivity() {
 
 
         val jsonRequest = JsonObjectRequest(
-            "$urlBase/username", jsonUsuario,
+            "$urlBase/usernames", jsonUsuario,
             { response ->
                 Log.i(NewLogin.LOG_TAG, "Response is: $response")
 

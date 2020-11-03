@@ -100,12 +100,12 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);
+
         //establecer el evento onclick al navigationView
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
         tituloMenu=header.findViewById(R.id.tituloMenu);
         tituloMenu.setText(nombreSala);
-        toolbar.setTitle(nombreSala);
 
         this.getSala();
 
@@ -152,6 +152,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
                             onBackPressed();
                         }
                     },500);
+                    
                 }
         );
 
@@ -189,7 +190,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             buttonFinalizar.setVisibility(View.VISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, infoSala); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, infoSala);
             fragmentTransaction.commit();
         }
         else {
@@ -208,25 +209,25 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         if (item.getItemId() == R.id.accesoPorNomUsuario){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, addVotanteByUser);
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.accesoPorContraseña){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, accesoContrasenia); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, accesoContrasenia);
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.accesoPorDni){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, accesoDni); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, accesoDni);
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.recuentoVoto){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, lista_votos); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, lista_votos);
             fragmentTransaction.commit();
         }
 
@@ -281,6 +282,8 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     }
 
     @SuppressLint("UseCompatLoadingForColorStateLists")
+
+
     private Sala parseJson(JSONObject jsonObject) {
         //Variables Locales
         Sala sala = new Sala();

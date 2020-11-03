@@ -25,7 +25,7 @@
         android:id="@+id/tituloRegistroUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/login_form_details_medium"
+        android:textColor="@color/negro"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="0dp"
 
@@ -48,117 +48,157 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="111dp"
-        android:layout_height="107dp"
+        android:layout_width="112dp"
+        android:layout_height="102dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_usuario3"
+        android:background="@drawable/ic_fondo_registro2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
         app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
         app:layout_constraintTop_toBottomOf="@id/tituloRegistroUsuario" />
 
     <!--EditText para nombre -->
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ic_usuario"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nombreUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/nombreUsuario"
+        android:textColorHint="@color/login_form_details"
+        app:boxStrokeWidth="0dp"
         app:counterEnabled="true"
         app:counterMaxLength="30"
         app:counterTextColor="@color/blanco"
-        android:textColorHint="@color/login_form_details"
-        app:boxStrokeWidth="0dp"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@id/imageView2">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_registroNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/blanco"
+            android:inputType="textCapSentences"
             android:maxLength="30"
-            android:inputType="textCapSentences" />
+            android:textColor="@color/blanco" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--EditText para Apellido -->
+
+    <ImageView
+        android:id="@+id/iconoApellido"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_usuario"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/apellidoUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:hint="@string/apellidoUsuario"
         android:textColorHint="@color/login_form_details"
         app:boxStrokeWidth="0dp"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/nombreUsuario"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        app:layout_constraintStart_toEndOf="@+id/iconoApellido"
+        app:layout_constraintTop_toBottomOf="@id/nombreUsuario">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_registroApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/blanco"
-            android:inputType="textCapSentences" />
+            android:inputType="textCapSentences"
+            android:textColor="@color/blanco" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--EditText para Dni -->
+    <ImageView
+        android:id="@+id/iconoDni"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_dni"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/apellidoUsuario" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dniUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:hint="@string/dniUsuario"
         android:textColorHint="@color/login_form_details"
         app:boxStrokeWidth="0dp"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/apellidoUsuario"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        app:layout_constraintStart_toEndOf="@+id/iconoDni"
+        app:layout_constraintTop_toBottomOf="@id/apellidoUsuario">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_registrodni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/blanco"
+            android:inputType="number"
             android:maxLength="8"
-            android:inputType="number" />
+            android:textColor="@color/blanco" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--EditText para fecha Nacimiento -->
+
+    <ImageView
+        android:id="@+id/iconoNacimiento"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_fecha_nacimiento"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/dniUsuario" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fechaNacimientoUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:hint="@string/fechaNacimientoUsuario"
         android:textColorHint="@color/login_form_details"
         app:boxStrokeWidth="0dp"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/dniUsuario"
         app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
-        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+        app:layout_constraintStart_toEndOf="@+id/iconoNacimiento"
+        app:layout_constraintTop_toBottomOf="@id/dniUsuario">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_registroFechaNacimiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
             android:clickable="true"
+            android:focusable="false"
+            android:inputType="date"
             android:maxLines="1"
-            android:inputType="date" />
+            android:textColor="@color/blanco" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

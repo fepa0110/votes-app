@@ -120,7 +120,7 @@ class Registro_usuario2 : AppCompatActivity() {
     private fun esDniValido(dni: String): Boolean {
         val dniLayout=findViewById<TextInputLayout>(R.id.dniUsuario);
         val patron =
-            Pattern.compile("^\\d{8}(?:[-\\s]\\d{4})?\$")
+            Pattern.compile("^\\d{7,8}(?:[-\\s]\\d{4})?\$")
         if (!patron.matcher(dni).matches()) {
             dniLayout!!.error = "Dni invalido"
             return false
@@ -185,14 +185,30 @@ class Registro_usuario2 : AppCompatActivity() {
 
     //Para la fecha de Nacimiento
     private fun showDatePickerDialog(){
-        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            // +1 because January is zero
-            val selectedDate = year.toString() + "-" + (month + 1) + "-" + day
-            text_registroFechaNacimiento.setText(selectedDate)
-        })
-        newFragment.show(supportFragmentManager, "datePicker")
-    }
 
+        val onNewDateListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dayStr = day
+            val monthStr = (month + 1) // +1 because January is zero
+
+            val selectedDate = "$year-$monthStr-$dayStr"
+            text_registroFechaNacimiento.setText(selectedDate)
+        }
+
+        val birthDate = text_registroFechaNacimiento.text.toString()
+
+        val newFragment = if (birthDate.isEmpty())
+            DatePickerFragment.newInstance(onNewDateListener)
+        else {
+            val parts = birthDate.split('/')
+            DatePickerFragment.newInstance(
+                onNewDateListener,
+                parts[2].toInt(), parts[1].toInt(), parts[0].toInt()
+            )
+        }
+
+        newFragment.show(supportFragmentManager, "datePicker")
+
+    }
 
     private fun loginSuccessfull( userName: String,nombre: String){
         val intent = Intent(this, MainActivity::class.java)
