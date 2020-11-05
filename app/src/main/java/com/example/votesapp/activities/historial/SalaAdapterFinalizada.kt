@@ -1,4 +1,4 @@
-package com.example.votesapp.activities.mis_salas
+package com.example.votesapp.activities.historial
 
 import android.content.Context
 import android.content.Intent
@@ -15,17 +15,15 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
 import com.example.votesapp.activities.menuMisSalas.MenuMisSalas
-import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion
-import com.example.votesapp.activities.votante_by_user.AddVotanteByUser
-//import com.example.votesapp.activities.lista_salas.Sala
+import com.example.votesapp.activities.mis_salas.Sala
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.*
+import java.util.ArrayList
 
-class SalaAdapter(context: Context?, urlComplement: String, username : String) : ArrayAdapter<Sala?>(
+class SalaAdapterFinalizada(context: Context?, urlComplement: String, username : String) : ArrayAdapter<Sala?>(
     context!!, 0
-) 
+)
 {
 
     companion object {
@@ -38,7 +36,7 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
     var jsArrayRequest: JsonObjectRequest
     var sList: List<Sala?>? = null
     var username = username
-    
+
     //Constructor
     init {
         //Gestionar peticion del archivo JSON
@@ -47,16 +45,17 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
         requestQueue = Volley.newRequestQueue(context)
 
         //NUeva peticion JsonObject
-        jsArrayRequest = JsonObjectRequest(Request.Method.GET, urlBase, null, 
+        jsArrayRequest = JsonObjectRequest(
+            Request.Method.GET, urlBase, null,
             { response ->
                 sList = parseJson(response)
                 Log.i(TAG,"Se recupero el json: $response")
                 Log.i(TAG,"sList: ${sList.toString()}")
                 notifyDataSetChanged()
-            }) 
-            { 
-                error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) 
-            }
+            })
+        {
+                error -> Log.d(TAG, "Error Respuesta en Json: " + error.message)
+        }
 
         // Añadir peticion a la cola
         requestQueue.add(jsArrayRequest)
@@ -111,17 +110,17 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
 
         estadoSala.text = sala?.estado
 
-        view.setOnClickListener {
-            val intent = Intent(context, MenuMisSalas::class.java)
-            intent.putExtra("param_id", sala?.id?.toInt())
-            intent.putExtra("param_nombre", sala?.nombreSala)
-            intent.putExtra("param_username",username)
-            intent.putExtra("param_contrasenia",sala?.contrasenia)
-            intent.putExtra("param_estado",sala?.estado)
-            intent.putExtra("param_desde_salas", false)
-
-            context.startActivity(intent)
-        }
+//        view.setOnClickListener {
+//            val intent = Intent(context, MenuMisSalas::class.java)
+//            intent.putExtra("param_id", sala?.id?.toInt())
+//            intent.putExtra("param_nombre", sala?.nombreSala)
+//            intent.putExtra("param_username",username)
+//            intent.putExtra("param_contrasenia",sala?.contrasenia)
+//            intent.putExtra("param_estado",sala?.estado)
+//            intent.putExtra("param_desde_salas", false)
+//
+//            context.startActivity(intent)
+//        }
 
         return view
     }
@@ -139,7 +138,7 @@ class SalaAdapter(context: Context?, urlComplement: String, username : String) :
                     val objeto = jsonArray.getJSONObject(i)
                     val sala = Sala(objeto.getString("id"), objeto.getString("nombre"),objeto.getString("contrasenia"))
                     sala.estado = objeto.getString("estado")
-                    if(sala.estado !="FINALIZADA") {
+                    if(sala.estado =="FINALIZADA") {
                         salas.add(sala)
                     }
                     Log.i(TAG, "Sala añadida")

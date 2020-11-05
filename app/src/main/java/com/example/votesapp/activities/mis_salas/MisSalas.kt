@@ -2,9 +2,13 @@ package com.example.votesapp.activities.mis_salas
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.votesapp.R
 import com.example.votesapp.activities.crear_sala.CrearSala
@@ -26,6 +30,9 @@ class MisSalas : Fragment() {
     ): View? {
         val viewFragment = inflater.inflate(R.layout.activity_listado_mis_salas, container, false)
         slistView = viewFragment.findViewById(R.id.listView_mis_salas)
+        val toolbar = viewFragment.findViewById<Toolbar>(R.id.toolbar)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+
 
         val buttonCrearSala = viewFragment.findViewById<FloatingActionButton>(R.id.button_crear_sala)
         buttonCrearSala.setOnClickListener {
@@ -59,21 +66,8 @@ class MisSalas : Fragment() {
         sAdapter = SalaAdapter(activity, "user/$username/", username!!)
         //Crear adaptador y setear
         slistView?.adapter = sAdapter
+
+
     }
 
-//    fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu)
-//        return true
-//    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-        return if (id == R.id.action_settings) {
-            true
-        } else super.onOptionsItemSelected(item)
-    }
 }
