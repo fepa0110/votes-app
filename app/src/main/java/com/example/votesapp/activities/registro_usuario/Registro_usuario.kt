@@ -67,7 +67,7 @@ class Registro_usuario : AppCompatActivity() {
             }
 
             override fun onTextChanged(charSequence: CharSequence, star: Int,before: Int,count: Int) {
-                registroUserName!!.error = null
+                esNombreValido(charSequence.toString())
             }
             override fun afterTextChanged(editable: Editable) {}
         })
@@ -112,9 +112,9 @@ class Registro_usuario : AppCompatActivity() {
     //Validar el nombre de usuario
     private fun esNombreValido(nombre: String): Boolean {
         val patron =
-            Pattern.compile("/^[a-z0-9_-]{3,16}\$/")
-        if (!patron.matcher(nombre).matches() || nombre.length > 30) {
-            registroUserName!!.error = "Nombre inválido"
+            Pattern.compile("^(?=.{3,15}\$)[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]+(?:[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]+)?\$")
+        if (!patron.matcher(nombre).matches()) {
+            registroUserName!!.error = "El nombre de usuario solo contiene numeros y letras"
             return false
         } else {
             registroUserName!!.error = null

@@ -199,14 +199,15 @@ class Registro_usuario2 : AppCompatActivity() {
         val newFragment = if (birthDate.isEmpty())
             DatePickerFragment.newInstance(onNewDateListener)
         else {
-            val parts = birthDate.split('/')
+            val parts = birthDate.split('-')
             DatePickerFragment.newInstance(
                 onNewDateListener,
-                parts[2].toInt(), parts[1].toInt(), parts[0].toInt()
+                parts[0].toInt(), parts[1].toInt(), parts[2].toInt()
             )
         }
 
         newFragment.show(supportFragmentManager, "datePicker")
+
 
     }
 

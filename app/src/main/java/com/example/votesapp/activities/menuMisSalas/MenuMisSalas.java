@@ -6,25 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,7 +28,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.votesapp.R;
 import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.mis_salas.Sala;
-import com.example.votesapp.activities.opciones_votacion.CargaDatosOP;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
 import com.example.votesapp.activities.votante_by_dni.AccesoDni;
 import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
@@ -58,6 +49,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     FragmentTransaction fragmentTransaction;
     private  OpcionesVotacion opcionesVotacion;
     private  AddVotanteByUser addVotanteByUser;
+    private TiempoVotacion tiempoVotacion;
     private  InfoSala infoSala;
     private AccesoContrasenia accesoContrasenia;
     private AccesoDni accesoDni;
@@ -91,6 +83,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         buttonHabilitar=(ImageButton)findViewById(R.id.botonHabilitar);
         buttonFinalizar = findViewById(R.id.button_finalizar_sala);
+        toolbar.setTitle("Sala");
 
         salaId = getIntent().getIntExtra("param_id",0);
         nombreSala= getIntent().getStringExtra("param_nombre");
@@ -139,6 +132,9 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         lista_votos = new Lista_votos();
         lista_votos.setArguments(bundle);
+
+        tiempoVotacion = new TiempoVotacion();
+        tiempoVotacion.setArguments(bundle);
 
         buttonFinalizar.setOnClickListener(
                 view -> {
@@ -203,6 +199,14 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, opcionesVotacion);
+            fragmentTransaction.commit();
+
+        }
+
+        if (item.getItemId() == R.id.tiempoDeSala){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, tiempoVotacion);
             fragmentTransaction.commit();
 
         }
@@ -282,8 +286,6 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     }
 
     @SuppressLint("UseCompatLoadingForColorStateLists")
-
-
     private Sala parseJson(JSONObject jsonObject) {
         //Variables Locales
         Sala sala = new Sala();

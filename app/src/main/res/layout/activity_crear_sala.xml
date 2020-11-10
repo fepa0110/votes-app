@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".activities.crear_sala.CrearSala">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
+
+
 
         <EditText
             android:id="@+id/crear_sala_editText_nombre"

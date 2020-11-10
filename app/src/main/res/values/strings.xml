@@ -39,6 +39,14 @@
     <string name="fechaNacimientoUsuario">Fecha de nacimiento</string>
     <string name="botonVolver2">Cancelar</string>
     <string name="botonResgistrar">Registrar</string>
+
+    <!--Copiar-->
+    <string name="titlulo_pickers">Obtener fecha y hora</string>
+
+    <string name="formato_fecha">dd/mm/yyyy</string>
+    <string name="formato_hora">hh:mm</string>
+    <!--Fin copiar-->
+
     <!-- Fabricio -->
 
     <string name="title_activity_mis_salas">Mis Salas</string>
