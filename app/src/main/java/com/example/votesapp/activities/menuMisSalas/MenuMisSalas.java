@@ -38,6 +38,7 @@ import com.example.votesapp.activities.infoSala.InfoSala;
 import com.example.votesapp.activities.mis_salas.Sala;
 import com.example.votesapp.activities.opciones_votacion.CargaDatosOP;
 import com.example.votesapp.activities.opciones_votacion.OpcionesVotacion;
+import com.example.votesapp.activities.userByComprension.FilterUserByComprension;
 import com.example.votesapp.activities.votante_by_dni.AccesoDni;
 import com.example.votesapp.activities.votante_by_user.AddVotanteByUser;
 import com.example.votesapp.activities.votoTotal.Lista_votos;
@@ -58,6 +59,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     FragmentTransaction fragmentTransaction;
     private  OpcionesVotacion opcionesVotacion;
     private  AddVotanteByUser addVotanteByUser;
+    private FilterUserByComprension filterUserByComprension;
     private  InfoSala infoSala;
     private AccesoContrasenia accesoContrasenia;
     private AccesoDni accesoDni;
@@ -127,6 +129,9 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
 
         addVotanteByUser = new AddVotanteByUser();
         addVotanteByUser.setArguments(bundle);
+
+        filterUserByComprension = new FilterUserByComprension();
+        filterUserByComprension.setArguments(bundle);
 
         infoSala = new InfoSala();
         infoSala.setArguments(bundle);
@@ -209,6 +214,12 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.commit();
+        }
+        if (item.getItemId() == R.id.filterUserBycomprension){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, filterUserByComprension); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.accesoPorContraseña){

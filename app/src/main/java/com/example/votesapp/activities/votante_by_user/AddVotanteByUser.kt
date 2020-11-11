@@ -61,7 +61,7 @@ class AddVotanteByUser : Fragment() {
         //Inicializo el adapter y le paso id de sala
         votanteByUsernameAdapter = VotanteByUsernameAdapter(viewFragment.context,salaId!!)
 
-        if(estadoSala == "FINALIZADA"){
+        if(estadoSala == "FINALIZADA" || estadoSala == "DISPONIBLE"){
             agregarVotanteButton.isEnabled = false
             agregarVotanteButton.backgroundTintList =  resources.getColorStateList(R.color.gris, null)
 

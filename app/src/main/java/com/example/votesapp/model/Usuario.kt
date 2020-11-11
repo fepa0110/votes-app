@@ -1,5 +1,6 @@
 package com.example.votesapp.model
 
+import com.google.android.gms.maps.model.LatLng
 import java.util.*
 
 class Usuario {
@@ -10,6 +11,7 @@ class Usuario {
     var dni : String? = null
     var contrasenia : String? = null
     var fechaNacimiento: String? = null
+    var ubicacion: LatLng? = null
 
     constructor() {}
 

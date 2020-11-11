@@ -84,7 +84,7 @@ public class AccesoDni extends Fragment {
         });
 
         //Deshabilitar nuevos ingresos si esta finalizada la sala
-        if(estado.equals("FINALIZADA")){
+        if(estado.equals("FINALIZADA") || estado.equals("DISPONIBLE")){
             inputDni.setEnabled(false);
             btnAñadir.setEnabled(false);
             btnAñadir.setBackground(getResources().getDrawable(R.drawable.button_circle_disabled,null));

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lista_mis_salas_frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
+    android:layout_toStartOf="@+id/navigationView"
+    tools:context=".activities.mis_salas.MisSalas">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_comprension_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/agregar_user_comprension_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nombre_options_layout_user_comprension"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="46dp"
+                app:layout_constraintEnd_toStartOf="@+id/apellido_options_layout_user_comprension"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/label_nombre_user_comprension"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombreUsuario"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nombre_desde_layout_user_comprension"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/negro"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="3"
+                    app:counterTextColor="@color/negro"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/label_nombre_user_comprension">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nombre_desde_editText_user_comprension"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Desde"
+                        android:textColorHighlight="@color/colorPrimary"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nombre_hasta_layout_user_comprension"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/negro"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="3"
+                    app:counterTextColor="@color/negro"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/nombre_desde_layout_user_comprension"
+                    app:layout_constraintTop_toBottomOf="@+id/label_nombre_user_comprension">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nombre_hasta_editText_user_comprension"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Hasta"
+                        android:textColorHighlight="@color/colorPrimary"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/apellido_options_layout_user_comprension"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/nombre_options_layout_user_comprension"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/label_apellido_user_comprension"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/apellidoUsuario"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/apellido_desde_layout_user_comprension"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/negro"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="3"
+                    app:counterTextColor="@color/negro"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/label_apellido_user_comprension">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/apellido_desde_editText_user_comprension"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Desde"
+                        android:textColorHighlight="@color/colorPrimary"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/apellido_hasta_layout_user_comprension"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/negro"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="3"
+                    app:counterTextColor="@color/negro"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/apellido_desde_layout_user_comprension"
+                    app:layout_constraintTop_toBottomOf="@+id/label_apellido_user_comprension">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/apellido_hasta_editText_user_comprension"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Hasta"
+                        android:textColorHighlight="@color/colorPrimary"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/previsualizar_user_comprension_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="120dp"
+                android:background="@drawable/ic_preview"
+                android:backgroundTint="@color/colorPrimary"
+                android:contentDescription="Previsualizar votantes"
+                android:tag="Previsualizar"
+                android:tooltipText="Previsualizar"
+                android:visibility="visible"
+                app:fabCustomSize="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/clear_user_comprension_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nombre_options_layout_user_comprension" />
+
+            <Button
+                android:id="@+id/clear_user_comprension_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="120dp"
+                android:background="@drawable/ic_clear_all"
+                android:backgroundTint="@color/colorPrimary"
+                android:contentDescription="Limpiar lista"
+                android:tag="Previsualizar"
+                android:tooltipText="Previsualizar"
+                android:visibility="visible"
+                app:fabCustomSize="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/previsualizar_user_comprension_button"
+                app:layout_constraintTop_toBottomOf="@+id/apellido_options_layout_user_comprension" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_comprension_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/agregar_user_comprension_layout">
+
+            <include
+                layout="@layout/listado_user_by_compresion"
+                tools:layout_editor_absoluteX="0dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_comprension_buttons_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/user_comprension_button_finalizar"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Confirmar"
+                android:textColor="@color/blanco"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</FrameLayout>
