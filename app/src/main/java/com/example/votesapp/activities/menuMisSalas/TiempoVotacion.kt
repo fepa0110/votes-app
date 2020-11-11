@@ -78,7 +78,7 @@ class TiempoVotacion : Fragment() {
     private fun showTimePickerDialog() {
         val newFragment = newInstance { timePicker, hour, minute ->
             val selectedTime: String
-            
+
             Log.i("fecha hoy", textTiempoVotacion!!.text.toString())
             val fechaActual = getDate[Calendar.YEAR].toString() + "-" + (getDate[Calendar.MONTH] + 1) + "-" + getDate[Calendar.DAY_OF_MONTH]
 
@@ -102,7 +102,7 @@ class TiempoVotacion : Fragment() {
 
                 } else {
                     textTiempoHora!!.setText(null)
-                    horaLayout!!.error = "La hora debe ser mayor al actual"
+                    horaLayout!!.error = "Ingrese una hora actual"
                     Log.i("errorHora",hour.toString()+":"+minute.toString());
                     Log.i("calendar Hora", getDate[Calendar.HOUR].toString() + ":" + getDate[Calendar.MINUTE].toString()+" "+getDate[Calendar.AM_PM].toString());
                 }
@@ -144,7 +144,7 @@ class TiempoVotacion : Fragment() {
 
     private fun esCorrectoFecha(fechatiempo: String): Boolean {
         if (fechatiempo.isEmpty()) {
-            fechaLayout!!.error = "Ingrese una fecha de finalizacion de sala"
+            fechaLayout!!.error = "Ingrese una fecha de finalizacion a la sala"
             horaLayout!!.isEnabled = false
             return false
         } else {
@@ -156,7 +156,7 @@ class TiempoVotacion : Fragment() {
 
     private fun esCorrectoHora(horatiempo: String): Boolean {
         if (horatiempo.isEmpty()) {
-            horaLayout!!.error = "Ingrese una hora de finalizacion de sala"
+            horaLayout!!.error = "Ingrese una hora de finalizacion a la sala"
             return false
         } else {
             horaLayout!!.error = null
