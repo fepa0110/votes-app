@@ -32,6 +32,7 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
     private String nombreSala = " ";
     private String usernameOwner = null;
     private String estado =" ";
+    private  Boolean tiempoSalaFinalizada;
     TextView tituloMenu;
 
     //variables para cargar el fragment principal
@@ -53,6 +54,8 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         nombreSala= getIntent().getStringExtra("param_nombre");
         usernameOwner = getIntent().getStringExtra("param_username");
         estado = getIntent().getStringExtra("param_estado");
+        tiempoSalaFinalizada = getIntent().getBooleanExtra("param_tiempoSala",true);
+
 
         drawerLayout = findViewById(R.id.drawer2);
         navigationView = findViewById(R.id.navigationView2);
@@ -73,6 +76,7 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         bundle.putString("param_username",usernameOwner);
         bundle.putBoolean("param_desde_salas",true);
         bundle.putString("param_estado",estado);
+        bundle.putBoolean("param_tiempoSala",tiempoSalaFinalizada);
 
         infoSala = new InfoSala();
         infoSala.setArguments(bundle);
@@ -104,16 +108,19 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
             fragmentTransaction.replace(R.id.contenedor2, infoSala); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
+
         if (item.getItemId() == R.id.OpcionesVotacion2){
-            fragmentManager=getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor2, opcionesVotacion);
-            fragmentTransaction.commit();
+            if (estado.equals("DISPONIBLE") && tiempoSalaFinalizada == true) {
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contenedor2, opcionesVotacion);
+                fragmentTransaction.commit();
+            }
 
         }
         if (item.getItemId() == R.id.recuentoVoto) {
             Log.i("estadoooooo",estado);
-            if (estado.equals("FINALIZADA")) {
+            if (estado.equals("FINALIZADA")|| tiempoSalaFinalizada == false) {
 
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();

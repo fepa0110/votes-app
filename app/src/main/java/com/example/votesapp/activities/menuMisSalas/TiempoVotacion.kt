@@ -78,20 +78,7 @@ class TiempoVotacion : Fragment() {
     private fun showTimePickerDialog() {
         val newFragment = newInstance { timePicker, hour, minute ->
             val selectedTime: String
-
-
-//                getDate.set(Calendar.HOUR_OF_DAY, hour);
-//                getDate.set(Calendar.MINUTE, minute);
-//                SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm a");
-//                String formatedDate = timeformat.format(getDate.getTime());
-//                textTiempoHora.setText(formatedDate);
-//
-//                String AM_PM;
-//                if (hour < 12) {
-//                    AM_PM = "a.m.";
-//                } else {
-//                    AM_PM = "p.m.";
-//                }
+            
             Log.i("fecha hoy", textTiempoVotacion!!.text.toString())
             val fechaActual = getDate[Calendar.YEAR].toString() + "-" + (getDate[Calendar.MONTH] + 1) + "-" + getDate[Calendar.DAY_OF_MONTH]
 
@@ -106,7 +93,7 @@ class TiempoVotacion : Fragment() {
                     horaActual = horaActual + 12
                 }
                 Log.i("Hora Actual Calendar",horaActual.toString())
-                if (hour > horaActual && minute>minutosActuales) {
+                if (hour > horaActual && minute >minutosActuales || hour > horaActual && minute == minutosActuales || hour== horaActual && minute>minutosActuales) {
 
                         selectedTime = "$hour:$minute"
                         textTiempoHora!!.setText(selectedTime)
@@ -183,14 +170,14 @@ class TiempoVotacion : Fragment() {
         val a = esCorrectoFecha(fecha)
         val b = esCorrectoHora(hora)
         if (a && b) {
-            val fechaHora =
-                textTiempoVotacion!!.text.toString() + " " + textTiempoHora!!.text.toString()
-            createTiempoDuracion(fechaHora)
+            val fecha =textTiempoVotacion!!.text.toString()
+            val hora =  textTiempoHora!!.text.toString()
+            createTiempoDuracion(fecha,hora)
         }
     }
 
-    private fun createTiempoDuracion(fechaHora: String) {
-        salaId?.let { duracionService.create(requireContext(), fechaHora, it) }
+    private fun createTiempoDuracion(fecha: String,hora: String) {
+        salaId?.let { duracionService.create(requireContext(), fecha,hora, it) }
     }
 
 

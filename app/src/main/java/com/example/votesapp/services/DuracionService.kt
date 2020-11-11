@@ -13,10 +13,11 @@ class DuracionService {
         const val LOG_TAG = "duracion"
     }
 
-    public fun create(context: Context, fechaHora: Any, id: Int){
+    public fun create(context: Context, fechaHora: Any, hora:Any, id: Int){
         val queue = Volley.newRequestQueue(context)
         val jsonTiempoVotacion = JSONObject()
-        jsonTiempoVotacion.put("fechaHora", fechaHora )
+        jsonTiempoVotacion.put("fecha", fechaHora )
+        jsonTiempoVotacion.put("hora",hora)
 
 
         val jsonRequest = JsonObjectRequest("$url/$id", jsonTiempoVotacion,

@@ -9,11 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.VolleyLog
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
+import com.example.votesapp.activities.menuMisSalas.TiempoVotacion
 import com.example.votesapp.activities.menuSala.MenuSala
 import org.json.JSONArray
 import org.json.JSONException
@@ -25,13 +28,17 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
     context!!, 0
 ) {
     //Atributos
-    private val requestQueue: RequestQueue
+    private var requestQueue: RequestQueue
     var jsArrayRequest: JsonObjectRequest
     var username = username
-
+    var getDate = GregorianCalendar.getInstance()
+    var fechaSala : List<String> = ArrayList()
+    var horarioSala : List<String> = ArrayList()
+    var tiempoSalaFinalizada : Boolean = false
 
 
     private var urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas"
+    private var urlDuracionSala = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/duraciones"
 
     var sList: List<Sala?>? = ArrayList<Sala?>()
 
@@ -63,17 +70,83 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
         val nombreSala = view.findViewById<TextView>(R.id.nombreSala)
         nombreSala.text = sala?.nombreSala
         view.setOnClickListener{
+            val horasActual = getDate[Calendar.HOUR].toString() + ":" + getDate[Calendar.MINUTE] + " " +getDate[Calendar.AM_PM]
+            val fechaActual = getDate[Calendar.YEAR].toString() + "-" + (getDate[Calendar.MONTH] + 1) + "-" + getDate[Calendar.DAY_OF_MONTH]
+
             if(sala?.contrasenia.toString().equals("null")){
 
-                val intent = Intent(context, MenuSala::class.java)
+                requestQueue = Volley.newRequestQueue(context)
+                jsArrayRequest = JsonObjectRequest(
+                    Request.Method.GET,"$urlDuracionSala/${sala?.id}", null,
+                    { response ->
+                         val fecha = parseJsonDuracion(response)
+                        var hora = getDate[Calendar.HOUR]
 
-                intent.putExtra("param_username", username)
-                intent.putExtra("param_estado", sala?.estado)
-                intent.putExtra("param_id", sala?.id?.toInt())
-                intent.putExtra("param_nombre", sala?.nombreSala)
-                intent.putExtra("param_desde_salas", true)
+                        if (fechaSala[0]?.toInt() > getDate[Calendar.YEAR]){
+                            Log.i("Año mayor","entra")
+                            tiempoSalaFinalizada = true
+                        }else{
+                            if (fechaSala[0]?.toInt() == getDate[Calendar.YEAR]){
+                                if (fechaSala[1]?.toInt() > (getDate[Calendar.MONTH] + 1)){
+                                    Log.i("mes mayor", "entrar")
+                                    tiempoSalaFinalizada = true
+                                }else{
+                                    if (fechaSala[1]?.toInt() == (getDate[Calendar.MONTH] + 1)){
+                                        if(fechaSala[2]?.toInt() > getDate[Calendar.DAY_OF_MONTH]){
+                                            Log.i("dia mayor", "entrar")
+                                            tiempoSalaFinalizada = true
+                                        }else{
+                                            if(fechaSala[2]?.toInt() == getDate[Calendar.DAY_OF_MONTH]){
+                                                if(getDate[Calendar.AM_PM] == Calendar.PM){
+                                                    hora = hora + 12
+                                                }
+                                                if (horarioSala[0]?.toInt() > hora){
+                                                    Log.i("Hora mayor","entrar")
+                                                    tiempoSalaFinalizada = true
+                                                }else{
+                                                    if (horarioSala[0]?.toInt() == hora){
+                                                        if (horarioSala[1]?.toInt()>getDate[Calendar.MINUTE] ){
+                                                            Log.i("Minutos mayor", "Entrar")
+                                                            tiempoSalaFinalizada = true
+                                                        }else {
+                                                            Log.i("minutos menor", "no entrar")
+                                                            tiempoSalaFinalizada = false
+                                                        }
+                                                    }else{
+                                                        Log.i("hora menor", "no entrar")
+                                                        tiempoSalaFinalizada = false
+                                                    }
+                                                }
+                                            }else{
+                                                Log.i("dia menor", "no entrar")
+                                                tiempoSalaFinalizada = false
+                                            }
+                                        }
+                                    }else{
+                                        Log.i("mes menor", "no entrar")
+                                        tiempoSalaFinalizada = false
+                                    }
+                                }
+                            }else{
+                                Log.i("año menor", "no entrar")
+                                tiempoSalaFinalizada = false
+                            }
+                        }
+                        val intent = Intent(context, MenuSala::class.java)
 
-                context.startActivity(intent)
+                        intent.putExtra("param_username", username)
+                        intent.putExtra("param_estado", sala?.estado)
+                        intent.putExtra("param_id", sala?.id?.toInt())
+                        intent.putExtra("param_nombre", sala?.nombreSala)
+                        intent.putExtra("param_desde_salas", true)
+                        intent.putExtra("param_tiempoSala", tiempoSalaFinalizada)
+
+                        context.startActivity(intent)
+
+                    }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }
+                requestQueue.add(jsArrayRequest)
+
+
             }else {
                 val idSala = sala?.id?.toInt()
                 if (idSala != null) {
@@ -122,15 +195,35 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
         return salas
     }
 
+    fun parseJsonDuracion(jsonObject: JSONObject) : String? {
+        var data : JSONObject
+
+        try {
+            data = jsonObject.getJSONObject("data")
+            var auxFecha = data.getString("fecha")
+            var auxHoras = data.getString("hora")
+
+            fechaSala = auxFecha.split('-')
+            horarioSala = auxHoras.split(':')
+
+        }catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        return ""
+    }
+
     companion object {
         private const val TAG = "SalaAdapter"
     }
+
+
 
     //Constructor
     init {
 
         var salasUser: List<Sala?> = ArrayList<Sala?>()
         var salasDni: List<Sala?> = ArrayList<Sala?>()
+        var salaid: List<Sala?> = ArrayList<Sala?>()
 
         //Gestionar peticion del archivo JSON
 
@@ -168,9 +261,11 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
             }) { error -> Log.d(TAG, "Error Respuesta en Json: " + error.message) }
         //        //  Añadir peticion a la cola
         requestQueue.add(jsArrayRequest)
+
+
     }
 
-    fun agregarSalas(salasVotante : List<Sala?>){
+    fun agregarSalas(salasVotante: List<Sala?>){
         var salas : MutableList<Sala?> = ArrayList<Sala?>()
         for (i in 0 until sList!!.size) {
             salas.add(sList!!.get(i))
