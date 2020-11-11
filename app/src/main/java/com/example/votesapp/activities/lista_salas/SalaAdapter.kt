@@ -177,7 +177,9 @@ class SalaAdapter(context: Context?, username: String) : ArrayAdapter<Sala?>(
         }
 
         for (i in 0 until salasVotante.size) {
-            salas.add(salasVotante.get(i))
+            if(!salas.contains(salasVotante.get(i))){
+                salas.add(salasVotante.get(i))
+            }
         }
 
         sList = salas

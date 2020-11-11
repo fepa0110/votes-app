@@ -33,6 +33,7 @@ class UpdateUser : AppCompatActivity() {
     private var usuarioService = NewLoginService()
     private val urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/usuarios"
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_user)
@@ -55,41 +56,49 @@ class UpdateUser : AppCompatActivity() {
         nombreEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
-            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
                 validateNombre()
             }
+
             override fun afterTextChanged(editable: Editable) {}
         })
 
         apellidoEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
-            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
                 validateApellido()
             }
+
             override fun afterTextChanged(editable: Editable) {}
         })
 
         emailEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
-            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
                 validateEmail()
             }
+
             override fun afterTextChanged(editable: Editable) {}
         })
 
         passwordEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
-            override fun onTextChanged(charSequence: CharSequence,i: Int,i1: Int,i2: Int) {
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
                 validatePassword()
             }
+
             override fun afterTextChanged(editable: Editable) {}
         })
 
         val guardarButton = findViewById<Button>(R.id.button_guardar_editar_perfil)
-        guardarButton.setOnClickListener {view ->
+        guardarButton.setOnClickListener { view ->
             if(validateNombre() && validateApellido() && validatePassword() && validateEmail()) {
                 /*Snackbar.make(view, "Enviar update", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()*/
@@ -100,7 +109,7 @@ class UpdateUser : AppCompatActivity() {
                 usuario.correoElectronico = emailEditText.text.toString()
                 usuario.contrasenia = passwordEditText.text.toString()
 
-                this.isEmailExists(queue,usuario,view)
+                this.isEmailExists(queue, usuario, view)
             }
         }
 
@@ -204,13 +213,14 @@ class UpdateUser : AppCompatActivity() {
                 error.printStackTrace()
                 Log.e("UpdateUser", "Respuesta servidor: $error.networkResponse")
                 Log.e("UpdateUser", "No se pudieron guardar los cambios")
-                Snackbar.make(view, "No se pudieron guardar los cambios", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(view, "No se pudieron guardar los cambios", Snackbar.LENGTH_LONG)
+                    .show()
             }
         )
         queue.add(jsonRequest)
     }
 
-    private fun isEmailExists(queue: RequestQueue, usuario : Usuario, view: View) {
+    private fun isEmailExists(queue: RequestQueue, usuario: Usuario, view: View) {
         val jsonUsuario = JSONObject()
         jsonUsuario.put("username", usuario.username)
         jsonUsuario.put("correoElectronico", usuario.correoElectronico)
@@ -222,10 +232,10 @@ class UpdateUser : AppCompatActivity() {
             { response ->
                 Log.i(NewLogin.LOG_TAG, "Response is: $response")
 
-                if (usuarioService.parseStatus(response) == "502"){
-                    Log.i("UpdateUser","email response: $response")
-                    this.sendResponse(queue,usuario,view)
-                } else{
+                if (usuarioService.parseStatus(response) == "502") {
+                    Log.i("UpdateUser", "email response: $response")
+                    this.sendResponse(queue, usuario, view)
+                } else {
                     emailEditText.error = "Este email ya esta registrado"
                 }
             },
@@ -242,6 +252,6 @@ class UpdateUser : AppCompatActivity() {
     private fun updateSuccessfull(){
         Toast.makeText(this, "Se guardaron los cambios correctamente", Toast.LENGTH_SHORT).show()
         val handler = Handler()
-        handler.postDelayed({onBackPressed()}, 500)
+        handler.postDelayed({ onBackPressed() }, 500)
     }
 }

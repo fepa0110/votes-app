@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
 import com.example.votesapp.activities.newLogin.NewLogin
 import com.example.votesapp.activities.newLogin.NewLoginService
+import com.example.votesapp.activities.registroHuella.RegistroHuella
 import com.example.votesapp.model.Usuario
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout

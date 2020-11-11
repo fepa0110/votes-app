@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/btn_background">
+
+    <ImageView
+        android:id="@+id/item_icon_dispositivo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/telefono_inteligente"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/item_modelo_dispositivo"
+        android:layout_width="214dp"
+        android:layout_height="51dp"
+        android:layout_toEndOf="@+id/item_icon_dispositivo"
+        android:gravity="center"
+        android:textColor="@color/blanco"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/item_remove_dispositivo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/item_modelo_dispositivo"
+        android:background="@drawable/ic_delete_trash"
+        android:backgroundTint="@color/negro"
+        android:contentDescription="@string/eliminar_description" />
+
+</RelativeLayout>

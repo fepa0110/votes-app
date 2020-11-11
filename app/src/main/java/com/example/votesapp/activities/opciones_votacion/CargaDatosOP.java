@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,13 +21,17 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.votesapp.R;
+import com.example.votesapp.model.Seguridad;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CargaDatosOP extends AppCompatActivity implements BiometricCallback {
@@ -38,12 +43,16 @@ public class CargaDatosOP extends AppCompatActivity implements BiometricCallback
     private RequestQueue requestQueue;
     private String url = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/opVotaciones/";
     private String urlVotacion = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/";
+    private String urlDispositivo = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/seguridad/";
+    private String urlVoto="http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas/userVoto/";
     private String TAG = "OPVotacion";
     private int cantVotos;
     private Handler handler;
     private boolean desdeSalas;
+    private boolean userVoto = false;
     private int salaId;
     private String userName;
+    private String estado;
     BiometricManager mBiometricManager;
 
     @Override
@@ -68,8 +77,24 @@ public class CargaDatosOP extends AppCompatActivity implements BiometricCallback
         cantVotos = getIntent().getIntExtra("param_cantVotos",0);
         this.salaId = getIntent().getIntExtra("param_sala_id",0);
         this.userName = getIntent().getStringExtra("param_username");
+        this.estado = getIntent().getStringExtra("param_estado");
         this.desdeSalas = getIntent().getBooleanExtra("param_desdeSalas",false);
 
+        if(userName != null) {
+            verificarVoto();
+        }
+
+        if (estado != null) {
+            if (estado.equals("FINALIZADA") || estado.equals("DISPONIBLE")) {
+                btnCancelar.setVisibility(View.INVISIBLE);
+                btnEliminar.setVisibility(View.INVISIBLE);
+                btnGuardar.setVisibility(View.INVISIBLE);
+                btnVotar.setVisibility(View.INVISIBLE);
+                titulo.setEnabled(false);
+                descripcion.setEnabled(false);
+            }
+        }
+        
         if(desdeSalas){
             btnCancelar.setVisibility(View.INVISIBLE);
             btnEliminar.setVisibility(View.INVISIBLE);
@@ -79,18 +104,13 @@ public class CargaDatosOP extends AppCompatActivity implements BiometricCallback
             descripcion.setEnabled(false);
         }
 
+
+
         btnVotar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mBiometricManager = new BiometricManager.BiometricBuilder(CargaDatosOP.this)
-                        .setTitle(getString(R.string.biometric_title))
-                        .setSubtitle(getString(R.string.biometric_subtitle))
-                        .setDescription(getString(R.string.biometric_description))
-                        .setNegativeButtonText(getString(R.string.biometric_negative_button_text))
-                        .build();
+                verificarDispositivo();
 
-                //start authentication
-                mBiometricManager.authenticate(CargaDatosOP.this);
             }
         });
 
@@ -279,6 +299,7 @@ public class CargaDatosOP extends AppCompatActivity implements BiometricCallback
                     @Override
                     public void onResponse(JSONObject response) {
                         //Toast.makeText(CargaDatosOP.this, "Opcion Modificada Correctamente", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
                     }
                 }, new Response.ErrorListener() {
 
@@ -301,4 +322,115 @@ public class CargaDatosOP extends AppCompatActivity implements BiometricCallback
 //        Toast.makeText(getApplicationContext(), errString, Toast.LENGTH_LONG).show();
     }
 
+    private void verificarDispositivo(){
+        requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                urlDispositivo+userName,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        List<Seguridad> modelos = parseJson(response);
+                        for (int i=0; i<modelos.size();i++) {
+                            if (userVoto != true) {
+                                if (modelos.get(i).getIdSmartPhone().equals(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID))) {
+                                    mBiometricManager = new BiometricManager.BiometricBuilder(CargaDatosOP.this)
+                                            .setTitle(getString(R.string.biometric_title))
+                                            .setSubtitle(getString(R.string.biometric_subtitle))
+                                            .setDescription(getString(R.string.biometric_description))
+                                            .setNegativeButtonText(getString(R.string.biometric_negative_button_text))
+                                            .build();
+
+                                    //start authentication
+                                    mBiometricManager.authenticate(CargaDatosOP.this);
+                                } else {
+                                    Toast.makeText(CargaDatosOP.this, "No puede votar desde este dispositivo", Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(CargaDatosOP.this, "Usted ya voto", Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Error Respuesta en JSON: " + error.getMessage());
+                    }
+                }
+        );
+        // Añadir petición a la cola
+        requestQueue.add(jsArrayRequest);
+    }
+
+    private List<Seguridad> parseJson(JSONObject jsonObject){
+        // Variables locales
+        List<Seguridad> posts = new ArrayList();
+        JSONArray jsonArray = null;
+
+        try {
+
+            jsonArray = jsonObject.getJSONArray("data");
+
+            for(int i=0; i<jsonArray.length(); i++){
+
+                try {
+                    JSONObject objeto= jsonArray.getJSONObject(i);
+                    Seguridad segu = new Seguridad();
+                    segu.setId(objeto.getInt("id"));
+                    segu.setModeloSmartphone(objeto.getString("modeloSmartphone"));
+                    segu.setIdSmartPhone(objeto.getString("idSmartPhone"));
+                    posts.add(segu);
+                } catch (JSONException e) {
+                    Log.e(TAG, "Error de parsing: "+ e.getMessage());
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return posts;
+    }
+
+    private void verificarVoto(){
+        requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                urlVotacion+salaId+"/"+userName,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        parseJson2(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Error Respuesta en JSON: " + error.getMessage());
+                    }
+                }
+        );
+        // Añadir petición a la cola
+        requestQueue.add(jsArrayRequest);
+    }
+
+    private void parseJson2(JSONObject jsonObject){
+        // Variables locales
+        try {
+
+            JSONObject json = jsonObject.getJSONObject("data");
+
+                try {
+                    userVoto = json.getBoolean("voto");
+                    Log.i("Votooooooooo", userVoto+"");
+                } catch (JSONException e) {
+                    Log.e(TAG, "Error de parsing: "+ e.getMessage());
+                }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -26,260 +26,301 @@
             app:titleTextColor="#FFFFFF" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="55dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/foto_perfil_userActivity"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/ic_user"
-            android:backgroundTint="@color/blanco"
-            android:backgroundTintMode="src_in"
-            android:contentDescription="@string/foto_de_perfil"
-            android:cropToPadding="false"
-            android:fadingEdge="horizontal"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="457dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="83dp"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/foto_perfil_userActivity"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/ic_user"
+                android:backgroundTint="@color/blanco"
+                android:backgroundTintMode="src_in"
+                android:contentDescription="@string/foto_de_perfil"
+                android:cropToPadding="false"
+                android:fadingEdge="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Informacion usuario -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="418dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/foto_perfil_userActivity">
+
+                <!-- Username -->
+
+                <!-- Nombre -->
+                <!-- Apellido -->
+
+                <TextView
+                    android:id="@+id/usuario_text_userActivity"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/usuario_text_view_userActivity"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/user_activity_username"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_activity_username"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="36dp"
+                    android:autoSizeTextType="uniform"
+                    android:elegantTextHeight="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/usuario_text_userActivity"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/nombre_text_userActivity"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/nombre_text_view_userActivity"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/userActivity_nombre"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/usuario_text_userActivity" />
+
+                <!-- DNI -->
+
+                <TextView
+                    android:id="@+id/userActivity_nombre"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="36dp"
+                    android:autoSizeTextType="uniform"
+                    android:elegantTextHeight="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/nombre_text_userActivity"
+                    app:layout_constraintTop_toBottomOf="@+id/user_activity_username" />
+
+                <TextView
+                    android:id="@+id/apellido_text_userActivity"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/apellido_text_view_userActivity"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/userActivity_apellido"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nombre_text_userActivity" />
+
+                <!-- Email -->
+
+                <TextView
+                    android:id="@+id/userActivity_apellido"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="36dp"
+                    android:autoSizeTextType="uniform"
+                    android:elegantTextHeight="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/apellido_text_userActivity"
+                    app:layout_constraintTop_toBottomOf="@+id/userActivity_nombre" />
+
+                <TextView
+                    android:id="@+id/dni_text_userActivity"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/dni_text_view_userActivity"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/userActivity_dni"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/apellido_text_userActivity" />
+
+                <TextView
+                    android:id="@+id/userActivity_dni"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="36dp"
+                    android:autoSizeTextType="uniform"
+                    android:elegantTextHeight="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dni_text_userActivity"
+                    app:layout_constraintTop_toBottomOf="@+id/userActivity_apellido" />
+
+                <TextView
+                    android:id="@+id/fechaNacimiento_text_userActivity"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/fechaNacimiento_text_view_userActivity"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/userActivity_fechaNacimiento"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dni_text_userActivity" />
+
+                <TextView
+                    android:id="@+id/userActivity_fechaNacimiento"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="36dp"
+                    android:autoSizeTextType="uniform"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fechaNacimiento_text_userActivity"
+                    app:layout_constraintTop_toBottomOf="@+id/userActivity_dni" />
+
+                <TextView
+                    android:id="@+id/email_text_userActivity"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/email_text_view_userActivity"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/userActivity_email"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento_text_userActivity" />
+
+                <TextView
+                    android:id="@+id/userActivity_email"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="36dp"
+                    android:autoSizeTextType="uniform"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/email_text_userActivity"
+                    app:layout_constraintTop_toBottomOf="@+id/userActivity_fechaNacimiento" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Boton Editar perfil -->
+
+            <!-- Boton cerrar sesion -->
+
+
+            <Button
+                android:id="@+id/editar_perfil_button_userActivity"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="32dp"
+                android:background="?attr/colorPrimary"
+                android:text="@string/editar_perfil_text_userActivity"
+                android:textColor="@color/blanco"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+            <Button
+                android:id="@+id/logout_button_userActivity"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/danger"
+                android:text="@string/logout_text_userActivity"
+                android:textColor="@color/blanco"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintStart_toEndOf="@+id/editar_perfil_button_userActivity"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="505dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/add_dispositivo_listView"
+            android:layout_width="330dp"
+            android:layout_height="105dp"
+            android:divider="@color/colorPrimary"
+            android:dividerHeight="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Informacion usuario -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="418dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/foto_perfil_userActivity">
-
-            <!-- Username -->
-
-            <!-- Nombre -->
-            <!-- Apellido -->
-
-            <TextView
-                android:id="@+id/usuario_text_userActivity"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/usuario_text_view_userActivity"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/user_activity_username"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/user_activity_username"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="36dp"
-                android:autoSizeTextType="uniform"
-                android:elegantTextHeight="true"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/usuario_text_userActivity"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/nombre_text_userActivity"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/nombre_text_view_userActivity"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/userActivity_nombre"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/usuario_text_userActivity" />
-
-            <!-- DNI -->
-
-            <TextView
-                android:id="@+id/userActivity_nombre"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="36dp"
-                android:autoSizeTextType="uniform"
-                android:elegantTextHeight="true"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/nombre_text_userActivity"
-                app:layout_constraintTop_toBottomOf="@+id/user_activity_username" />
-
-            <TextView
-                android:id="@+id/apellido_text_userActivity"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/apellido_text_view_userActivity"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/userActivity_apellido"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nombre_text_userActivity" />
-
-            <!-- Email -->
-
-            <TextView
-                android:id="@+id/userActivity_apellido"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="36dp"
-                android:autoSizeTextType="uniform"
-                android:elegantTextHeight="true"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/apellido_text_userActivity"
-                app:layout_constraintTop_toBottomOf="@+id/userActivity_nombre" />
-
-            <TextView
-                android:id="@+id/dni_text_userActivity"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/dni_text_view_userActivity"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/userActivity_dni"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/apellido_text_userActivity" />
-
-            <TextView
-                android:id="@+id/userActivity_dni"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="36dp"
-                android:autoSizeTextType="uniform"
-                android:elegantTextHeight="true"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/dni_text_userActivity"
-                app:layout_constraintTop_toBottomOf="@+id/userActivity_apellido" />
-
-            <TextView
-                android:id="@+id/fechaNacimiento_text_userActivity"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/fechaNacimiento_text_view_userActivity"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/userActivity_fechaNacimiento"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dni_text_userActivity" />
-
-            <TextView
-                android:id="@+id/userActivity_fechaNacimiento"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="36dp"
-                android:textAlignment="center"
-                android:autoSizeTextType="uniform"
-                android:elegantTextHeight="true"
-                android:gravity="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fechaNacimiento_text_userActivity"
-                app:layout_constraintTop_toBottomOf="@+id/userActivity_dni" />
-
-            <TextView
-                android:id="@+id/email_text_userActivity"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/email_text_view_userActivity"
-                android:textAlignment="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/userActivity_email"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fechaNacimiento_text_userActivity" />
-
-            <TextView
-                android:id="@+id/userActivity_email"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="36dp"
-                android:textAlignment="center"
-                android:autoSizeTextType="uniform"
-                android:elegantTextHeight="true"
-                android:gravity="center"
-                android:textColor="@color/blanco"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/email_text_userActivity"
-                app:layout_constraintTop_toBottomOf="@+id/userActivity_fechaNacimiento" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Boton Editar perfil -->
         <Button
-            android:id="@+id/editar_perfil_button_userActivity"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="?attr/colorPrimary"
-            android:text="@string/editar_perfil_text_userActivity"
+            android:id="@+id/btn_agregarDispositivo_userActivity"
+            android:layout_width="174dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="15dp"
+            android:text="Agregar Dispositivos"
             android:textColor="@color/blanco"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-        <!-- Boton cerrar sesion -->
-        <Button
-            android:id="@+id/logout_button_userActivity"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:background="@color/danger"
-            android:text="@string/logout_text_userActivity"
-            android:textColor="@color/blanco"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editar_perfil_button_userActivity" />
-
+            app:layout_constraintTop_toBottomOf="@+id/add_dispositivo_listView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

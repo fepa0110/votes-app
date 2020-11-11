@@ -60,7 +60,7 @@ public class OpcionesVotacion extends Fragment {
         this.estado = getArguments().getString("param_estado");
 
         Button btnAgregar = (Button) view.findViewById(R.id.btnAñadir);
-        if (desdeSalas || this.estado.equals("FINALIZADA")) {
+        if (desdeSalas || this.estado.equals("FINALIZADA") || this.estado.equals("DISPONIBLE")) {
             btnAgregar.setEnabled(false);
             btnAgregar.setActivated(false);
             btnAgregar.setVisibility(View.INVISIBLE);
@@ -68,7 +68,7 @@ public class OpcionesVotacion extends Fragment {
         
         //Obtener instancia de la actividad
         viewPager = view.findViewById(R.id.viewPager);
-        service = new OPVotacionService(getContext(), viewPager, this.salaId, userName, desdeSalas);
+        service = new OPVotacionService(getContext(), viewPager, this.salaId, userName, desdeSalas, estado);
 
         viewPager.setPadding(130, 0, 130, 0);
 
@@ -128,6 +128,6 @@ public class OpcionesVotacion extends Fragment {
     public void onResume() {
         super.onResume();
         viewPager.setAdapter(null);
-        service = new OPVotacionService(getContext(), viewPager, this.salaId, userName, desdeSalas);
+        service = new OPVotacionService(getContext(), viewPager, this.salaId, userName, desdeSalas, estado);
     }
 }

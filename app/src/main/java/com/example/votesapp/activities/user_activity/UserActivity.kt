@@ -9,21 +9,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
-import com.example.votesapp.activities.mis_salas.SalaAdapter
 import com.example.votesapp.activities.newLogin.NewLogin
-import com.example.votesapp.activities.newLogin.NewLoginService
+import com.example.votesapp.activities.registroHuella.RegistroHuella
 import com.example.votesapp.activities.update_user.UpdateUser
 import com.example.votesapp.model.Usuario
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONException
 import org.json.JSONObject
-import org.w3c.dom.Text
 
 class UserActivity : Fragment() {
     private var username : String? = null
@@ -34,8 +31,14 @@ class UserActivity : Fragment() {
     private lateinit var apellidoTextView : TextView
     private lateinit var nombreTextView : TextView
     private lateinit var usernameTextView : TextView
+    private var listView:android.widget.ListView? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val viewFragment = inflater.inflate(R.layout.user_activity, container, false)
 
         username = this.activity?.intent?.getStringExtra("param_username")
@@ -46,11 +49,23 @@ class UserActivity : Fragment() {
         dniTextView = viewFragment.findViewById<TextView>(R.id.userActivity_dni)
         emailTextView = viewFragment.findViewById<TextView>(R.id.userActivity_email)
         fechaNacimientoTextView = viewFragment.findViewById<TextView>(R.id.userActivity_fechaNacimiento)
+        listView = viewFragment.findViewById(R.id.add_dispositivo_listView)
+        val dispositivosAdapter  = DispositivosAdapter(viewFragment.context, username)
+
+        listView?.adapter = dispositivosAdapter
+
+
+        val btnAgregarDispositivo = viewFragment.findViewById<Button>(R.id.btn_agregarDispositivo_userActivity);
+        btnAgregarDispositivo.setOnClickListener{
+            val intent = Intent(viewFragment.context, RegistroHuella::class.java)
+            intent.putExtra("param_username", user?.username);
+            startActivity(intent)
+        }
 
         val editarPerfilButton = viewFragment.findViewById<Button>(R.id.editar_perfil_button_userActivity)
         editarPerfilButton.setOnClickListener{
             val intent = Intent(viewFragment.context, UpdateUser::class.java)
-            intent.putExtra("param_username",user?.username)
+            intent.putExtra("param_username", user?.username)
             intent.putExtra("param_nombre", user?.nombre)
             intent.putExtra("param_apellido", user?.apellido)
             intent.putExtra("param_contrasenia", user?.contrasenia)
@@ -69,6 +84,8 @@ class UserActivity : Fragment() {
         }
 
         this.getUsernameData()
+
+
 
         return viewFragment
     }
