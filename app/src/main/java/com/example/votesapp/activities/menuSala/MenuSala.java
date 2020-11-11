@@ -1,5 +1,6 @@
 package com.example.votesapp.activities.menuSala;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -32,7 +34,9 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
     private String nombreSala = " ";
     private String usernameOwner = null;
     private String estado =" ";
+    private  Boolean tiempoSalaFinalizada;
     TextView tituloMenu;
+
 
     //variables para cargar el fragment principal
     FragmentManager fragmentManager;
@@ -45,6 +49,7 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu_salas);
         toolbar= findViewById(R.id.toolbar_menu2);
         setSupportActionBar(toolbar);
@@ -53,6 +58,8 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         nombreSala= getIntent().getStringExtra("param_nombre");
         usernameOwner = getIntent().getStringExtra("param_username");
         estado = getIntent().getStringExtra("param_estado");
+        tiempoSalaFinalizada = getIntent().getBooleanExtra("param_tiempoSala",true);
+
 
         drawerLayout = findViewById(R.id.drawer2);
         navigationView = findViewById(R.id.navigationView2);
@@ -73,6 +80,7 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
         bundle.putString("param_username",usernameOwner);
         bundle.putBoolean("param_desde_salas",true);
         bundle.putString("param_estado",estado);
+        bundle.putBoolean("param_tiempoSala",tiempoSalaFinalizada);
 
         infoSala = new InfoSala();
         infoSala.setArguments(bundle);
@@ -104,27 +112,37 @@ public class MenuSala extends AppCompatActivity implements NavigationView.OnNavi
             fragmentTransaction.replace(R.id.contenedor2, infoSala); // aca hiria el fragment o clase de accesoSala
             fragmentTransaction.commit();
         }
+
         if (item.getItemId() == R.id.OpcionesVotacion2){
-            fragmentManager=getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor2, opcionesVotacion);
-            fragmentTransaction.commit();
+
+            if (estado.equals("DISPONIBLE") && tiempoSalaFinalizada == true) {
+
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contenedor2, opcionesVotacion);
+                fragmentTransaction.commit();
+            }else{
+                new DialogoOpcionesVotacion(this);
+            }
 
         }
         if (item.getItemId() == R.id.recuentoVoto) {
             Log.i("estadoooooo",estado);
-            if (estado.equals("FINALIZADA")) {
 
+            if (estado.equals("FINALIZADA")|| tiempoSalaFinalizada == false) {
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.contenedor2, lista_votos);
                 fragmentTransaction.commit();
 
+            }else {
+                new  DialogoRecuentoVoto(this);
             }
+
         }
 
         return false;
     }
-}
 
+}
 

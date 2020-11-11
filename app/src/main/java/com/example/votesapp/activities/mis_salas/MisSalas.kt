@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.ListView
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -28,6 +29,9 @@ class MisSalas : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewFragment = inflater.inflate(R.layout.activity_listado_mis_salas, container, false)
         slistView = viewFragment.findViewById(R.id.listView_mis_salas)
+        val toolbar = viewFragment.findViewById<Toolbar>(R.id.toolbar)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+
 
         val buttonCrearSala = viewFragment.findViewById<FloatingActionButton>(R.id.button_crear_sala)
         buttonCrearSala.setOnClickListener {
