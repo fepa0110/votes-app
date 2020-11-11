@@ -1,5 +1,6 @@
 package com.example.votesapp.activities.user_activity
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,21 +10,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
-import com.example.votesapp.activities.mis_salas.SalaAdapter
 import com.example.votesapp.activities.newLogin.NewLogin
-import com.example.votesapp.activities.newLogin.NewLoginService
 import com.example.votesapp.activities.update_user.UpdateUser
+import com.example.votesapp.maps.MapsActivity
 import com.example.votesapp.model.Usuario
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONException
 import org.json.JSONObject
-import org.w3c.dom.Text
 
 class UserActivity : Fragment() {
     private var username : String? = null
@@ -34,8 +33,17 @@ class UserActivity : Fragment() {
     private lateinit var apellidoTextView : TextView
     private lateinit var nombreTextView : TextView
     private lateinit var usernameTextView : TextView
+    private lateinit var ubicacionTextView: TextView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    companion object {
+        fun newInstance(): UserActivity = UserActivity()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val viewFragment = inflater.inflate(R.layout.user_activity, container, false)
 
         username = this.activity?.intent?.getStringExtra("param_username")
@@ -46,16 +54,20 @@ class UserActivity : Fragment() {
         dniTextView = viewFragment.findViewById<TextView>(R.id.userActivity_dni)
         emailTextView = viewFragment.findViewById<TextView>(R.id.userActivity_email)
         fechaNacimientoTextView = viewFragment.findViewById<TextView>(R.id.userActivity_fechaNacimiento)
+        ubicacionTextView = viewFragment.findViewById<TextView>(R.id.ubicacion_data_textview_user_activity)
+
 
         val editarPerfilButton = viewFragment.findViewById<Button>(R.id.editar_perfil_button_userActivity)
         editarPerfilButton.setOnClickListener{
             val intent = Intent(viewFragment.context, UpdateUser::class.java)
-            intent.putExtra("param_username",user?.username)
+            intent.putExtra("param_username", user?.username)
             intent.putExtra("param_nombre", user?.nombre)
             intent.putExtra("param_apellido", user?.apellido)
             intent.putExtra("param_contrasenia", user?.contrasenia)
             intent.putExtra("param_correo", user?.correoElectronico)
             intent.putExtra("param_fechaNacimiento", user?.fechaNacimiento)
+            intent.putExtra("param_latitude", user?.ubicacion?.latitude)
+            intent.putExtra("param_longitud", user?.ubicacion?.longitude)
             startActivity(intent)
         }
 
@@ -71,10 +83,6 @@ class UserActivity : Fragment() {
         this.getUsernameData()
 
         return viewFragment
-    }
-
-    companion object {
-        fun newInstance(): UserActivity = UserActivity()
     }
 
     private fun getUsernameData(){
@@ -113,6 +121,8 @@ class UserActivity : Fragment() {
             usuario.correoElectronico = usuarioObject.getString("correoElectronico")
             usuario.fechaNacimiento = usuarioObject.getString("fechaNacimiento")
             usuario.contrasenia = usuarioObject.getString("contrasenia")
+            val ubicacion = usuarioObject.getJSONObject("ubicacion")
+            usuario.ubicacion = LatLng(ubicacion.getDouble("latitude"),ubicacion.getDouble("longitude"))
             if(usuario.fechaNacimiento == "null") usuario.fechaNacimiento = ""
 
             //LoggedInUser(usuarioObject.getString("username"), usuarioObject.getString("nombre"))
@@ -133,6 +143,8 @@ class UserActivity : Fragment() {
         dniTextView.text = user?.dni
         emailTextView.text = user?.correoElectronico
         fechaNacimientoTextView.text = user?.fechaNacimiento
+        val textUbicacion = "(${user?.ubicacion?.latitude},${user?.ubicacion?.longitude})"
+        ubicacionTextView.text = textUbicacion
     }
 
     override fun onResume() {

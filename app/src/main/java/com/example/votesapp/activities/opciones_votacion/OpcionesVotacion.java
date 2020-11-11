@@ -60,7 +60,7 @@ public class OpcionesVotacion extends Fragment {
         this.estado = getArguments().getString("param_estado");
 
         Button btnAgregar = (Button) view.findViewById(R.id.btnAñadir);
-        if (desdeSalas || this.estado.equals("FINALIZADA")) {
+        if (desdeSalas || this.estado.equals("FINALIZADA") || this.estado.equals("DISPONIBLE")) {
             btnAgregar.setEnabled(false);
             btnAgregar.setActivated(false);
             btnAgregar.setVisibility(View.INVISIBLE);

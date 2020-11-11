@@ -53,6 +53,12 @@
 
             </item>
             <item
+                android:id="@+id/filterUserBycomprension"
+                android:icon="@drawable/ic_usuario"
+                android:title="Acceso por Comprension">
+
+            </item>
+            <item
                 android:id="@+id/accesoPorContraseña"
                 android:icon="@drawable/ic_key"
                 android:title="Acceso por Contraseña">

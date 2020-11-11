@@ -1,5 +1,7 @@
 package com.example.votesapp.activities.update_user
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +22,9 @@ import com.android.volley.toolbox.Volley
 import com.example.votesapp.R
 import com.example.votesapp.activities.newLogin.NewLogin
 import com.example.votesapp.activities.newLogin.NewLoginService
+import com.example.votesapp.maps.MapsActivity
 import com.example.votesapp.model.Usuario
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONException
@@ -32,7 +36,10 @@ class UpdateUser : AppCompatActivity() {
     private var user : Usuario? = null
     private var usuarioService = NewLoginService()
     private val urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/usuarios"
+    private var bundleMaps : Bundle? = null
+    private var ubicacion : LatLng? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_user)
@@ -47,10 +54,16 @@ class UpdateUser : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.email_editText_editar_perfil)
         val passwordEditText = findViewById<EditText>(R.id.contraseña_editText_editar_perfil)
 
+        val ubicacionTextView = findViewById<TextView>(R.id.latitud_data_textview_editar_perfil)
+
         nombreEditText.setText(intent.getStringExtra("param_nombre"))
         apellidoEditText.setText(intent.getStringExtra("param_apellido"))
         emailEditText.setText(intent.getStringExtra("param_correo"))
         passwordEditText.setText(intent.getStringExtra("param_contrasenia"))
+        passwordEditText.setText(intent.getStringExtra("param_contrasenia"))
+
+        ubicacionTextView.text = "(${intent.getDoubleExtra("param_latitude",0.0)}," +
+                "${intent.getDoubleExtra("param_longitud",0.0)})"
 
         nombreEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -88,6 +101,12 @@ class UpdateUser : AppCompatActivity() {
             override fun afterTextChanged(editable: Editable) {}
         })
 
+        val ubicacionButton = findViewById<Button>(R.id.ubicacion_button_editar_perfil)
+        ubicacionButton.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivityForResult(intent, 2)
+        }
+
         val guardarButton = findViewById<Button>(R.id.button_guardar_editar_perfil)
         guardarButton.setOnClickListener {view ->
             if(validateNombre() && validateApellido() && validatePassword() && validateEmail()) {
@@ -99,6 +118,7 @@ class UpdateUser : AppCompatActivity() {
                 usuario.apellido = apellidoEditText.text.toString()
                 usuario.correoElectronico = emailEditText.text.toString()
                 usuario.contrasenia = passwordEditText.text.toString()
+                usuario.ubicacion = ubicacion
 
                 this.isEmailExists(queue,usuario,view)
             }
@@ -110,6 +130,28 @@ class UpdateUser : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val ubicacionTextView = findViewById<TextView>(R.id.latitud_data_textview_editar_perfil)
+        if (requestCode == 2) {
+//            if (resultCode == Activity.RESULT_OK) {
+                Log.i("UpdateUser", "resultCode: $resultCode")
+                Log.i("UpdateUser", "Entre")
+
+                val latitud = data?.getDoubleExtra("Latitud", 0.0)
+
+                val longitud = data?.getDoubleExtra("Longitud",0.0)
+
+                ubicacion = LatLng(latitud!!.toDouble(),longitud!!.toDouble())
+
+                Log.i("UpdateUser", "$ubicacion")
+
+//                Toast.makeText(this, "$ubicacion", Toast.LENGTH_SHORT).show()
+                ubicacionTextView.text = "(${ubicacion?.latitude},${ubicacion?.longitude})"
+//            }
+        }
+    }
     private fun validateNombre() : Boolean{
         val nombreEditTextLayout = findViewById<EditText>(R.id.nombre_layout_editarPerfil) as TextInputLayout
         val nombreEditText = findViewById<EditText>(R.id.nombre_editText_editar_perfil)
@@ -193,6 +235,15 @@ class UpdateUser : AppCompatActivity() {
         if(usuario.correoElectronico != null && usuario.correoElectronico!!.isNotEmpty()) {
             jsonUsuario.put("correoElectronico", usuario.correoElectronico)
         }
+        if(usuario.ubicacion != null) {
+            val jsonObjectUbicacion = JSONObject()
+            jsonObjectUbicacion.put("latitude",usuario.ubicacion!!.latitude)
+            jsonObjectUbicacion.put("longitude",usuario.ubicacion!!.longitude)
+
+            jsonUsuario.put("ubicacion", jsonObjectUbicacion)
+        }
+
+        Log.i(NewLogin.LOG_TAG, "Usuario para enviar: ${jsonUsuario.toString()}")
 
         val jsonRequest = JsonObjectRequest(
             "$urlBase/edit/", jsonUsuario,

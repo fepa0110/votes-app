@@ -111,4 +111,6 @@
     <string name="biometric_success">Verificacion Exitosa!</string>
     <string name="button_eliminar_sala">Eliminar Sala</string>
 
+    <string name="auth">Authenticate with fingerprint</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

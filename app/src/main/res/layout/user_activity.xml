@@ -252,12 +252,45 @@
                 app:layout_constraintStart_toEndOf="@+id/email_text_userActivity"
                 app:layout_constraintTop_toBottomOf="@+id/userActivity_fechaNacimiento" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userActivity_email">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ubicacion_label_textview_user_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicacion:"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ubicacion_data_textview_user_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Boton Editar perfil -->
         <Button
             android:id="@+id/editar_perfil_button_userActivity"
-            android:layout_width="150dp"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="?attr/colorPrimary"
@@ -270,7 +303,7 @@
         <!-- Boton cerrar sesion -->
         <Button
             android:id="@+id/logout_button_userActivity"
-            android:layout_width="150dp"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:background="@color/danger"

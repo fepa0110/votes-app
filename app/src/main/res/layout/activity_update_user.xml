@@ -172,12 +172,62 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:id="@+id/ubicacion_layout_editar_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contraseña_layout_editarPerfil">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ubicacion_label_textview_editar_perfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicacion:"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold"
+                    android:textSize="18dp" />
+
+                <Button
+                    android:id="@+id/ubicacion_button_editar_perfil"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_edit"
+                    android:backgroundTint="@color/blanco"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/latitud_data_textview_editar_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAlignment="center"
+                android:textColor="@color/blanco"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
         <!-- Boton guardar -->
         <Button
             android:id="@+id/button_guardar_editar_perfil"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/contraseña_layout_editarPerfil"
+            app:layout_constraintTop_toBottomOf="@id/ubicacion_layout_editar_perfil"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="?attr/colorPrimary"
