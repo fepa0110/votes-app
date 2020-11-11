@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_izquierda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_derecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+
+    <TextView
+        android:id="@+id/titulo_tiempo_votacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Tiempo de Votacion"
+        android:textColor="@color/negro"
+        android:textStyle="italic"
+        android:textSize="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/lineaDebajoTitulo"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/negro"
+        app:layout_constraintEnd_toEndOf="@id/guideline_derecha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_tiempo_votacion" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fecha"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="60dp"
+        android:textColorHint="@color/negro"
+        android:hint="Ingrese la fecha"
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="clear_text"
+        app:errorTextAppearance="@style/Error"
+        app:layout_constraintTop_toBottomOf="@id/titulo_tiempo_votacion"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_tiempo_votacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
+            android:inputType="date"
+            android:maxLines="1"
+            android:textColor="@color/negro"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/hora"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="60dp"
+        android:textColorHint="@color/negro"
+        android:hint="Ingrese la hora"
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="clear_text"
+        app:errorTextAppearance="@style/Error"
+        app:layout_constraintTop_toBottomOf="@id/fecha"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_derecha"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_tiempo_hora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
+            android:inputType="datetime"
+            android:maxLines="1"
+            android:textColor="@color/negro"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/boton_guardar_tiempo_votacion"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_circle"
+        android:text="@string/button_guardar"
+        android:textColor="@color/negro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_derecha"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@id/guideline_izquierda"
+        app:layout_constraintTop_toBottomOf="@+id/hora"
+        app:layout_constraintVertical_bias="0.597" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

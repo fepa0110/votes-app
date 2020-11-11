@@ -175,7 +175,7 @@ class Registro_usuario : AppCompatActivity() {
             usuario.username = text_registro_userName.text.toString()
             usuario.correoElectronico=text_registro_correoElectronico.text.toString()
             usuario.contrasenia = text_registroContraseña.text.toString()
-           this.isEmailExist(usuario)
+           this.isUserNameExists(usuario)
         }
     }
     private fun isUserNameExists( usuario : Usuario) {
@@ -188,7 +188,7 @@ class Registro_usuario : AppCompatActivity() {
 
 
         val jsonRequest = JsonObjectRequest(
-            "$urlBase/username", jsonUsuario,
+            "$urlBase/usernames", jsonUsuario,
             { response ->
                 Log.i(NewLogin.LOG_TAG, "Response is: $response")
 

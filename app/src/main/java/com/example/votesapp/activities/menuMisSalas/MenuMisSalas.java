@@ -64,6 +64,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
     private AccesoContrasenia accesoContrasenia;
     private AccesoDni accesoDni;
     private Lista_votos lista_votos;
+    private TiempoVotacion tiempoVotacion;
 
     private Sala sala;
 
@@ -145,6 +146,9 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
         lista_votos = new Lista_votos();
         lista_votos.setArguments(bundle);
 
+        tiempoVotacion = new TiempoVotacion();
+        tiempoVotacion.setArguments(bundle);
+
         buttonFinalizar.setOnClickListener(
                 view -> {
                     finalizarSala(view);
@@ -194,7 +198,7 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             buttonFinalizar.setVisibility(View.VISIBLE);
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, infoSala); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, infoSala);
             fragmentTransaction.commit();
         }
         else {
@@ -210,39 +214,47 @@ public class MenuMisSalas extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
 
         }
+        if (item.getItemId() == R.id.tiempoDeSala){
+            fragmentManager=getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contenedor, tiempoVotacion);
+            fragmentTransaction.commit();
+
+        }
         if (item.getItemId() == R.id.accesoPorNomUsuario){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, addVotanteByUser); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, addVotanteByUser);
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.filterUserBycomprension){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, filterUserByComprension); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, filterUserByComprension);
             fragmentTransaction.commit();
         }
-        if (item.getItemId() == R.id.accesoPorContraseña){
-            fragmentManager=getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, accesoContrasenia); // aca hiria el fragment o clase de accesoSala
-            fragmentTransaction.commit();
-        }
+//        if (item.getItemId() == R.id.accesoPorContraseña){
+//            fragmentManager=getSupportFragmentManager();
+//            fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.contenedor, accesoContrasenia);
+//            fragmentTransaction.commit();
+//        }
         if (item.getItemId() == R.id.accesoPorDni){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, accesoDni); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, accesoDni);
             fragmentTransaction.commit();
         }
         if (item.getItemId() == R.id.recuentoVoto){
             fragmentManager=getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contenedor, lista_votos); // aca hiria el fragment o clase de accesoSala
+            fragmentTransaction.replace(R.id.contenedor, lista_votos);
             fragmentTransaction.commit();
         }
 
         return false;
     }
+
     private void finalizarSala(View view){
         String urlBase = "http://if012hd.fi.mdn.unp.edu.ar:28003/votes-server/rest/salas";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
